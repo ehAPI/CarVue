@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+	
+		<record model="ir.ui.view" id="view_products_form"> 
+		    <field name="name">products.form</field>
+		    <field name="model">products</field>
+		    <field name="type">form</field>
+		    <field name="arch" type="xml">
+				<form string="Products" version="8.0">
+					<sheet>
+						<group>
+							<group>
+						
+								<field name="code"/>
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_products_form">
+			<field name="name">Products</field>
+			<field name="res_model">products</field>
+			<field name="view_mode">form</field>
+			<field name="help" type="html">
+  				<p class="oe_view_nocontent_create">
+    				Click to create details for your Workshop Jobs...
+  				</p>
+   			</field>
+		</record>
+
+		<!-- Top menu -->
+		<menuitem name="CarVue" id="carvue"/>
+
+		<!-- sub menu -->
+		<menuitem name="Products" id="products_menu" parent="carvue"/>
+		
+		<!-- menu item -->
+		<menuitem name="Products" parent="products_menu" id="products_menu_mainform" action="action_products_form"/>
+
+	</data>
+</openerp>

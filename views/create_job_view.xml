@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+	
+		<record model="ir.ui.view" id="view_create_job_form"> 
+		    <field name="name">create.job.form</field>
+		    <field name="model">create.job</field>
+		    <field name="type">form</field>
+		    <field name="arch" type="xml">
+				<form string="Jobs" version="8.0">
+
+				<sheet>
+					<group>
+						<group>
+					
+							<field name="name"/>
+							
+						</group>
+					</group>
+				</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_create_form">
+			<field name="name">Create Job</field>
+			<field name="res_model">create.job</field>
+			<field name="view_mode">form</field>
+			<field name="help" type="html">
+  				<p class="oe_view_nocontent_create">
+    				Click to create details for your Workshop Jobs...
+  				</p>
+   			</field>
+		</record>
+
+		<!-- Top menu -->
+		<menuitem name="CarVue" id="carvue"/>
+
+		<!-- sub menu -->
+		<menuitem name="Workshop" id="workshop_menu" parent="carvue"/>
+		
+		<!-- menu item -->
+		<menuitem name="Jobs" parent="workshop_menu" id="create_job_menu_mainform" action="action_create_form"/>
+
+	</data>
+</openerp>
