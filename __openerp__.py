@@ -11,6 +11,7 @@
 			 "views/customer_view.xml",
 			 "views/vehicle_dashboard_view.xml",
 			 # "views/sales_item_view.xml",
+			 "views/configuration_view.xml",
 			 "views/products_view.xml"],
 
     # 'qweb': ['static/src/xml/base.xml',], 
