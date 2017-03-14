@@ -10,9 +10,13 @@
 	"data": ["views/create_job_view.xml",
 			 "views/customer_view.xml",
 			 "views/vehicle_dashboard_view.xml",
-			 "views/products_view.xml",
+
 			 "views/sales_item_view.xml",
-			 "security/car_vue_security_view.xml",],
+			 "security/car_vue_security_view.xml",
+
+			 # "views/sales_item_view.xml",
+			 "views/configuration_view.xml"],
+			 # "views/products_view.xml"],
 
     # 'qweb': ['static/src/xml/base.xml',], 
      

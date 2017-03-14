@@ -1,5 +1,6 @@
 from openerp.osv import fields, osv
 
+
 class new_product(osv.osv):
 
 	_name = 'new.product'
