@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+	
+		<record model="ir.ui.view" id="view_customer_form"> 
+		    <field name="name">customer.form</field>
+		    <field name="model">customer</field>
+		    <field name="type">form</field>
+		    <field name="arch" type="xml">
+				<form string="Customer" version="8.0">
+
+				<sheet>
+					<group>
+						<group>
+					
+							<field name="name"/>
+						</group>
+					</group>
+				</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_customer_form">
+			<field name="name">Customer</field>
+			<field name="res_model">customer</field>
+			<field name="view_mode">form</field>
+			<field name="help" type="html">
+  				<p class="oe_view_nocontent_create">
+    				Click to create details for your Workshop Jobs...
+  				</p>
+   			</field>
+		</record>
+
+		<!-- Top menu -->
+		<menuitem name="CarVue" id="carvue"/>
+
+		<!-- sub menu -->
+		<menuitem name="Contact" id="contact_menu" parent="carvue"/>
+		
+		<!-- menu item -->
+		<menuitem name="Customer" parent="contact_menu" id="customer_menu_mainform" action="action_customer_form"/>
+
+	</data>
+</openerp>
