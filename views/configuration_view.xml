@@ -13,8 +13,6 @@
 			</field>
 		</record>
 
-
-
 		<record model="ir.ui.view" id="view_make_form"> 
 		    <field name="name">vehicle.make.form</field>
 		    <field name="model">make</field>
@@ -61,8 +59,6 @@
 			</field>
 		</record>
 
-
-
 		<record model="ir.ui.view" id="view_model_form"> 
 		    <field name="name">vehicle.model.form</field>
 		    <field name="model">model</field>
@@ -103,9 +99,9 @@
 		    <field name="type">tree</field>
 		    <field name="arch" type="xml">
 				<tree string="Derivative" version="8.0">
-						<field name='make'/>
-						<field name='model'/>
-						<field name='derivative'/>
+					<field name='make'/>
+					<field name='model'/>
+					<field name='derivative'/>
 				</tree>
 			</field>
 		</record>
@@ -118,9 +114,9 @@
 				<form string="Derivative" version="8.0">
 					<sheet>
 						<group>
-								<field name='make'/>
-								<field name='model'/>
-								<field name='derivative'/>
+							<field name='make'/>
+							<field name='model'/>
+							<field name='derivative' domain="[('model','=','model')]"/>
 						</group>
 					</sheet>
 				</form>
