@@ -4,4 +4,5 @@ class customer(osv.osv):
 
     _inherit = 'res.partner'
 
+
 customer()
