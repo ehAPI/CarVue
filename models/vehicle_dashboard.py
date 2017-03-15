@@ -5,6 +5,7 @@ import time
 class vehicle_dashboard(osv.osv):
 
 	_name = 'vehicle.dashboard'
+	_rec_name = 'registration'
 	_columns = {
 		'registration' : fields.char('Registration',required=True),	
 		'make' : fields.many2one('make','Make',required=True),
@@ -13,7 +14,7 @@ class vehicle_dashboard(osv.osv):
 		'age' : fields.integer('Age'),
 		'colour' : fields.char('Colour'),
 		'odometer' : fields.float('Odometer Reading'),
-		'odo_unit' : fields.selection([('miles','Miles'),('km','Kilometers')]),
+		'odo_unit' : fields.selection([('miles','Miles'),('km','Kilometers')],'Odometer Unit'),
 		'model_year': fields.selection([(num, str(num)) for num in range(1901,(datetime.datetime.now().year)+1)], 'Model Year'),
 		'reg_date' : fields.date('Reg Date'),
 		'vin' : fields.char('VIN'),
