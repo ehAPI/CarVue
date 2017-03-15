@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+
+
+		<!-- Top menu -->
+		<menuitem name="CarVue" id="carvue"/>
+
+		<!-- sub menu -->
+
+		<menuitem name="Sale" id="sale_menu" parent="carvue" />
+
+
+
+	</data>
+
+</openerp>
+
+<!-- groups="car_vue.group_car_vue_somebody" -->

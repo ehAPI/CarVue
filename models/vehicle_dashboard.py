@@ -7,6 +7,7 @@ class vehicle_dashboard(osv.osv):
 	_name = 'vehicle.dashboard'
 	_rec_name = 'registration'
 	_columns = {
+	
 		'registration' : fields.char('Registration',required=True),	
 		'make' : fields.many2one('make','Make',required=True),
 		'model' : fields.many2one('model','Model',required=True, domain="[('make','=',make)]"),

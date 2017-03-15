@@ -14,7 +14,8 @@
 					<field name='derivative'/>
 					<field name='age'/>
 					<field name='colour'/>
-					<field name='odometer' string='Odometer'/>
+					<field name='odometer'/>
+					
 				</tree>
 			</field>
 		</record>
@@ -37,8 +38,7 @@
 								<field name='vin'/>
 								<field name='reg_date'/>
 								<field name='date_of_manufacture'/>
-								<field name='odometer'/>
-								<field name='odo_unit'/>
+								<field name='odometer'/><field name='odo_unit'/>
 								<field name='colour'/>
 								<field name='paint_code'/>
 								<field name='trim'/>
