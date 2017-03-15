@@ -9,7 +9,7 @@ class vehicle_dashboard(osv.osv):
 		'registration' : fields.char('Registration',required=True),	
 		'make' : fields.many2one('make','Make',required=True),
 		'model' : fields.many2one('model','Model',required=True, domain="[('make','=',make)]"),
-		'derivative' : fields.many2one('derivative','Derivative', domain="[('make','=',make)]"),
+		'derivative' : fields.many2one('derivative','Derivative', domain="[('model','=',model)]"),
 		'age' : fields.integer('Age'),
 		'colour' : fields.char('Colour'),
 		'odometer' : fields.float('Odometer Reading'),
