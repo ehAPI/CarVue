@@ -50,11 +50,9 @@
         <record model="ir.ui.view" id="session_calendar_view">
             <field name="name">create.job.calendar</field>
             <field name="model">create.job</field>
-		    <!-- <field name="type">calendar</field> -->
-
+		    <field name="type">calendar</field>
             <field name="arch" type="xml">
-            	
-                <calendar string="Session Calendar" date_start="due_in"
+                <calendar string="Session Calendar" color='id' date_start="due_in"
                           date_stop="due_out">
 						<field name="name"/>
                 </calendar>
