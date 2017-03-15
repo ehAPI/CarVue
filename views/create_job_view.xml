@@ -10,11 +10,16 @@
 				<form string="Jobs" version="8.0">
 
 				<sheet>
-					<group>
-						<group>
+					<group string="JOB">
+						<group string="New Job Card">
 					
 							<field name="name"/>
-							
+							<field name="due_in"/>
+							<field name="due_out"/>
+							<field name="status"/>
+							<field name="advisor"/>
+							<field name="notes"/>
+
 						</group>
 					</group>
 				</sheet>

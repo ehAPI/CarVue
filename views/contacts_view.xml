@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<!-- Top menu -->
+        <menuitem name="CarVue" id="carvue"/>
+
+        <!-- sub menu -->
+        <menuitem name="Contacts" id="contact_menu" parent="carvue"/>
+
+        <!-- menu item -->
+		<menuitem id="customers_menu_mainform" action="base.action_partner_customer_form" parent="contact_menu" sequence='1'/>
+
+        <!-- menu item -->
+		<menuitem id="quotations_menu_mainform" action="sale.action_quotations" parent="contact_menu" sequence='2'/>
+
+        <!-- menu item -->
+        <menuitem action="sale.action_orders" id="sales_orders_menu_mainform" parent="contact_menu" sequence='3'/>
+
+    </data>
+</openerp>

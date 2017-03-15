@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+	
+		<record model="ir.ui.view" id="view_products_form"> 
+<<<<<<< HEAD
+		    <field name="name">product.form</field>
+		    <field name="model">new.product</field>
+=======
+		    <field name="name">products.form</field>
+		    <field name="model">products</field>
+>>>>>>> eb50fdc16b0e7ebdd585ff0846bfea2d8be34caa
+		    <field name="type">form</field>
+		    <field name="arch" type="xml">
+				<form string="Products" version="8.0">
+					<sheet>
+						<group>
+<<<<<<< HEAD
+							<group string="PRODUCT">
+								<field name="code"/>
+								<field name="name"/>
+								<field name="type"/>
+								<field name="notes"/>
+								<field name="track"/>
+							</group>
+							<div>
+							<group string="PURCHASE">
+								<field name="unit_cost"/>
+								<field name="acc"/>
+								<field name="tax"/>
+							</group>
+							<group string="SALES">	
+								<field name="unit_price"/>
+								<field name="acc"/>
+								<field name="tax"/>
+							</group>
+						</div>
+=======
+							<group>
+						
+								<field name="code"/>
+							</group>
+>>>>>>> eb50fdc16b0e7ebdd585ff0846bfea2d8be34caa
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+<<<<<<< HEAD
+		<record model="ir.actions.act_window" id="action_new_product_form">
+			<field name="name">New Product</field>
+			<field name="res_model">new.product</field>
+=======
+		<record model="ir.actions.act_window" id="action_products_form">
+			<field name="name">Products</field>
+			<field name="res_model">products</field>
+>>>>>>> eb50fdc16b0e7ebdd585ff0846bfea2d8be34caa
+			<field name="view_mode">form</field>
+			<field name="help" type="html">
+  				<p class="oe_view_nocontent_create">
+    				Click to create details for your Workshop Jobs...
+  				</p>
+   			</field>
+		</record>
+
+		<!-- Top menu -->
+		<menuitem name="CarVue" id="carvue"/>
+
+		<!-- sub menu -->
+<<<<<<< HEAD
+		<menuitem name="Product" id="product_menu" parent="carvue"/>
+		
+		<!-- menu item -->
+		<menuitem name="New Product" parent="product_menu" id="new_product_menu_mainform" action="action_new_product_form" />
+=======
+		<menuitem name="Products" id="products_menu" parent="carvue"/>
+		
+		<!-- menu item -->
+		<menuitem name="Products" parent="products_menu" id="products_menu_mainform" action="action_products_form"/>
+>>>>>>> eb50fdc16b0e7ebdd585ff0846bfea2d8be34caa
+
+	</data>
+</openerp>
