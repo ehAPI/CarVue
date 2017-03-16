@@ -44,16 +44,25 @@ class create_job(osv.osv):
 	
 	_columns = {
 		# 'new':fields.char('New Job Card'),
-		'name':fields.char('New Job Card', readonly=True),
-		'notes':fields.char('NOTES'),
-		'status':fields.selection([('due','Due In')],'STATUS'),
-
-
+		# 'name':fields.one2many('res.partner','CONTACTS',ondelete='set null'),
+		'notes':fields.text('NOTES'),
+		'status':fields.selection([('prov','Provitional'),
+			('due','Due In'),
+			('arr','Arrived'),
+			('in','In Progress'),
+			('paused','Paused'),
+			('part','Parts On Order'),
+			('parts','Parts Arrived'),
+			('awaiting','Awaiting Authority'),
+			('cleaning','Cleaning'),
+			('cust','Customer Contacted'),
+			('work','Work Completed')],'STATUS'),
 		'due_in':fields.datetime('DUE IN'),
 		'due_out':fields.datetime('DUE OUT'),
-
+        'child_ids': fields.many2one('res.partner','CONTACT', domain=[('active','=',True)]), # force "active_test" domain to bypass _search() override
 		'advisor':fields.many2one('res.users','ADVISOR',ondelete='set null'),
-		
+		'veh':fields.many2one('vehicle.dashboard','VEHICLE',ondelete='set null'),
+		# 'name' : fields.one2many('res.partner','chn','Chapter'),    
 	}
 
 create_job()
