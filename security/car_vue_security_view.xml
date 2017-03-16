@@ -13,7 +13,12 @@
         </record>
     
         <record model="ir.ui.menu" id="base.menu_base_partner">           
-            <field name="groups_id" eval="[(6,0,[ref('group_car_vue_somebody')])]"/>       
+
+            <field name="name">Sales</field>
+            <field name="model">base.menu_base_partner</field>           
+            <field name="inherit_id" ref="base.menu_base_partner"/>
+            <field name="groups_id" eval="[(6,0,[ref('group_car_vue_somebody')])]"/>
+
         </record>
 
         <record model="ir.ui.menu" id="account.menu_finance">           

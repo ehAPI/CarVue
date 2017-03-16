@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
 	<data>
+		<!-- <record model="ir.ui.view" id="view_create_job_form">  -->
+
+		 
+	<!-- </record> -->
 	
 		<record model="ir.ui.view" id="view_create_job_form"> 
 		    <field name="name">create.job.form</field>
@@ -8,20 +12,26 @@
 		    <field name="type">form</field>
 		    <field name="arch" type="xml">
 				<form string="Jobs" version="8.0">
-
 				<sheet>
+					<group>
+					<group string = "CONTACT">
+						<field name="child_ids"/>
+					</group>
+					<group string = "VEHICLE">	
+
+							<field name="veh"/>
+						</group>
 					<group string="JOB">
 						<group string="New Job Card">
-					    
-							<!-- <field name="name"/> -->
+							
 							<field name="due_in"/>
 							<field name="due_out"/>
 							<field name="status"/>
 							<field name="advisor"/>
 							<field name="notes"/>
-
 						</group>
 					</group>
+				</group>
 				</sheet>
 				</form>
 			</field>
@@ -35,7 +45,8 @@
 		    <field name="arch" type="xml">
 				<tree string="Jobs" version="8.0">
 
-				
+							<field name="child_ids"/>
+							<field name="veh"/>
 							<field name="due_in"/>
 							<field name="due_out"/>
 							<field name="status"/>
@@ -54,10 +65,12 @@
             <field name="arch" type="xml">
                 <calendar string="Session Calendar" color='id' date_start="due_in"
                           date_stop="due_out">
-						<field name="name"/>
+						<!-- <field name="name"/> -->
                 </calendar>
             </field>
         </record>
+
+
 
 
 		<record model="ir.actions.act_window" id="action_create_form">
