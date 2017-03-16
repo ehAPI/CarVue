@@ -8,19 +8,21 @@
         <!-- sub menu -->
         <menuitem name="Products" id="products_menu" parent="carvue"/>
 
-        <!-- menu item -->
-        <menuitem id="base.menu_product" action="product.product_template_action" parent="products_menu" sequence="1"/>
-
-
-<!-- 		<menuitem id="customers_menu_mainform" action="base.action_partner_customer_form" parent="contact_menu" sequence='1'/> -->
+        <menuitem name="Purchases &amp; Invoices" id="purchase_invoice_menu" parent="carvue"/>
 
         <!-- menu item -->
-		<!-- <menuitem id="quotations_menu_mainform" action="sale.action_quotations" parent="contact_menu" sequence='2'/> -->
+        <menuitem id="menu_product" action="product.product_template_action" parent="products_menu" sequence="1"/>
 
-        <!-- menu item -->
-        <!-- <menuitem action="sale.action_orders" id="sales_orders_menu_mainform" parent="contact_menu" sequence='3'/> -->
+        <menuitem id="menu_supplier" action="base.action_partner_supplier_form" parent="purchase_invoice_menu" sequence="4"/>
 
-        <!-- name="Product Variants" -->
+
+        <menuitem id="menu_purchase" action="purchase.purchase_form_action" parent="purchase_invoice_menu" sequence="2"/>
+
+        <menuitem id="menu_purchase_quotation" action="purchase.purchase_rfq" parent="purchase_invoice_menu" sequence="1"/>
+
+        <!-- <menuitem id="menu_inventory" action="stock.action_receipt_picking_move" parent="products_menu" sequence="1"/> -->
+
+        <menuitem id="menu_invoice" action="purchase.action_invoice_pending" parent="purchase_invoice_menu" sequence="3"/>
 
     </data>
 </openerp>
