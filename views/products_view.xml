@@ -9,7 +9,7 @@
         <menuitem name="Products" id="products_menu" parent="carvue"/>
 
         <!-- menu item -->
-        <menuitem id="base.menu_product" action="product.product_template_action" parent="products_menu" sequence="1"/>
+        <menuitem id="base.menu_product" action="product.product_template_action" parent="products_menu" sequence="5"/>
 
 
 <!-- 		<menuitem id="customers_menu_mainform" action="base.action_partner_customer_form" parent="contact_menu" sequence='1'/> -->
