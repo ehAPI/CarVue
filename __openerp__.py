@@ -12,8 +12,8 @@
 			 "views/contacts_view.xml",
 			 "security/car_vue_security_view.xml",
 			 "security/ir.model.access.csv",
-			 "views/configuration_view.xml"],
-			 # "views/products_view.xml"],
+			 "views/configuration_view.xml",
+			 "views/products_view.xml"],
 
     # 'qweb': ['static/src/xml/base.xml',], 
      
