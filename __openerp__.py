@@ -9,8 +9,9 @@
 
 	"data": ["views/create_job_view.xml",
 			 "views/vehicle_dashboard_view.xml",
-
 			 "views/contacts_view.xml",
+			 "security/car_vue_security_view.xml",
+			 "security/ir.model.access.csv",
 			 "views/configuration_view.xml"],
 			 # "views/products_view.xml"],
 

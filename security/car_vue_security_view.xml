@@ -7,132 +7,30 @@
             <field name="sequence">16</field>
         </record>
 
-        <record id="group_car_vue_user" model="res.groups">
-        <field name="name">Somebody</field>
-        <field name="category_id" ref="module_car_vue"/>
+        <record id="group_car_vue_somebody" model="res.groups">
+            <field name="name">Somebody</field>
+            <field name="category_id" ref="module_car_vue"/>
         </record>
-<!-- 
-        <record id="mail.mail_feeds_main" model="ir.ui.menu">
-    <field name="groups_id" eval="[(3, ref('base.group_car_vue_user'))]"/>
-</record>
- -->
-
-
-     <!--    <record id="group_car_vue_user" model="res.groups">
-        <field name="name">Surveyor</field>
-        <field name="category_id" ref="base.module_car_vue"/>
-    	</record>
-
-    <record id="group_car_vue_manager" model="res.groups">
-        <field name="name">Team Leader</field>
-        <field name="category_id" ref="base.module_car_vue"/>
-
-    </record> -->
-    <!-- <record model="ir.ui.menu" id="base.menu_definitions">
-        <field name="groups_id" eval="[(6,0,[ref('group_car_vue_manager')])]"/>
-    </record> -->
-   </data>
-
-<!-- rules -->
-<!-- <data noupdate="0">
-    <record model="ir.rule" id="project_car_vue_manager_rule">
-        <field name="name">Project: project manager: see all</field>
-        <field name="model_id" ref="model_view_plan_tasks"/>
-        <field name="domain_force">[(1, '=', 1)]</field>
-        <field name="groups" eval="[(4,ref('car_vue.group_car_vue_manager'))]"/>
-    </record>
-
-   
-    <record model="ir.rule" id="car_vue_visibility_rule">
-        <field name="name">Surveyor: see only his tasks</field>
-        <field name="model_id" ref="model_view_plan_tasks"/>
-        <field name="domain_force">[('surveyor', '=', user.id)]</field>
-        <field name="groups" eval="[(4,ref('car_vue.group_car_vue_user'))]"/>
-    </record>
-
-    <record model="ir.rule" id="project_manager_all_car_vue_tasks_rule">
-        <field name="name">TeamLeader: see all Tasks</field>
-        <field name="model_id" ref="model_view_plan_tasks"/>
-        <field name="domain_force">[(1, '=', 1)]</field>
-        <field name="groups" eval="[(4,ref('car_vue.group_car_vue_manager'))]"/>
-    </record>
-
-    <record model="ir.rule" id="tl_customer_rule">
-        <field name="name">TeamLeader: see all</field>
-        <field name="model_id" ref="model_customer_info"/>
-        <field name="domain_force">[(1, '=', 1)]</field>
-        <field name="groups" eval="[(4,ref('car_vue.group_car_vue_manager'))]"/>
-    </record>
-
-    <record model="ir.rule" id="surveyor_alert_rule">
-        <field name="name">Surveyor: see his alerts</field>
-        <field name="model_id" ref="model_cust_alerts"/>
-        <field name="domain_force">[('assign_to', '=', user.id)]</field>
-        <field name="groups" eval="[(4,ref('car_vue.group_car_vue_user'))]"/>
-    </record>
-
-    <record model="ir.rule" id="surveyor_customer_rule">
-        <field name="name">Surveyor: see all customers</field>
-        <field name="model_id" ref="model_customer_info"/>
-        <field name="domain_force">[(1, '=', 1)]</field>
-        <field name="groups" eval="[(4,ref('car_vue.group_car_vue_user'))]"/>
-    </record>
-
-    <record id="portal_car_vue_customer_rule" model="ir.rule">
-            <field name="name">Customer: read access his docs</field>
-            <field name="model_id" ref="model_view_plan_tasks"/>
-            <field name="domain_force">[('customer_name', '=', user.name)]</field>
-            <field name="groups" eval="[(4, ref('group_car_vue_customer'))]"/>
-        </record>
-        
-      <record id="survey_car_vue_customer_rule" model="ir.rule">
-            <field name="name">Customer: read access his docs</field>
-            <field name="model_id" ref="model_survey_details"/>
-            <field name="domain_force">[('customer_name', '=', user.name),('status','=','approved')]</field>
-            <field name="groups" eval="[(4, ref('group_car_vue_customer'))]"/>
+    
+        <record model="ir.ui.menu" id="base.menu_base_partner">           
+            <field name="name">Sales</field>
+            <field name="model">base.menu_base_partner</field>           
+            <field name="inherit_id" ref="base.menu_base_partner"/>
+            <field name="groups_id" eval="[(6,0,[ref('group_car_vue_somebody')])]"/>
+            <field name="arch" type="xml">
+                <attribute name="invisible">1</attribute>
+            </field>        
         </record>
 
-     <record id="portal_car_vue_customer_info_rule" model="ir.rule">
-            <field name="name">Customer: read access his docs1</field>
-            <field name="model_id" ref="model_customer_info"/>
-            <field name="domain_force">[('cust_name', '=', user.name)]</field>
-            <field name="groups" eval="[(4, ref('group_car_vue_customer'))]"/>
-        </record>
+        <!-- <record model="ir.ui.menu" id="Invoicing">           
+            <field name="name">Invoicing</field>
+            <field name="model">account.menu_finance</field>           
+            <field name="inherit_id" ref="account.menu_finance"/>
+            <field name="groups_id" eval="[(6,0,[ref('group_car_vue_somebody')])]"/>
+            <field name="arch" type="xml">
+                <attribute name="invisible">1</attribute>
+            </field>        
+        </record> -->
 
-     <record id="portal_car_vue_customer_alert_rule" model="ir.rule">
-            <field name="name">Customer: read access his docs2</field>
-            <field name="model_id" ref="model_cust_alerts"/>
-            <field name="domain_force">[('customer', '=', user.name)]</field>
-            <field name="groups" eval="[(4, ref('group_car_vue_customer'))]"/>
-        </record>
-
-
-    <record id="portal_car_vue_customer_car_vue_rule" model="ir.rule">
-            <field name="name">Customer: read access his docs3</field>
-            <field name="model_id" ref="model_car_vue_details"/>
-            <field name="domain_force">[('customer', '=', user.name)]</field>
-            <field name="groups" eval="[(4, ref('group_car_vue_customer'))]"/>
-        </record>
-
-    <record model="ir.rule" id="manager_alert_rule">
-        <field name="name">Manager: see all alerts</field>
-        <field name="model_id" ref="model_cust_alerts"/>
-        <field name="domain_force">[(1, '=', 1)]</field>
-        <field name="groups" eval="[(4,ref('car_vue.group_car_vue_manager'))]"/>
-    </record>
-
-    <record id="portal_car_vue_surveyor_car_vue_rule" model="ir.rule">
-            <field name="name">Surveyor: read access his docs3</field>
-            <field name="model_id" ref="model_car_vue_details"/>
-            <field name="domain_force">[(1, '=', 1)]</field>
-            <field name="groups" eval="[(4, ref('group_car_vue_user'))]"/>
-        </record>
-
-    <record model="ir.rule" id="manager_survey_info_rule">
-        <field name="name">Manager: see all Survey Details</field>
-        <field name="model_id" ref="model_survey_details"/>
-        <field name="domain_force">[(1, '=', 1)]</field>
-        <field name="groups" eval="[(4,ref('car_vue.group_car_vue_manager'))]"/>
-    </record> -->
-<!-- </data> -->
+    </data>
 </openerp>
