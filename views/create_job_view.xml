@@ -12,8 +12,8 @@
 				<sheet>
 					<group string="JOB">
 						<group string="New Job Card">
-					
-							<field name="name"/>
+					    
+							<!-- <field name="name"/> -->
 							<field name="due_in"/>
 							<field name="due_out"/>
 							<field name="status"/>
@@ -27,10 +27,45 @@
 			</field>
 		</record>
 
+
+		<record model="ir.ui.view" id="view_create_job_tree"> 
+		    <field name="name">create.job.tree</field>
+		    <field name="model">create.job</field>
+		    <field name="type">tree</field>
+		    <field name="arch" type="xml">
+				<tree string="Jobs" version="8.0">
+
+				
+							<field name="due_in"/>
+							<field name="due_out"/>
+							<field name="status"/>
+							<field name="advisor"/>
+							<field name="notes"/>
+
+				</tree>
+			</field>
+		</record>
+
+		<!-- calendar view -->
+        <record model="ir.ui.view" id="session_calendar_view">
+            <field name="name">create.job.calendar</field>
+            <field name="model">create.job</field>
+		    <!-- <field name="type">calendar</field> -->
+
+            <field name="arch" type="xml">
+            	
+                <calendar string="Session Calendar" date_start="due_in"
+                          date_stop="due_out">
+						<field name="name"/>
+                </calendar>
+            </field>
+        </record>
+
+
 		<record model="ir.actions.act_window" id="action_create_form">
 			<field name="name">Create Job</field>
 			<field name="res_model">create.job</field>
-			<field name="view_mode">form</field>
+			<field name="view_mode">form,tree,calendar</field>
 			<field name="help" type="html">
   				<p class="oe_view_nocontent_create">
     				Click to create details for your Workshop Jobs...
