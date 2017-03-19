@@ -7,7 +7,7 @@ class vehicle_dashboard(osv.osv):
 	_name = 'vehicle.dashboard'
 	_rec_name = 'registration'
 	_columns = {
-	
+		'code': fields.char('Code',readonly=True),
 		'registration' : fields.char('Registration',required=True),	
 		'make' : fields.many2one('make','Make',required=True),
 		'model' : fields.many2one('model','Model',required=True, domain="[('make','=',make)]"),
@@ -45,5 +45,10 @@ class vehicle_dashboard(osv.osv):
 		'notes' : fields.text('Notes'),
 		'contacts' : fields.char('Contacts'),
 		}
+
+	def create(self,cr,uid,vals,context=None):
+		if vals.get('code','/')=='/':
+			vals['code']=self.pool.get('ir.sequence').get(cr,uid,'vehicle.dashboard') or '/'
+		return super(vehicle_dashboard,self).create(cr,uid,vals,context=context)
 
 vehicle_dashboard()
