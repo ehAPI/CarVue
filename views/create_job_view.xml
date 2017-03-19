@@ -13,33 +13,7 @@
 
 				<form string="Jobs" version="8.0">
 				
-					<header>
-						<button name="status_provisional" type="object" String="Provisional" attrs="{'invisible': [('status','in',('prov'))]}" class="oe_highlight"/>
-
-						<button name="status_duein" type="object" String="Due In" attrs="{'invisible': [('status','in',('due'))]}" class="oe_highlight"/>
-
-						<button name="status_arr" type="object" String="Arrived" attrs="{'invisible': [('status','in',('arr'))]}" class="oe_highlight"/>
-
-						<button name="status_in" type="object" String="In Progress" attrs="{'invisible': [('status','in',('in'))]}" class="oe_highlight"/>
-
-						<button name="status_paused" type="object" String="Paused" attrs="{'invisible': [('status','in',('paused'))]}" class="oe_highlight"/>
-
-						<button name="status_part" type="object" String="Parts On Order" attrs="{'invisible': [('status','in',('part'))]}" class="oe_highlight"/>
-
-						<button name="status_parts" type="object" String="Parts Arrived"  attrs="{'invisible': [('status','in',('parts'))]}" class="oe_highlight"/>
-
-						<button name="status_awaiting" type="object" String="Awaiting Authority" attrs="{'invisible': [('status','in',('awaiting'))]}" class="oe_highlight"/>
-
-						<button name="status_cleaning" type="object" String="Cleaning" attrs="{'invisible': [('status','in',('cleaning'))]}" class="oe_highlight"/>
-
-						<button name="status_cust" type="object" String="Customer Contacted" attrs="{'invisible': [('status','in',('cust'))]}" class="oe_highlight"/>
-
-						<button name="status_work" type="object" String="Work Completed" attrs="{'invisible': [('status','in',('work'))]}" class="oe_highlight"/>
-
-						<field name="status" widget="statusbar" 
-	                     	statusbar_visible="prov,due,arr,in,paused,part,
-	                     	parts,awaiting,cleaning,cust,work"/>
-
+					
 					</header>
 			<!-- ,In Progress,Paused,Parts On Order,Parts Arrived,Awaiting Authority,Cleaning,Customer Contacted,Work Complete -->
 				<sheet>
@@ -78,14 +52,6 @@
 
 
 
-
-					<field name='code' string='Number'/>
-					<field name="child_ids"/>
-					<field name="veh"/>
-					<field name="due_in"/>
-					<field name="due_out"/>
-					<field name="status"/>
-					<field name="advisor"/>
 
 		<!-- calendar view -->
         <record model="ir.ui.view" id="session_calendar_view">
