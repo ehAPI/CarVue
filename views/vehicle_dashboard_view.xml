@@ -8,6 +8,7 @@
 			<field name="type">tree</field>
 			<field name="arch" type="xml">
 				<tree string="VEHICLES">
+					<field name='code'/>
 					<field name='registration'/>
 					<field name='make'/>
 					<field name='model'/>
@@ -15,7 +16,6 @@
 					<field name='age'/>
 					<field name='colour'/>
 					<field name='odometer'/>
-					
 				</tree>
 			</field>
 		</record>
@@ -27,6 +27,9 @@
 		    <field name="arch" type="xml">
 				<form string="Dashboard" version="8.0">
 					<sheet>
+						<h2>
+							<field name='code'/>
+						</h2>
 						<group>
 							<group string='Vehicle'>
 							<!-- <h2>Vehicle</h2> -->

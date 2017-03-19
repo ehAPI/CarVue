@@ -5,7 +5,7 @@
 
 		 
 	<!-- </record> -->
-	
+
 		<record model="ir.ui.view" id="view_create_job_form"> 
 		    <field name="name">create.job.form</field>
 		    <field name="model">create.job</field>
@@ -13,6 +13,7 @@
 		    <field name="arch" type="xml">
 				<form string="Jobs" version="8.0">
 				<sheet>
+					<h2><field name='code'/></h2>
 					<group>
 					<group string = "CONTACT">
 						<field name="child_ids"/>
@@ -23,20 +24,36 @@
 						</group>
 					<group string="JOB">
 						<group string="New Job Card">
-							
 							<field name="due_in"/>
 							<field name="due_out"/>
 							<field name="status"/>
 							<field name="advisor"/>
+							<field name="technician"/>
 							<field name="notes"/>
+						</group>
+						<group>
+							<field name="bay"/>
+							<field name="reference"/>
+							<field name="mile"/>
 						</group>
 					</group>
 				</group>
 				</sheet>
+				<!-- <footer>
+					<button name="%(action_create_next_form)d" string="Create Job" type="action" class="oe_highlight"/>
+				</footer> -->
+				<footer>
+					<button name="%(action_sale_order_form)d" string="Repairs" type="action" class="oe_highlight"/>
+				</footer>
 				</form>
 			</field>
 		</record>
 
+		<record model="ir.actions.act_window" id="action_sale_order_form">
+			<field name="name">New Item</field>
+			<field name="res_model">sale.order</field>
+			<field name="view_mode">form</field>
+		</record>
 
 		<record model="ir.ui.view" id="view_create_job_tree"> 
 		    <field name="name">create.job.tree</field>
@@ -44,15 +61,13 @@
 		    <field name="type">tree</field>
 		    <field name="arch" type="xml">
 				<tree string="Jobs" version="8.0">
-
-							<field name="child_ids"/>
-							<field name="veh"/>
-							<field name="due_in"/>
-							<field name="due_out"/>
-							<field name="status"/>
-							<field name="advisor"/>
-							<field name="notes"/>
-
+					<field name='code' string='Number'/>
+					<field name="child_ids"/>
+					<field name="veh"/>
+					<field name="due_in"/>
+					<field name="due_out"/>
+					<field name="status"/>
+					<field name="advisor"/>
 				</tree>
 			</field>
 		</record>
@@ -69,8 +84,6 @@
                 </calendar>
             </field>
         </record>
-
-
 
 
 		<record model="ir.actions.act_window" id="action_create_form">
