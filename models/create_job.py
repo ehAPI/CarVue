@@ -57,6 +57,7 @@ class create_job(osv.osv):
 		self.write(cr,uid,ids,{'status':'paused'},context=context)
 		return True
 
+
 	def status_part(self,cr,uid,ids,context=None):
 		self.write(cr,uid,ids,{'status':'part'},context=context)
 		return True	
@@ -79,10 +80,7 @@ class create_job(osv.osv):
 
 	def status_work(self,cr,uid,ids,context=None):
 		self.write(cr,uid,ids,{'status':'work'},context=context)
-		return True	
-
-
-
+		return True
 		
 		
 

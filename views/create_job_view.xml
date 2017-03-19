@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
 	<data>
-		<!-- <record model="ir.ui.view" id="view_create_job_form">  -->
 
-		 
+		<!-- <record model="ir.ui.view" id="view_create_job_form">  -->
 	<!-- </record> -->
 
 		<record model="ir.ui.view" id="view_create_job_form"> 
 		    <field name="name">create.job.form</field>
 		    <field name="model">create.job</field>
-		    <field name="type">form</field>
+		    <field name="type">tree</field>
 		    <field name="arch" type="xml">
+
 				<form string="Jobs" version="8.0">
 				
 					<header>
@@ -59,6 +59,7 @@
 							<field name="advisor"/>
 							<field name="technician"/>
 							<field name="notes"/>
+
 						</group>
 						<group>
 							<field name="bay"/>
@@ -76,12 +77,7 @@
 		</record>
 
 
-		<record model="ir.ui.view" id="view_create_job_tree"> 
-		    <field name="name">create.job.tree</field>
-		    <field name="model">create.job</field>
-		    <field name="type">tree</field>
-		    <field name="arch" type="xml">
-				<tree string="Jobs" version="8.0">
+
 
 					<field name='code' string='Number'/>
 					<field name="child_ids"/>
@@ -90,9 +86,6 @@
 					<field name="due_out"/>
 					<field name="status"/>
 					<field name="advisor"/>
-				</tree>
-			</field>
-		</record>
 
 		<!-- calendar view -->
         <record model="ir.ui.view" id="session_calendar_view">
