@@ -47,11 +47,8 @@ class create_job(osv.osv):
 		'name':fields.char('New Job Card', readonly=True),
 		'notes':fields.char('NOTES'),
 		'status':fields.selection([('due','Due In')],'STATUS'),
-
-
 		'due_in':fields.datetime('DUE IN'),
 		'due_out':fields.datetime('DUE OUT'),
-
 		'advisor':fields.many2one('res.users','ADVISOR',ondelete='set null'),
 		
 	}
