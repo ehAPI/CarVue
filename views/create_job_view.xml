@@ -79,14 +79,6 @@
 
 
 
-					<field name='code' string='Number'/>
-					<field name="child_ids"/>
-					<field name="veh"/>
-					<field name="due_in"/>
-					<field name="due_out"/>
-					<field name="status"/>
-					<field name="advisor"/>
-
 		<!-- calendar view -->
         <record model="ir.ui.view" id="session_calendar_view">
             <field name="name">create.job.calendar</field>
