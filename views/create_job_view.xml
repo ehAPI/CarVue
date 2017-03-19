@@ -12,21 +12,50 @@
 		    <field name="type">form</field>
 		    <field name="arch" type="xml">
 				<form string="Jobs" version="8.0">
+				
+					<header>
+						<button name="status_provisional" type="object" String="Provisional" attrs="{'invisible': [('status','in',('prov'))]}" class="oe_highlight"/>
+
+						<button name="status_duein" type="object" String="Due In" attrs="{'invisible': [('status','in',('due'))]}" class="oe_highlight"/>
+
+						<button name="status_arr" type="object" String="Arrived" attrs="{'invisible': [('status','in',('arr'))]}" class="oe_highlight"/>
+
+						<button name="status_in" type="object" String="In Progress" attrs="{'invisible': [('status','in',('in'))]}" class="oe_highlight"/>
+
+						<button name="status_paused" type="object" String="Paused" attrs="{'invisible': [('status','in',('paused'))]}" class="oe_highlight"/>
+
+						<button name="status_part" type="object" String="Parts On Order" attrs="{'invisible': [('status','in',('part'))]}" class="oe_highlight"/>
+
+						<button name="status_parts" type="object" String="Parts Arrived"  attrs="{'invisible': [('status','in',('parts'))]}" class="oe_highlight"/>
+
+						<button name="status_awaiting" type="object" String="Awaiting Authority" attrs="{'invisible': [('status','in',('awaiting'))]}" class="oe_highlight"/>
+
+						<button name="status_cleaning" type="object" String="Cleaning" attrs="{'invisible': [('status','in',('cleaning'))]}" class="oe_highlight"/>
+
+						<button name="status_cust" type="object" String="Customer Contacted" attrs="{'invisible': [('status','in',('cust'))]}" class="oe_highlight"/>
+
+						<button name="status_work" type="object" String="Work Completed" attrs="{'invisible': [('status','in',('work'))]}" class="oe_highlight"/>
+
+						<field name="status" widget="statusbar" 
+	                     	statusbar_visible="prov,due,arr,in,paused,part,
+	                     	parts,awaiting,cleaning,cust,work"/>
+
+					</header>
+			<!-- ,In Progress,Paused,Parts On Order,Parts Arrived,Awaiting Authority,Cleaning,Customer Contacted,Work Complete -->
 				<sheet>
 					<h2><field name='code'/></h2>
 					<group>
+
 					<group string = "CONTACT">
 						<field name="child_ids"/>
 					</group>
 					<group string = "VEHICLE">	
-
 							<field name="veh"/>
-						</group>
+					</group>
 					<group string="JOB">
 						<group string="New Job Card">
 							<field name="due_in"/>
 							<field name="due_out"/>
-							<field name="status"/>
 							<field name="advisor"/>
 							<field name="technician"/>
 							<field name="notes"/>
@@ -39,21 +68,13 @@
 					</group>
 				</group>
 				</sheet>
-				<!-- <footer>
-					<button name="%(action_create_next_form)d" string="Create Job" type="action" class="oe_highlight"/>
-				</footer> -->
-				<footer>
-					<button name="%(action_sale_order_form)d" string="Repairs" type="action" class="oe_highlight"/>
-				</footer>
+
+				
+				
 				</form>
 			</field>
 		</record>
 
-		<record model="ir.actions.act_window" id="action_sale_order_form">
-			<field name="name">New Item</field>
-			<field name="res_model">sale.order</field>
-			<field name="view_mode">form</field>
-		</record>
 
 		<record model="ir.ui.view" id="view_create_job_tree"> 
 		    <field name="name">create.job.tree</field>
@@ -61,6 +82,7 @@
 		    <field name="type">tree</field>
 		    <field name="arch" type="xml">
 				<tree string="Jobs" version="8.0">
+
 					<field name='code' string='Number'/>
 					<field name="child_ids"/>
 					<field name="veh"/>
@@ -78,7 +100,7 @@
             <field name="model">create.job</field>
 		    <field name="type">calendar</field>
             <field name="arch" type="xml">
-                <calendar string="Session Calendar" color='id' date_start="due_in"
+                <calendar string="Session Calendar" color='child_ids' date_start="due_in"
                           date_stop="due_out">
 						<!-- <field name="name"/> -->
                 </calendar>
