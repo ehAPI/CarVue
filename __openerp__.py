@@ -8,7 +8,6 @@
 	"description":"CarVue module for ehAPI",
 
 	"data": ["views/create_job_view.xml",
-			 "views/create_job_next_view.xml",
 			 "views/vehicle_dashboard_view.xml",
 			 "views/contacts_view.xml",
 			 "security/car_vue_security_view.xml",
