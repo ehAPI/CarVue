@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<!-- Top menu -->
+        <menuitem name="CarVue" id="carvue"/>
+
+        <!-- sub menu -->
+        <menuitem name="Contacts" id="contact_menu" parent="carvue"/>
+
+        <!-- menu item -->
+        <menuitem id="quotations_menu_mainform" action="sale.action_quotations" parent="contact_menu" sequence='3'/>
+
+        <!-- menu item -->
+        <menuitem action="sale.action_orders" id="sales_orders_menu_mainform" parent="contact_menu" sequence='4'/>
+
+        <record model="ir.ui.view" id="car_vue.customers_view">           
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>           
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[3]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//notebook/page[4]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>        
+        </record>
+
+        <record model="ir.ui.view" id="car_vue.quotations_view">           
+            <field name="name">sale.order.form.inherit</field>
+            <field name="model">sale.order</field>           
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="due_in"/>
+                    <field name="due_out"/>
+                    <field name="advisor"/>
+                    <field name="technician"/>
+                    <field name="bay"/>
+                    <field name="reference"/>
+                    <field name="mile"/>
+                </field>
+                <field name="date_order" position="after">
+                    <field name="notes"/>
+                </field>
+                <field name="amount_tax" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+            </field>        
+        </record>
+
+        <!-- menu item -->
+		<menuitem id="customers_menu_mainform" action="base.action_partner_customer_form" parent="contact_menu" sequence='1'/>
+
+    </data>
+</openerp>

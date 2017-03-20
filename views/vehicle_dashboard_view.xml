@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+	
+		<record model="ir.ui.view" id="vehicle_dashboard_tree_view">
+			<field name="name">vehicle.dashboard.tree</field>
+			<field name="model">vehicle.dashboard</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="VEHICLES">
+					<field name='code'/>
+					<field name='registration'/>
+					<field name='make'/>
+					<field name='model'/>
+					<field name='derivative'/>
+					<field name='age'/>
+					<field name='colour'/>
+					<field name='odometer'/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_vehicle_dashboard_form"> 
+		    <field name="name">vehicle.dashbaord.form</field>
+		    <field name="model">vehicle.dashboard</field>
+		    <field name="type">form</field>
+		    <field name="arch" type="xml">
+				<form string="Dashboard" version="8.0">
+					<sheet>
+						<h2>
+							<field name='code'/>
+						</h2>
+						<group>
+							<group string='Vehicle'>
+							<!-- <h2>Vehicle</h2> -->
+								<field name="registration"/>
+								<field name='model_year'/>
+								<field name='make'/>
+								<field name='model'/>
+								<field name='derivative'/>
+								<field name='vin'/>
+								<field name='reg_date'/>
+								<field name='date_of_manufacture'/>
+								<field name='odometer'/><field name='odo_unit'/>
+								<field name='colour'/>
+								<field name='paint_code'/>
+								<field name='trim'/>
+								<field name='fuel'/>
+								<field name='door_plan'/>
+							</group>
+							<group string='Gearbox &amp; Engine No.'>
+								<field name='gear_box'/>
+								<field name='gear_box_no'/>
+								<field name='co2emissions'/>
+								<field name='engine_no'/>
+								<field name='engine_code'/>
+								<field name='engine_size'/>
+								<field name='power'/>
+							</group>
+							<group string='Key no. &amp; Radio No.'>
+								<field name='key_no'/>
+								<field name='radio_no'/>
+							</group>
+							<group string='Reminders'>
+								<field name='mot_due_date'/>
+								<field name='service_due_date'/>
+								<field name='warranty_ends'/>
+							</group>
+							<!-- <h2>Notes</h2> -->
+							<group string='Notes'>
+								<field name='notes'/>
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_vehicle_form">
+			<field name="name">Dashboard</field>
+			<field name="res_model">vehicle.dashboard</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+  				<p class="oe_view_nocontent_create">
+    				Click to create details for your Workshop Jobs...
+  				</p>
+   			</field>
+		</record>
+
+		<!-- Top menu -->
+		<menuitem name="CarVue" id="carvue"/>
+
+		<!-- sub menu -->
+		<menuitem name="Vehicle" id="vehicle_menu" parent="carvue"/>
+		
+		<!-- menu item -->
+		<menuitem name="Vehicles" parent="vehicle_menu" id="vehicle_dashbaord_menu_mainform" action="action_vehicle_form"/>
+
+	</data>
+</openerp>
