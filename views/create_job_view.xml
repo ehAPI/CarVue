@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
 	<data>
-		<!-- <record model="ir.ui.view" id="view_create_job_form">  -->
-
-		 
-	<!-- </record> -->
 
 		<record model="ir.ui.view" id="view_create_job_form"> 
 		    <field name="name">create.job.form</field>
@@ -41,7 +37,7 @@
 	                     	parts,awaiting,cleaning,cust,work"/>
 
 					</header>
-			<!-- ,In Progress,Paused,Parts On Order,Parts Arrived,Awaiting Authority,Cleaning,Customer Contacted,Work Complete -->
+
 				<sheet>
 					<h2><field name='code'/></h2>
 					<group>
@@ -57,23 +53,27 @@
 							<field name="due_in"/>
 							<field name="due_out"/>
 							<field name="advisor"/>
-							<field name="technician"/>
+							<!-- <field name="technician"/> -->
 							<field name="notes"/>
 						</group>
-						<group>
+						<!-- <group>
 							<field name="bay"/>
 							<field name="reference"/>
 							<field name="mile"/>
-						</group>
+						</group> -->
 					</group>
 				</group>
 				</sheet>
 
-				
-				
+				<!-- <footer>
+					<button name="save" type="object" String="Save" class="oe_highlight"/>
+				</footer> -->
 				</form>
 			</field>
 		</record>
+
+
+
 
 
 		<record model="ir.ui.view" id="view_create_job_tree"> 

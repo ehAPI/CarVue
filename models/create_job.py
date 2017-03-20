@@ -12,7 +12,7 @@ class create_job(osv.osv):
 		# 'name':fields.one2many('res.partner','CONTACTS',ondelete='set null'),
 		'notes':fields.text('NOTES'),
 
-		'code' : fields.char('Number',readonly=True),
+		'code' : fields.char('NUMBER',readonly=True),
 		'status':fields.selection([('prov','Provitional'),
 			('due','Due In'),
 			('arr','Arrived'),
@@ -25,8 +25,8 @@ class create_job(osv.osv):
 			('cust','Customer Contacted'),
 			('work','Work Completed')],'STATUS'),
 		'due_in':fields.datetime('DUE IN'),
-		'due_out':fields.datetime('DUE OUT'),
-        'child_ids': fields.many2one('res.partner','CONTACT', domain=[('active','=',True)]), # force "active_test" domain to bypass _search() override
+		'due_out':fields.datetime('DUE OUT'), 
+        'child_ids': fields.many2one('res.partner','CONTACT',domain=[('active','=',True)]), # force "active_test" domain to bypass _search() override
 		'advisor':fields.many2one('res.users','ADVISOR',ondelete='set null'),
 		'technician':fields.many2one('res.users','TECHNICIAN',ondelete='set null'),
 		'veh':fields.many2one('vehicle.dashboard','VEHICLE',ondelete='set null'),
@@ -81,14 +81,11 @@ class create_job(osv.osv):
 		self.write(cr,uid,ids,{'status':'work'},context=context)
 		return True	
 
+	# def save(self,cr,uid,ids,context=None):
+	# 	_inherit = 'sale.order'
 
+	# 	return True	
 
-		
-		
-
-	# _defaults = {
-	# 	'status':'assigned'
-	# 	}
 	def create(self,cr,uid,vals,context=None):
 		if vals.get('code','/')=='/':
 			vals['code']=self.pool.get('ir.sequence').get(cr,uid,'create.job') or '/'
@@ -110,20 +107,6 @@ class create_job(osv.osv):
 
 create_job()
 
-class create_job_next(osv.osv):
-
-	_name = 'create.job.next'
-	_inherit = 'create.job'
-	# def _default_due_in(self,cr,uid,context=None):
-	# 	did=self.pool.get('create.job').search(cr,uid, ('','=','')	, context=context)
-	# 	return did[0]
-
-
-	# _defaults = {
-
-	# }
-
-create_job_next()
 
 
 
