@@ -5,8 +5,9 @@
 		<record model="ir.ui.view" id="view_create_job_form"> 
 		    <field name="name">create.job.form</field>
 		    <field name="model">create.job</field>
-		    <field name="type">form</field>
+		    <field name="type">tree</field>
 		    <field name="arch" type="xml">
+
 				<form string="Jobs" version="8.0">
 				
 					<header>
@@ -55,6 +56,7 @@
 							<field name="advisor"/>
 							<!-- <field name="technician"/> -->
 							<field name="notes"/>
+
 						</group>
 						<!-- <group>
 							<field name="bay"/>
@@ -71,6 +73,7 @@
 				</form>
 			</field>
 		</record>
+
 
 
 
