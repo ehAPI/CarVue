@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
 	<data>
-
 		<record model="ir.ui.view" id="view_create_job_form"> 
 		    <field name="name">create.job.form</field>
 		    <field name="model">create.job</field>
-		    <field name="type">tree</field>
+		    <field name="type">form</field>
 		    <field name="arch" type="xml">
-
 				<form string="Jobs" version="8.0">
-				
 					<header>
 						<button name="status_provisional" type="object" String="Provisional" attrs="{'invisible': [('status','in',('prov'))]}" class="oe_highlight"/>
 
@@ -38,46 +35,31 @@
 	                     	parts,awaiting,cleaning,cust,work"/>
 
 					</header>
-
-				<sheet>
-					<h2><field name='code'/></h2>
-					<group>
-
-					<group string = "CONTACT">
-						<field name="child_ids"/>
-					</group>
-					<group string = "VEHICLE">	
-							<field name="veh"/>
-					</group>
-					<group string="JOB">
-						<group string="New Job Card">
-							<field name="due_in"/>
-							<field name="due_out"/>
-							<field name="advisor"/>
-							<!-- <field name="technician"/> -->
-							<field name="notes"/>
-
+					<sheet>
+						<h2><field name='code'/></h2>
+						<group>
+							<group string = "CONTACT">
+								<field name="child_ids"/>
+							</group>
+							<group string = "VEHICLE">	
+									<field name="veh"/>
+							</group>
+							<group string="JOB">
+								<group string="New Job Card">
+									<field name="due_in"/>
+									<field name="due_out"/>
+									<field name="advisor"/>
+									<field name="notes"/>
+								</group>
+							</group>
 						</group>
-						<!-- <group>
-							<field name="bay"/>
-							<field name="reference"/>
-							<field name="mile"/>
-						</group> -->
-					</group>
-				</group>
-				</sheet>
-
-				<!-- <footer>
-					<button name="save" type="object" String="Save" class="oe_highlight"/>
-				</footer> -->
+						<footer>
+							<button name="repairs_action" type="object" String="Repairs" class="oe_highlight"/>
+						</footer>				
+					</sheet>
 				</form>
 			</field>
 		</record>
-
-
-
-
-
 
 		<record model="ir.ui.view" id="view_create_job_tree"> 
 		    <field name="name">create.job.tree</field>
