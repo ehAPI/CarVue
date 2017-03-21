@@ -15,6 +15,8 @@
         <menuitem id="base.menu_product" action="product.product_template_action" parent="products_menu" sequence="5"/>
 
         <menuitem id="menu_product" action="product.product_template_action" parent="products_menu" sequence="1"/>
+<!-- 
+        <menuitem id="menu_product" action="product.product_template_action" parent="products_menu" sequence="1"/> -->
 
         <menuitem id="menu_supplier" action="base.action_partner_supplier_form" parent="purchase_invoice_menu" sequence="4"/>
 

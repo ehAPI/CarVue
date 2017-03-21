@@ -11,7 +11,6 @@ class create_job(osv.osv):
 		# 'new':fields.char('New Job Card'),
 		# 'name':fields.one2many('res.partner','CONTACTS',ondelete='set null'),
 		'notes':fields.text('Notes'),
-
 		'code' : fields.char('Number',readonly=True),
 		'status':fields.selection([('prov','Provitional'),
 			('due','Due In'),
@@ -122,3 +121,4 @@ class create_job(osv.osv):
 	}
 
 create_job()
+

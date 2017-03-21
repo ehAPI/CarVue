@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
 	<data>
-		<!-- <record model="ir.ui.view" id="view_create_job_form">  -->
-
-		 
-	<!-- </record> -->
-
 		<record model="ir.ui.view" id="view_create_job_form"> 
 		    <field name="name">create.job.form</field>
 		    <field name="model">create.job</field>
 		    <field name="type">form</field>
 		    <field name="arch" type="xml">
 				<form string="Jobs" version="8.0">
-				
 					<header>
 						<button name="status_provisional" type="object" String="Provisional" attrs="{'invisible': [('status','in',('prov'))]}" class="oe_highlight"/>
 
@@ -41,7 +35,6 @@
 	                     	parts,awaiting,cleaning,cust,work"/>
 
 					</header>
-			<!-- ,In Progress,Paused,Parts On Order,Parts Arrived,Awaiting Authority,Cleaning,Customer Contacted,Work Complete -->
 					<sheet>
 						<h2><field name='code'/></h2>
 						<group>
@@ -67,7 +60,6 @@
 				</form>
 			</field>
 		</record>
-
 
 		<record model="ir.ui.view" id="view_create_job_tree"> 
 		    <field name="name">create.job.tree</field>
