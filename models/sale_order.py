@@ -15,6 +15,14 @@ class sale_order(osv.osv):
 	'bay' :fields.selection([('parking','Parking'),('ramp1','Ramp 1'),('ramp2','Ramp 2')],'Bay'),
 	'reference': fields.char('Reference'),
 	'mile':fields.integer('Mileage In'),
+	'state':fields.selection([('draft','In Progress'),
+			('sent','Paused'),
+			('cancel','Parts On Order'),
+			('waiting_date','Parts Arrived'),
+			('progress','Awaiting Authority'),
+			('manual','Cleaning'),
+			('shipping_except','Customer Contacted'),
+			('done','Work Completed')],'Status'),
 	}
 
 sale_order()

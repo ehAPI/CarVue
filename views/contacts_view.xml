@@ -39,7 +39,7 @@
                     <button name="action_button_confirm" states="sent" string="Confirm Job" class="oe_highlight" type="object" groups="base.group_user"/>
                 </header> -->
 
-                <button name="action_button_confirm"/>
+                <!-- <button name="action_button_confirm"/> -->
 
                 <!-- <xpath expr="//form/header/button[@name='action_quotation_send']" position="after"> <button name="print_quotation" string="Print" type="object" states="draft" class="oe_highlight" groups="base.group_user" invisible="1"/> <button name="print_quotation" string="Print" type="object" states="sent" groups="base.group_user" invisible="1"/> <button name="print_quotation" string="Print" type="object" class="oe_highlight" attrs="{'invisible': [('state','not in',('manual','progress'))]}" groups="base.group_user"/> </xpath> -->
                 
@@ -58,7 +58,10 @@
                     <attribute name="invisible">1</attribute>
                 </xpath> -->
 
-                <!-- <xpath expr="//button[@name='action_button_confirm']" position="attributes"> <attribute name="attrs">{'invisible': [('func_field', '=', False)]}</attribute> </xpath> -->
+                
+                <!-- <xpath expr="//form/header/button[@string='Confirm Sale']/button[@string='Confirm Sale']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath> -->
             
                 <field name="partner_id" position="after">
                     <field name="due_in"/>
@@ -84,16 +87,20 @@
             </field>        
         </record>
 
-        <!-- <record model="ir.ui.view" id="car_vue.quotations_view">           
-            <field name="name">sale.order.form.inherit1</field>
+
+        <record model="ir.ui.view" id="carvue_new_quotations_view">           
+            <field name="name">sale.order.carvue.form.inherit</field>
             <field name="model">sale.order</field>           
-            <field name="inherit_id" ref="sale_stock.view_order_form_inherit"/>
+            <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
-                <field name="warehouse_id" position="attributes">
-                    <attribute name="invisible">True</attribute>
-                </field>
-            </field>        
-        </record> -->
+
+                <xpath expr="//form/header" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
 
         <!-- menu item -->
 		<menuitem id="customers_menu_mainform" action="base.action_partner_customer_form" parent="contact_menu" sequence='1'/>
