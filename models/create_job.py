@@ -13,16 +13,18 @@ class create_job(osv.osv):
 		'notes':fields.text('Notes'),
 		'code' : fields.char('Number',readonly=True),
 		'status':fields.selection([('prov','Provitional'),
-			('due','Due In'),
-			('arr','Arrived'),
-			('in','In Progress'),
-			('paused','Paused'),
-			('part','Parts On Order'),
-			('parts','Parts Arrived'),
-			('awaiting','Awaiting Authority'),
-			('cleaning','Cleaning'),
-			('cust','Customer Contacted'),
-			('work','Work Completed')],'STATUS'),
+			('due','Due In')],'STATUS'),
+		# 'status':fields.selection([('prov','Provitional'),
+		# 	('due','Due In'),
+		# 	('arr','Arrived'),
+		# 	('in','In Progress'),
+		# 	('paused','Paused'),
+		# 	('part','Parts On Order'),
+		# 	('parts','Parts Arrived'),
+		# 	('awaiting','Awaiting Authority'),
+		# 	('cleaning','Cleaning'),
+		# 	('cust','Customer Contacted'),
+		# 	('work','Work Completed')],'STATUS'),
 		'due_in':fields.datetime('Due In'),
 		'due_out':fields.datetime('Due Out'),
 		'child_ids': fields.many2one('res.partner','Contact', domain=[('active','=',True)]), # force "active_test" domain to bypass _search() override
@@ -120,6 +122,13 @@ class create_job(osv.osv):
 	# 	'value' : {'due_out':due_out}
 	# 	}
 	# 	return res
+	def on_change_due_in(self,cr,uid,ids,due_in,context=None):
+		duein = datetime.strptime(due_in,'%Y-%m-%d %H:%M:%S')
+		due_out=(duein + timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S')
+		res={
+		'value' : {'due_out':due_out}
+		}
+		return res
 
 	_defaults={
 		'due_in': lambda *a:datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 

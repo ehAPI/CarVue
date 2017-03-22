@@ -58,7 +58,10 @@
                     <attribute name="invisible">1</attribute>
                 </xpath> -->
 
-                <!-- <xpath expr="//button[@name='action_button_confirm']" position="attributes"> <attribute name="attrs">{'invisible': [('func_field', '=', False)]}</attribute> </xpath> -->
+                
+                <!-- <xpath expr="//form/header/button[@string='Confirm Sale']/button[@string='Confirm Sale']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath> -->
             
                 <field name="partner_id" position="after">
                     <field name="due_in"/>
@@ -83,6 +86,21 @@
                 </xpath>
             </field>        
         </record>
+
+
+        <record model="ir.ui.view" id="carvue_new_quotations_view">           
+            <field name="name">sale.order.carvue.form.inherit</field>
+            <field name="model">sale.order</field>           
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//form/header" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
 
         <!-- menu item -->
 		<menuitem id="customers_menu_mainform" action="base.action_partner_customer_form" parent="contact_menu" sequence='4'/>
