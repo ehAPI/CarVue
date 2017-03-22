@@ -8,11 +8,11 @@
 		    <field name="arch" type="xml">
 				<form string="Jobs" version="8.0">
 					<header>
-						<button name="status_provisional" type="object" String="Provisional" attrs="{'invisible': [('status','in',('prov'))]}" class="oe_highlight"/>
+						<button name="status_provisional" type="object" String="Provisional" attrs="{'invisible': [('status','in',('prov','due'))]}" class="oe_highlight"/>
 
 						<button name="status_duein" type="object" String="Due In" attrs="{'invisible': [('status','in',('due'))]}" class="oe_highlight"/>
 
-						<button name="status_arr" type="object" String="Arrived" attrs="{'invisible': [('status','in',('arr'))]}" class="oe_highlight"/>
+						<!-- <button name="status_arr" type="object" String="Arrived" attrs="{'invisible': [('status','in',('arr'))]}" class="oe_highlight"/>
 
 						<button name="status_in" type="object" String="In Progress" attrs="{'invisible': [('status','in',('in'))]}" class="oe_highlight"/>
 
@@ -28,34 +28,34 @@
 
 						<button name="status_cust" type="object" String="Customer Contacted" attrs="{'invisible': [('status','in',('cust'))]}" class="oe_highlight"/>
 
-						<button name="status_work" type="object" String="Work Completed" attrs="{'invisible': [('status','in',('work'))]}" class="oe_highlight"/>
+						<button name="status_work" type="object" String="Work Completed" attrs="{'invisible': [('status','in',('work'))]}" class="oe_highlight"/> -->
 
 						<field name="status" widget="statusbar" 
-	                     	statusbar_visible="prov,due,arr,in,paused,part,
-	                     	parts,awaiting,cleaning,cust,work"/>
+	                     	statusbar_visible="prov,due"/>
 
 					</header>
 					<sheet>
-						<h2><field name='code'/></h2>
 						<group>
+							<h2><field name='code'/></h2>
+							<button class="oe_right oe_box oe_highlight" name="repairs_action"  type="object" String="Arrived"/> 
+						</group>
+						<group col='3'>
 							<group string = "CONTACT">
-								<field name="child_ids"/>
+								<field name="child_ids" nolabel='1'/>
 							</group>
 							<group string = "VEHICLE">	
-									<field name="veh"/>
+									<field name="veh" nolabel='1'/>
 							</group>
 							<group string="JOB">
 								<group string="New Job Card">
-									<field name="due_in"/>
+									<!-- <field name="due_in"/> -->
+									<field name="due_in" on_change='on_change_due_in(due_in)'/>
 									<field name="due_out"/>
 									<field name="advisor"/>
 									<field name="notes"/>
 								</group>
 							</group>
 						</group>
-						<footer>
-							<button name="repairs_action" type="object" String="Arrived" class="oe_highlight"/>
-						</footer>				
 					</sheet>
 				</form>
 			</field>

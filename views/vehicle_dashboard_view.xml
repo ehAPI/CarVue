@@ -41,7 +41,11 @@
 								<field name='vin'/>
 								<field name='reg_date'/>
 								<field name='date_of_manufacture'/>
-								<field name='odometer'/><field name='odo_unit'/>
+								<label for='odometer' string='Odometer Reading'/>
+								<div class="address_format">
+									<field name="odometer" style="width: 50%" />
+	         						<field name="odo_unit" style="width: 50%" />
+	         					</div>
 								<field name='colour'/>
 								<field name='paint_code'/>
 								<field name='trim'/>
