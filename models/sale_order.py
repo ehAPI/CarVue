@@ -7,7 +7,7 @@ class sale_order(osv.osv):
 
 	_inherit="sale.order"
 	_columns = {
-	'notes':fields.text('notes'),
+	'notes':fields.text('Notes'),
 	'due_in':fields.datetime('Due In'),
 	'due_out':fields.datetime('Due Out'),
 	'advisor':fields.many2one('res.users','Advisor',ondelete='set null'),
@@ -18,4 +18,3 @@ class sale_order(osv.osv):
 	}
 
 sale_order()
-

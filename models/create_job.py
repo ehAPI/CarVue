@@ -88,14 +88,13 @@ class create_job(osv.osv):
 		obj = self.browse(cr, uid, ids)
 
 		assert len(ids) == 1, 'This option should only be used for a single id at a time.'
-		ir_model_data = self.pool.get('ir.model.data')
-		try:
-			sale_form_changed = ir_model_data.get_object_reference(cr, uid, ids, 'sale.view_order_form')[1]
-		except ValueError:
-			sale_form_changed = False 
+		# ir_model_data = self.pool.get('ir.model.data')
+		# try:
+		# 	sale_form_changed = ir_model_data.get_object_reference(cr, uid, ids, 'sale.view_order_form')[1]
+		# except ValueError:
+		# 	sale_form_changed = False 
+		
 		ctx = dict()
-
-
 		ctx.update({
 			'default_model': 'sale.order',
 			'default_partner_id': obj.child_ids.id,
@@ -109,8 +108,8 @@ class create_job(osv.osv):
 			'view_type': 'form',
 			'view_mode': 'form',
 			'res_model': 'sale.order',
-			'views': [(sale_form_changed, 'form')],
-			'view_id': sale_form_changed,
+			# 'views': [(sale_form_changed, 'form')],
+			# 'view_id': sale_form_changed,
 			# 'target': 'new',
 			'context': ctx,
 		}
