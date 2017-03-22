@@ -33,46 +33,18 @@
             <field name="model">sale.order</field>           
             <field name="inherit_id" ref="sale_stock.view_order_form_inherit"/>
             <field name="arch" type="xml">
-                <!-- <header>
-                    <button name="action_button_confirm" states="draft" string="Confirm Job" type="object" groups="base.group_user"/>
-                    
-                    <button name="action_button_confirm" states="sent" string="Confirm Job" class="oe_highlight" type="object" groups="base.group_user"/>
-                </header> -->
-
-                <!-- <button name="action_button_confirm"/> -->
-
-                <!-- <xpath expr="//form/header/button[@name='action_quotation_send']" position="after"> <button name="print_quotation" string="Print" type="object" states="draft" class="oe_highlight" groups="base.group_user" invisible="1"/> <button name="print_quotation" string="Print" type="object" states="sent" groups="base.group_user" invisible="1"/> <button name="print_quotation" string="Print" type="object" class="oe_highlight" attrs="{'invisible': [('state','not in',('manual','progress'))]}" groups="base.group_user"/> </xpath> -->
-                
-                <!-- <xpath expr="//form/header/button[@name='print_quotation']" position="after"> <button name="action_button_confirm" string="Confirm Sale" type="object" states="draft" invisible='1'/> <button name="action_button_confirm" string="Confirm Sale" type="object" states="sent" invisible='1'/> </xpath> -->
-                <!-- <header>
-                <button name="action_button_confirm" states="draft" string="Confirm Sale" type="object" groups="car_vue.group_car_vue_somebody"/>
-                    
-                <button name="action_button_confirm" states="sent" string="Confirm Sale" class="oe_highlight" type="object" groups="car_vue.group_car_vue_somebody"/>
-                </header> -->
-
-                <!-- <xpath expr="//form/header/button[@name='action_button_confirm']" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </xpath> -->
-
-                <!-- <xpath expr="//form/header/button[@name='print_quotation']" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </xpath> -->
-
-                
-                <!-- <xpath expr="//form/header/button[@string='Confirm Sale']/button[@string='Confirm Sale']" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </xpath> -->
+                              
             
                 <field name="partner_id" position="after">
                     <field name="due_in"/>
                     <field name="due_out"/>
                     <field name="advisor"/>
                     <field name="technician"/>
+                </field>
+                <field name="client_order_ref" position="after">
                     <field name="bay"/>
                     <field name="reference"/>
                     <field name="mile"/>
-                </field>
-                <field name="date_order" position="after">
                     <field name="notes"/>
                 </field>
                 <field name="amount_tax" position="attributes">
@@ -87,20 +59,36 @@
             </field>        
         </record>
 
-
-        <record model="ir.ui.view" id="carvue_new_quotations_view">           
+     <!--    <record model="ir.ui.view" id="carvue_new_quotations_view">           
             <field name="name">sale.order.carvue.form.inherit</field>
             <field name="model">sale.order</field>           
             <field name="inherit_id" ref="sale.view_order_form"/>
-            <field name="arch" type="xml">
+            <field name="arch" type="xml"> -->
+                <!-- <xpath expr="//form/header" position="replace">
+                    <header>
+                    <button name="action_button_confirm" states="draft" string="Confirm Job" type="object" groups="base.group_user"/>
+                    
+                    <button name="action_button_confirm" states="sent" string="Confirm Job" class="oe_highlight" type="object" groups="base.group_user"/>
 
-                <xpath expr="//form/header" position="attributes">
+                    <button name="status_in" type="object" String="In Progress" attrs="{'invisible': [('status','in',('in','paused'))]}" class="oe_highlight"/>
+
+                    <button name="status_paused" type="object" String="Paused" attrs="{'invisible': [('status','in',('paused'))]}" class="oe_highlight"/>
+
+                    <field name="status" widget="statusbar" statusbar_visible="in,paused,part,parts,awaiting,cleaning,cust,work"/>
+                </header> -->
+                <!-- </xpath> -->
+<!-- 
+                <xpath expr="//form/header//button[@String='Confirm Sale']" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
 
+                <xpath expr="//form/header/button[@String='Cancel Quotation']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath> -->
+<!-- 
+                
             </field>
-        </record>
-
+        </record> -->
 
         <!-- menu item -->
 		<menuitem id="customers_menu_mainform" action="base.action_partner_customer_form" parent="contact_menu" sequence='1'/>
