@@ -15,14 +15,48 @@ class sale_order(osv.osv):
 	'bay' :fields.selection([('parking','Parking'),('ramp1','Ramp 1'),('ramp2','Ramp 2')],'Bay'),
 	'reference': fields.char('Reference'),
 	'mile':fields.integer('Mileage In'),
-	'state':fields.selection([('draft','In Progress'),
-			('sent','Paused'),
-			('cancel','Parts On Order'),
-			('waiting_date','Parts Arrived'),
-			('progress','Awaiting Authority'),
-			('manual','Cleaning'),
-			('shipping_except','Customer Contacted'),
-			('done','Work Completed')],'Status'),
+	'status':fields.selection([('in','In Progress'),
+			('paused','Paused'),
+			('part','Parts On Order'),
+			('parts','Parts Arrived'),
+			('awaiting','Awaiting Authority'),
+			('cleaning','Cleaning'),
+			('cust','Customer Contacted'),
+			('work','Work Completed')],'STATUS'),
 	}
+
+	def status_in(self,cr,uid,ids,context=None):
+		self.write(cr,uid,ids,{'status':'in'},context=context)
+		return True
+
+	def status_paused(self,cr,uid,ids,context=None):
+		self.write(cr,uid,ids,{'status':'paused'},context=context)
+		return True
+
+	def status_part(self,cr,uid,ids,context=None):
+		self.write(cr,uid,ids,{'status':'part'},context=context)
+		return True	
+
+	def status_parts(self,cr,uid,ids,context=None):
+		self.write(cr,uid,ids,{'status':'parts'},context=context)
+		return True
+
+	def status_awaiting(self,cr,uid,ids,context=None):
+		self.write(cr,uid,ids,{'status':'awaiting'},context=context)
+		return True	
+
+	def status_cleaning(self,cr,uid,ids,context=None):
+		self.write(cr,uid,ids,{'status':'cleaning'},context=context)
+		return True	
+
+	def status_cust(self,cr,uid,ids,context=None):
+		self.write(cr,uid,ids,{'status':'cust'},context=context)
+		return True	
+
+	def status_work(self,cr,uid,ids,context=None):
+		self.write(cr,uid,ids,{'status':'work'},context=context)
+		return True	
+
+
 
 sale_order()
