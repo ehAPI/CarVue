@@ -84,7 +84,7 @@ class create_job(osv.osv):
 			vals['code']=self.pool.get('ir.sequence').get(cr,uid,'create.job') or '/'
 		return super(create_job,self).create(cr,uid,vals,context=context)
 
-	def repairs_action(self, cr, uid, ids, values, context=None):
+	def repairs_action(self, cr, uid, ids, context=None):
 		obj = self.browse(cr, uid, ids)
 
 		assert len(ids) == 1, 'This option should only be used for a single id at a time.'
@@ -113,6 +113,13 @@ class create_job(osv.osv):
 			# 'target': 'new',
 			'context': ctx,
 		}
+
+	# def on_change_due_in(self,cr,uid,ids,due_in,context=None):
+	# 	due_out=(datetime.(due_in) + timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S')
+	# 	res={
+	# 	'value' : {'due_out':due_out}
+	# 	}
+	# 	return res
 
 	_defaults={
 		'due_in': lambda *a:datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 

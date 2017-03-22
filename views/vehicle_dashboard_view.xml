@@ -91,10 +91,10 @@
 		<menuitem name="CarVue" id="carvue"/>
 
 		<!-- sub menu -->
-		<menuitem name="Vehicle" id="vehicle_menu" parent="carvue"/>
+		<menuitem name="Vehicle" id="vehicle_menu" parent="carvue" sequence='7'/>
 		
 		<!-- menu item -->
-		<menuitem name="Vehicles" parent="vehicle_menu" id="vehicle_dashbaord_menu_mainform" action="action_vehicle_form"/>
+		<menuitem name="Vehicles" parent="vehicle_menu" id="vehicle_dashbaord_menu_mainform" action="action_vehicle_form" sequence='8'/>
 
 	</data>
 </openerp>

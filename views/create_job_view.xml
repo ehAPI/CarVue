@@ -36,6 +36,7 @@
 
 					</header>
 					<sheet>
+						<button class="oe_right oe_box" name="repairs_action"  type="action" String="Arrived"/> 
 						<h2><field name='code'/></h2>
 						<group>
 							<group string = "CONTACT">
@@ -44,18 +45,19 @@
 							<group string = "VEHICLE">	
 									<field name="veh"/>
 							</group>
-							<group string="JOB">
-								<group string="New Job Card">
-									<field name="due_in"/>
-									<field name="due_out"/>
-									<field name="advisor"/>
-									<field name="notes"/>
-								</group>
+						</group>
+						<group string="JOB">
+							<group string="New Job Card">
+								<field name="due_in"/>
+								<!-- <field name="due_in" on_change='on_change_due_in(due_in)'/> -->
+								<field name="due_out"/>
+								<field name="advisor"/>
+								<field name="notes"/>
 							</group>
 						</group>
-						<footer>
+						<!-- <footer>
 							<button name="repairs_action" type="object" String="Arrived" class="oe_highlight"/>
-						</footer>				
+						</footer> -->				
 					</sheet>
 				</form>
 			</field>
@@ -108,10 +110,10 @@
 		<menuitem name="CarVue" id="carvue"/>
 
 		<!-- sub menu -->
-		<menuitem name="Workshop" id="workshop_menu" parent="carvue"/>
+		<menuitem name="Workshop" id="workshop_menu" parent="carvue" sequence='1'/>
 		
 		<!-- menu item -->
-		<menuitem name="Jobs" parent="workshop_menu" id="create_job_menu_mainform" action="action_create_form"/>
+		<menuitem name="Jobs" parent="workshop_menu" id="create_job_menu_mainform" action="action_create_form" sequence='2'/>
 
 	</data>
 </openerp>
