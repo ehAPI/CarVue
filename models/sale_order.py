@@ -25,6 +25,8 @@ class sale_order(osv.osv):
 			('work','Work Completed')],'STATUS'),
 	}
 
+	
+
 	def status_in(self,cr,uid,ids,context=None):
 		self.write(cr,uid,ids,{'status':'in'},context=context)
 		return True
