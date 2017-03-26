@@ -12,7 +12,6 @@
 
 						<button name="status_duein" type="object" String="Due In" attrs="{'invisible': [('status','in',('due'))]}" class="oe_highlight"/>
 
-
 						<field name="status" widget="statusbar" 
 	                     	statusbar_visible="prov,due"/>
 
@@ -49,7 +48,7 @@
 		    <field name="model">create.job</field>
 		    <field name="type">tree</field>
 		    <field name="arch" type="xml">
-				<tree string="Jobs" version="8.0">
+				<tree string="Jobs" colors='red:status=="prov";blue:status=="due"' version="8.0">
 
 					<field name='code' string='Number'/>
 					<field name="child_ids"/>
@@ -75,6 +74,26 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="view_create_job_filter">
+            <field name="name">view_create_job_filter</field>
+            <field name="model">create.job</field>
+            <field name="arch" type="xml">
+                <search string="Job search">
+            		<!-- <field name="name" filter_domain="['|','|',('name','ilike',self),('atm','ilike',self),('customer','ilike',self)]" string="TASK"/>
+                    <filter icon="terp-go-today" string="Today" name="today" domain="[('visit_time','&gt;=',current_date),('visit_time','&lt;=',current_date)]" />
+					<separator/> -->
+					<filter icon="terp-check" string="Provisional"  domain="[('status','=','prov')]"/>
+					<filter icon="terp-check" string="Due In"  domain="[('status','=','due')]"/>
+                    <group expand="0" string="Group By...">
+	                    <!-- <filter string="Customer" icon="terp-personal" domain="[]" context="{'group_by':'customer'}"/>
+	                    <filter string="Surveyor Name" icon="terp-folder-green" domain="[]" context="{'group_by':'surveyor'}" groups="transtech_module.group_atm_manager, transtech_module.group_atm_user"/>
+	                    <filter string="Date" icon="terp-go-month" domain="[]" context="{'group_by':'visit_time'}"/>
+						<filter string="Location"  domain="[]" context="{'group_by':'state'}"/> -->
+						<filter string="Status"  domain="[]" context="{'group_by':'status'}"/>
+					</group>
+				</search>
+			</field>
+		</record>
 
 		<record model="ir.actions.act_window" id="action_create_form">
 			<field name="name">Create Job</field>

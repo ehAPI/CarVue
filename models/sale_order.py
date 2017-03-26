@@ -59,6 +59,11 @@ class sale_order(osv.osv):
 		self.write(cr,uid,ids,{'status':'work'},context=context)
 		return True	
 
-
-
 sale_order()
+
+# class res_partner_inherit(osv.osv):
+# 	_inherit="res.partner"
+# 	_defaults = {
+# 	'property_accounts_receivable' : '' 
+# 	'property_accounts_payable' : 
+# 	}

@@ -12,9 +12,9 @@ class create_job(osv.osv):
 		# 'name':fields.one2many('res.partner','CONTACTS',ondelete='set null'),
 		'notes':fields.text('Notes'),
 		'code' : fields.char('Number',readonly=True),
-		'status':fields.selection([('prov','Provitional'),
-			('due','Due In')],'Status'),
-		# 'status':fields.selection([('prov','Provitional'),
+		'status':fields.selection([('prov','Provisional'),
+			('due','Due In')],'STATUS'),
+		# 'status':fields.selection([('prov','Provisional'),
 		# 	('due','Due In'),
 		# 	('arr','Arrived'),
 		# 	('in','In Progress'),
@@ -37,6 +37,7 @@ class create_job(osv.osv):
 		# 'name' : fields.one2many('res.partner','chn','Chapter'),    
 	}
 
+	
 	def status_provisional(self,cr,uid,ids,context=None):
 		self.write(cr,uid,ids,{'status':'prov'},context=context)
 		return True
