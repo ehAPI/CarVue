@@ -8,10 +8,10 @@
         <menuitem name="Contacts" id="contact_menu" parent="carvue" sequence='2'/>
 
         <!-- menu item -->
-        <menuitem id="quotations_menu_mainform" action="sale.action_quotations" parent="contact_menu" sequence='3'/>
+        <menuitem id="quotations_menu_mainform" action="sale.action_quotations" parent="contact_menu" sequence='5'/>
 
         <!-- menu item -->
-        <menuitem action="sale.action_orders" id="sales_orders_menu_mainform" parent="contact_menu" sequence='4'/>
+        <menuitem action="sale.action_orders" id="sales_orders_menu_mainform" parent="contact_menu" sequence='6'/>
 
         <record model="ir.ui.view" id="car_vue.customers_view">           
             <field name="name">res.partner.form.inherit</field>
@@ -43,7 +43,7 @@
 
                     <button name="status_awaiting" type="object" String="Awaiting Authority" attrs="{'invisible': [('status','in',('awaiting','cleaning','cust','work'))]}" class="oe_highlight"/>
 
-                    <button name="status_cleaning" type="object" String="Cleaning" attrs="{'invisible': [('status','in',('cleaning','cust','work'))]}" class="oe_highlight"/>
+                    <button name="status_cleaning" type="object" String="Cleaning" attrs="{'invisible': [('status','in',('cleaning','cust','work'))]}" class="oe_highlight" />
 
                     <button name="status_cust" type="object" String="Customer Contacted" attrs="{'invisible': [('status','in',('cust','work'))]}" class="oe_highlight"/>
 
@@ -91,8 +91,21 @@
             </field>        
         </record>
 
-        <!-- menu item -->
-		<menuitem id="customers_menu_mainform" action="base.action_partner_customer_form" parent="contact_menu" sequence='1'/>
+        <record model="ir.ui.view" id="car_vue.quotations_view_tree">           
+            <field name="name">sale.order.tree.inherit</field>
+            <field name="model">sale.order</field>           
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="arch" type="xml">
+                <field name="state" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>  
+                <field name="amount_total" position="after">
+                <field name="status"/>
+            </field>
+            </field>
+        </record>
+
+        <menuitem id="customers_menu_mainform" action="base.action_partner_customer_form" parent="contact_menu" sequence='4'/>
 
     </data>
 </openerp>

@@ -22,8 +22,10 @@ class sale_order(osv.osv):
 			('awaiting','Awaiting Authority'),
 			('cleaning','Cleaning'),
 			('cust','Customer Contacted'),
-			('work','Work Completed')],'STATUS'),
+			('work','Work Completed')],'Status'),
 	}
+
+	
 
 	def status_in(self,cr,uid,ids,context=None):
 		self.write(cr,uid,ids,{'status':'in'},context=context)
