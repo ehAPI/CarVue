@@ -40,10 +40,10 @@
 		<menuitem name="CarVue" id="carvue"/>
 
 		<!-- sub menu -->
-		<menuitem name="Configuration" id="configuration_menu" parent="carvue"/>
+		<menuitem name="Configuration" id="configuration_menu" parent="carvue" sequence='9'/>
 		
 		<!-- menu item -->
-		<menuitem name="Make" parent="configuration_menu" id="make_menu_mainform" action="action_make_form"/>
+		<menuitem name="Make" parent="configuration_menu" id="make_menu_mainform" action="action_make_form" sequence='10'/>
 
 		             <!-- View for Model -->
 
@@ -90,7 +90,7 @@
 		<menuitem name="Configuration" id="configuration_menu" parent="carvue"/>
 		
 		<!-- menu item -->
-		<menuitem name="Model" parent="configuration_menu" id="model_menu_mainform" action="action_model_form"/>
+		<menuitem name="Model" parent="configuration_menu" id="model_menu_mainform" action="action_model_form" sequence='11'/>
 
 					<!-- View for Derivative -->
 		<record model="ir.ui.view" id="view_derivative_tree"> 
@@ -138,7 +138,7 @@
 		<menuitem name="Configuration" id="configuration_menu" parent="carvue"/>
 		
 		<!-- menu item -->
-		<menuitem name="Derivative" parent="configuration_menu" id="derivative_menu_mainform" action="action_derivative_form"/>
+		<menuitem name="Derivative" parent="configuration_menu" id="derivative_menu_mainform" action="action_derivative_form" sequence='12'/>
 
 	</data>
 </openerp>

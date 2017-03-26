@@ -13,7 +13,7 @@ class create_job(osv.osv):
 		'notes':fields.text('Notes'),
 		'code' : fields.char('Number',readonly=True),
 		'status':fields.selection([('prov','Provitional'),
-			('due','Due In')],'STATUS'),
+			('due','Due In')],'Status'),
 		# 'status':fields.selection([('prov','Provitional'),
 		# 	('due','Due In'),
 		# 	('arr','Arrived'),
@@ -116,6 +116,12 @@ class create_job(osv.osv):
 			'context': ctx,
 		}
 
+	# def on_change_due_in(self,cr,uid,ids,due_in,context=None):
+	# 	due_out=(datetime.(due_in) + timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S')
+	# 	res={
+	# 	'value' : {'due_out':due_out}
+	# 	}
+	# 	return res
 	def on_change_due_in(self,cr,uid,ids,due_in,context=None):
 		duein = datetime.strptime(due_in,'%Y-%m-%d %H:%M:%S')
 		due_out=(duein + timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S')

@@ -5,13 +5,13 @@
         <menuitem name="CarVue" id="carvue"/>
 
         <!-- sub menu -->
-        <menuitem name="Contacts" id="contact_menu" parent="carvue"/>
+        <menuitem name="Contacts" id="contact_menu" parent="carvue" sequence='3' />
 
         <!-- menu item -->
-        <menuitem id="quotations_menu_mainform" action="sale.action_quotations" parent="contact_menu" sequence='3'/>
+        <menuitem id="quotations_menu_mainform" action="sale.action_quotations" parent="contact_menu" sequence='5'/>
 
         <!-- menu item -->
-        <menuitem action="sale.action_orders" id="sales_orders_menu_mainform" parent="contact_menu" sequence='4'/>
+        <menuitem action="sale.action_orders" id="sales_orders_menu_mainform" parent="contact_menu" sequence='6'/>
 
         <record model="ir.ui.view" id="car_vue.customers_view">           
             <field name="name">res.partner.form.inherit</field>
@@ -43,7 +43,7 @@
 
                     <button name="status_awaiting" type="object" String="Awaiting Authority" attrs="{'invisible': [('status','in',('awaiting','cleaning','cust','work'))]}" class="oe_highlight"/>
 
-                    <button name="status_cleaning" type="object" String="Cleaning" attrs="{'invisible': [('status','in',('cleaning','cust','work'))]}" class="oe_highlight"/>
+                    <button name="status_cleaning" type="object" String="Cleaning" attrs="{'invisible': [('status','in',('cleaning','cust','work'))]}" class="oe_highlight" />
 
                     <button name="status_cust" type="object" String="Customer Contacted" attrs="{'invisible': [('status','in',('cust','work'))]}" class="oe_highlight"/>
 
@@ -91,8 +91,97 @@
             </field>        
         </record>
 
-        <!-- menu item -->
-		<menuitem id="customers_menu_mainform" action="base.action_partner_customer_form" parent="contact_menu" sequence='1'/>
+        <record model="ir.ui.view" id="car_vue.quotations_view_tree">           
+            <field name="name">sale.order.tree.inherit</field>
+            <field name="model">sale.order</field>           
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="arch" type="xml">
+                <field name="state" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>  
+                <field name="amount_total" position="after">
+                <field name="status"/>
+            </field>
+            </field>
+        </record>
+
+        <menuitem id="customers_menu_mainform" action="base.action_partner_customer_form" parent="contact_menu" sequence='4'/>
 
     </data>
 </openerp>
+                
+      <!--   <record id="view_quotation_tree" model="ir.ui.view">
+            <field name="name">sale.order.tree</field>
+            <field name="model">sale.order</field>
+            <field name="priority">4</field>
+            <field name="arch" type="xml">
+                <tree string="Quotation" fonts="bold:message_unread==True" colors="grey:state=='cancel';blue:state in ('waiting_date','manual');red:state in ('invoice_except','shipping_except')">
+                    <field name="message_unread" invisible="1"/>
+                    <field name="name" string="Quotation Number"/>
+                    <field name="date_order"/>
+                    <field name="partner_id"/>
+                    <field name="user_id"/>
+                    <field name="amount_total" sum="Total Tax Included"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+ -->
+        <!-- <record model="ir.ui.view" id="carvue_new_quotations_view">           
+            <field name="name">sale.order.carvue.form.inherit</field>
+            <field name="model">sale.order</field>           
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+               <xpath expr="//form/header" position="replace">
+                    <header>
+                    <button name="action_button_confirm" states="draft" string="Confirm Job" type="object" groups="base.group_user"/>
+                    
+                    <button name="action_button_confirm" states="sent" string="Confirm Job" class="oe_highlight" type="object" groups="base.group_user"/>
+        
+                    <button name="status_in" type="object" String="In Progress" attrs="{'invisible': [('status','in',('in','paused'))]}" class="oe_highlight"/>
+        
+                    <button name="status_paused" type="object" String="Paused" attrs="{'invisible': [('status','in',('paused'))]}" class="oe_highlight"/>
+        
+                    <field name="status" widget="statusbar" statusbar_visible="in,paused,part,parts,awaiting,cleaning,cust,work"/>
+                </header>
+                </xpath>
+                 <header>
+        
+                        <field name="status" widget="statusbar" 
+                        statusbar_visible="in,paused,part,parts,awaiting,cleaning,cust,work"/>
+                        
+                        <button name="status_in" type="object" String="In Progress" attrs="{'invisible': [('status','in',('in','paused','part','parts','awaiting','cleaning','cust','work'))]}" class="oe_highlight"/>
+        
+                        <button name="status_paused" type="object" String="Paused" attrs="{'invisible': [('status','in',('paused','part','parts','awaiting','cleaning','cust','work'))]}" class="oe_highlight"/>
+        
+                        <button name="status_part" type="object" String="Parts On Order" attrs="{'invisible': [('status','in',('part','parts','awaiting','cleaning','cust','work'))]}" class="oe_highlight"/>
+        
+                        <button name="status_parts" type="object" String="Parts Arrived"  attrs="{'invisible': [('status','in',('parts','awaiting','cleaning','cust','work'))]}" class="oe_highlight"/>
+        
+                        <button name="status_awaiting" type="object" String="Awaiting Authority" attrs="{'invisible': [('status','in',('awaiting','cleaning','cust','work'))]}" class="oe_highlight"/>
+        
+                        <button name="status_cleaning" type="object" String="Cleaning" attrs="{'invisible': [('status','in',('cleaning','cust','work'))]}" class="oe_highlight"/>
+        
+                        <button name="status_cust" type="object" String="Customer Contacted" attrs="{'invisible': [('status','in',('cust','work'))]}" class="oe_highlight"/>
+        
+                        <button name="status_work" type="object" String="Work Completed" attrs="{'invisible': [('status','in',('work'))]}" class="oe_highlight"/> 
+        
+                 </header>           
+        
+                <field name="state" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+                
+                <xpath expr="//form/header//button[@string='Confirm Sale']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+        
+                <xpath expr="//form/header/button[@string='Cancel Quotation']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+        
+                
+            </field>
+        </record> -->
+
+        <!-- menu item -->
