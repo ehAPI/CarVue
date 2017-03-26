@@ -22,7 +22,7 @@ class sale_order(osv.osv):
 			('awaiting','Awaiting Authority'),
 			('cleaning','Cleaning'),
 			('cust','Customer Contacted'),
-			('work','Work Completed')],'STATUS'),
+			('work','Work Completed')],'Status'),
 	}
 
 	

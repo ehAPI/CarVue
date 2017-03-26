@@ -21,9 +21,9 @@
 
         </record>
 
-        <record model="ir.ui.menu" id="account.menu_finance">           
+        <!-- <record model="ir.ui.menu" id="account.menu_finance">           
             <field name="groups_id" eval="[(6,0,[ref('group_car_vue_somebody')])]"/>       
-        </record>
+        </record> -->
 
     </data>
 </openerp>

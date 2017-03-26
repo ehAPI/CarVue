@@ -13,7 +13,7 @@ class create_job(osv.osv):
 		'notes':fields.text('Notes'),
 		'code' : fields.char('Number',readonly=True),
 		'status':fields.selection([('prov','Provitional'),
-			('due','Due In')],'STATUS'),
+			('due','Due In')],'Status'),
 		# 'status':fields.selection([('prov','Provitional'),
 		# 	('due','Due In'),
 		# 	('arr','Arrived'),
