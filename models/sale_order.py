@@ -88,7 +88,6 @@ class sale_order(osv.osv):
 			'due_in': order.due_in,
 			'due_out': order.due_out,
 			'bay': order.bay,
-			'reference': order.reference,
 			'mile': order.mile,
 			'technician': order.technician.id,
 			'notes': order.notes,
