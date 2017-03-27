@@ -82,7 +82,7 @@
                 </field>
                 <field name="client_order_ref" position="after">
                     <field name="bay"/>
-                    <field name="reference"/>
+                    <!-- <field name="reference"/> -->
                     <field name="mile"/>
                     <field name="notes"/>
                 </field>
@@ -92,16 +92,18 @@
                 <field name="warehouse_id" position="attributes">
                     <attribute name="invisible">True</attribute>
                 </field>
+              
                 <xpath expr="//notebook/page[2]" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
+
             </field>        
         </record>
 
         <record model="ir.ui.view" id="car_vue.quotations_view_tree">           
             <field name="name">sale.order.tree.inherit</field>
             <field name="model">sale.order</field>           
-            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
             <field name="arch" type="xml">
                 <field name="state" position="attributes">
                     <attribute name="invisible">True</attribute>
@@ -111,6 +113,26 @@
             </field>
             </field>
         </record>
+
+
+        <record model="ir.ui.view" id="car_vue.sale_view_tree">           
+            <field name="name">sale.order.tree.inherit</field>
+            <field name="model">sale.order</field>           
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <field name="state" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>  
+                <field name="amount_total" position="after">
+                <field name="status"/>
+            </field>
+            </field>
+        </record>
+
+       <!--  <template id="car_vue.print_report" inherit_id="sale.report_saleorder_document" active="False" customize_show="True">
+            
+          -->
+
 
         <menuitem id="customers_menu_mainform" action="base.action_partner_customer_form" parent="contact_menu" sequence='4'/>
 
