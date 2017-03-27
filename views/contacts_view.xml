@@ -67,12 +67,14 @@
                     <attribute name="invisible">1</attribute>
                 </xpath>
 
+
                 <xpath expr="//form/header/button[@string='View Delivery Order']" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
                 <field name="state" position="attributes">
                     <attribute name="invisible">True</attribute>
-                </field>              
+                </field>
+                
             
                 <field name="partner_id" position="after">
                     <field name="due_in"/>
@@ -89,6 +91,9 @@
                 <field name="amount_tax" position="attributes">
                     <attribute name="invisible">True</attribute>
                 </field>
+                <field name="amount_untaxed" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
                 <field name="warehouse_id" position="attributes">
                     <attribute name="invisible">True</attribute>
                 </field>
@@ -96,6 +101,21 @@
                 <xpath expr="//notebook/page[2]" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
+
+                <!-- <xpath expr='//form/sheet/notebook/page[@string="Order Lines"]/field[@name="order_line"/form[@string="Sales Order Lines"]/field[@name="tax_id"]' position="attributes"> -->
+               <!--  <xpath expr='//notebook/page/field/tree[@string="Sales Order Lines"]'> -->
+                    <!-- <field name="order_line" position='inside'>
+                        <xpath expr='//form/group/group'> -->
+                            <!-- <field name="tax_id" position="attributes">
+                                <attribute name="invisible">True</attribute>
+                            </field> -->
+                       <!--  </xpath>
+                    </field> -->
+                <!-- </xpath> -->
+
+                <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="attributes">
+    <attribute name="invisible">1</attribute>
+</xpath>
 
             </field>        
         </record>
