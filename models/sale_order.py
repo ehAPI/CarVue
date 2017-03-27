@@ -13,7 +13,7 @@ class sale_order(osv.osv):
 	'advisor':fields.many2one('res.users','Advisor',ondelete='set null'),
 	'technician':fields.many2one('res.users','Technician',ondelete='set null'),
 	'bay' :fields.selection([('parking','Parking'),('ramp1','Ramp 1'),('ramp2','Ramp 2')],'Bay'),
-	'reference': fields.char('Reference'),
+	# 'reference': fields.char('Reference'),
 	'mile':fields.integer('Mileage In'),
 	'status':fields.selection([('in','In Progress'),
 			('paused','Paused'),
