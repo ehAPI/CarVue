@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!-- Top menu -->
+		<menuitem name="CarVue" id="carvue"/>
+
+		<!-- sub menu -->
+		<menuitem name="Invoices" id="invoices_menu" parent="carvue" sequence='3'/>
+
+		<!-- menu item -->
+		<menuitem id="customer_invoices" action="account.action_invoice_tree1" parent="invoices_menu"/>
+
+		<record model="ir.ui.view" id="car_vue.invoice_view">           
+			<field name="name">account.invoice.form.inherit</field>
+			<field name="model">account.invoice</field>           
+			<field name="inherit_id" ref="account.invoice_form"/>
+			<field name="arch" type="xml">
+				<field name='partner_id' position="after">
+					<field name="due_in"/>
+					<field name="due_out"/>
+					<field name="advisor"/>
+					<field name="technician"/>
+				</field>
+				<field name='date_invoice' position="after">
+					<field name="bay"/>
+					<field name="reference"/>
+					<field name="mile"/>
+					<field name="notes"/>
+				</field>
+			</field>        
+		</record>
+	  
+	</data>
+</openerp>

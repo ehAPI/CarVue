@@ -59,11 +59,42 @@ class sale_order(osv.osv):
 		self.write(cr,uid,ids,{'status':'work'},context=context)
 		return True	
 
-sale_order()
+	def _prepare_invoice(self, cr, uid, order, lines, context=None):
+		if context is None:
+			context = {}
+		journal_ids = self.pool.get('account.journal').search(cr, uid,
+			[('type', '=', 'sale'), ('company_id', '=', order.company_id.id)],
+			limit=1)
+		if not journal_ids:
+			raise osv.except_osv(_('Error!'),
+				_('Please define sales journal for this company: "%s" (id:%d).') % (order.company_id.name, order.company_id.id))
+		invoice_vals = {
+			'name': order.client_order_ref or '',
+			'origin': order.name,
+			'type': 'out_invoice',
+			'reference': order.client_order_ref or order.name,
+			'account_id': order.partner_id.property_account_receivable.id,
+			'partner_id': order.partner_invoice_id.id,
+			'journal_id': journal_ids[0],
+			'invoice_line': [(6, 0, lines)],
+			'currency_id': order.pricelist_id.currency_id.id,
+			'comment': order.note,
+			'payment_term': order.payment_term and order.payment_term.id or False,
+			'fiscal_position': order.fiscal_position.id or order.partner_id.property_account_position.id,
+			'date_invoice': context.get('date_invoice', False),
+			'company_id': order.company_id.id,
+			'user_id': order.user_id and order.user_id.id or False,
+			'section_id' : order.section_id.id,
+			'due_in': order.due_in,
+			'due_out': order.due_out,
+			'bay': order.bay,
+			'reference': order.reference,
+			'mile': order.mile,
+			'technician': order.technician.id,
+			'notes': order.notes,
+			'advisor': order.advisor.id,
+			}
+		invoice_vals.update(self._inv_get(cr, uid, order, context=context))
+		return invoice_vals
 
-# class res_partner_inherit(osv.osv):
-# 	_inherit="res.partner"
-# 	_defaults = {
-# 	'property_accounts_receivable' : '' 
-# 	'property_accounts_payable' : 
-# 	}
+sale_order()

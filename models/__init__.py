@@ -4,3 +4,4 @@ import vehicle_dashboard
 import products
 import sale_order
 import configuration
+import invoice
