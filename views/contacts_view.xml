@@ -32,6 +32,9 @@
             <field name="model">sale.order</field>           
             <field name="inherit_id" ref="sale_stock.view_order_form_inherit"/>
             <field name="arch" type="xml">
+                <!-- <header>
+                    <button name='create_invoices' string='Invoices' type='object' class='oe_highlight'/>
+                </header> -->
                 <header>                    
                     <button name="status_in" type="object" String="In Progress" attrs="{'invisible': [('status','in',('in','paused','part','parts','awaiting','cleaning','cust','work'))]}" class="oe_highlight"/>
 
@@ -61,6 +64,10 @@
                 </xpath>
 
                 <xpath expr="//form/header/button[@string='Cancel Quotation']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//form/header/button[@string='View Delivery Order']" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
                 <field name="state" position="attributes">
