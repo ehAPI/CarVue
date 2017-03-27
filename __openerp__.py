@@ -13,6 +13,8 @@
 			 "security/car_vue_security_view.xml",
 			 "security/ir.model.access.csv",
 			 "views/configuration_view.xml",
+			 "report/report_saleorder.xml",
+			 # "report_print.xml",
 			 # "views/products_view.xml",
 			 "views/car_vue_sequence.xml"],
 
