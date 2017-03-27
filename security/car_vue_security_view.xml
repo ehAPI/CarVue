@@ -22,9 +22,9 @@
         </record>
 
         <!-- Hiding Invoicing Top menu item -->
-        <!-- <record model="ir.ui.menu" id="account.menu_finance">           
+        <record model="ir.ui.menu" id="account.menu_finance">           
             <field name="groups_id" eval="[(6,0,[ref('group_car_vue_somebody')])]"/>       
-        </record> -->
+        </record>
 
         <!-- Hiding Messaging Top menu item -->
         <record model="ir.ui.menu" id="mail.mail_feeds_main">           

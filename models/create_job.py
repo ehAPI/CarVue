@@ -91,11 +91,6 @@ class create_job(osv.osv):
 		obj = self.browse(cr, uid, ids)
 
 		assert len(ids) == 1, 'This option should only be used for a single id at a time.'
-		# ir_model_data = self.pool.get('ir.model.data')
-		# try:
-		# 	sale_form_changed = ir_model_data.get_object_reference(cr, uid, ids, 'sale.view_order_form')[1]
-		# except ValueError:
-		# 	sale_form_changed = False 
 		
 		ctx = dict()
 		ctx.update({
@@ -111,18 +106,9 @@ class create_job(osv.osv):
 			'view_type': 'form',
 			'view_mode': 'form',
 			'res_model': 'sale.order',
-			# 'views': [(sale_form_changed, 'form')],
-			# 'view_id': sale_form_changed,
-			# 'target': 'new',
 			'context': ctx,
 		}
 
-	# def on_change_due_in(self,cr,uid,ids,due_in,context=None):
-	# 	due_out=(datetime.(due_in) + timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S')
-	# 	res={
-	# 	'value' : {'due_out':due_out}
-	# 	}
-	# 	return res
 	def on_change_due_in(self,cr,uid,ids,due_in,context=None):
 		duein = datetime.strptime(due_in,'%Y-%m-%d %H:%M:%S')
 		due_out=(duein + timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S')

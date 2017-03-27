@@ -2,6 +2,24 @@
 <openerp>
 	<data>
 		<template id="report_saleorder_document_inherit" inherit_id="sale.report_saleorder_document"> 
+
+			<xpath expr="//div[@class='page']/div[@class='row']/div[@class='col-xs-6']" position="replace">
+
+			<div class="col-xs-6">
+                    <strong t-if="o.partner_shipping_id == o.partner_invoice_id">Invoices:</strong>
+                    <strong t-if="o.partner_shipping_id != o.partner_invoice_id">Invoices:</strong>
+                    <div t-field="o.partner_invoice_id" 
+                        t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": true}'/>
+                    <p t-if="o.partner_id.vat">VAT: <span t-field="o.partner_id.vat"/></p>
+                    <!-- <div t-if="o.partner_shipping_id != o.partner_invoice_id" class="mt8">
+                                                <strong>Shipping address:</strong>
+                                                <div t-field="o.partner_shipping_id" 
+                                                    t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": true}'/>
+                                                <p t-if="o.partner_id.vat">VAT: <span t-field="o.partner_id.vat"/></p>
+                                            </div> -->                        
+                </div>
+            </xpath>    
+
 			<xpath expr="//div[@class='page']/div[@class='row mt32 mb32']" position="replace">
 				<div class="row mt32 mb32" id="informations">
 					<div t-if="o.date_order" class="col-xs-3">
@@ -51,6 +69,22 @@
 					<th class="text-right">Price</th>
 				</tr>
 			</xpath>
+
+			<xpath expr="//div[@class='page']/div[@class='row']/div[@class='col-xs-4 pull-right']" position="replace">
+			
+                <div class="col-xs-4 pull-right">
+                    <table class="table table-condensed">
+                        <tr class="border-black">
+                            <td><strong>Total</strong></td>
+                            <td class="text-right">
+                                <span t-field="o.amount_total"
+                                    t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}'/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </xpath>
+
 		</template>
 	</data>
 </openerp>
