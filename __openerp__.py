@@ -4,7 +4,7 @@
 	"author":"ehAPI Technologies LLC",
 	"website":"http://www.ehapi.com",
 	"category":"Tools",
-	"depends":["base","board",'mail','email_template',"report",'sale','stock','purchase'],
+	"depends":["base","board",'remove_taxes','mail','email_template',"report",'sale','stock','purchase'],
 	"description":"CarVue module for ehAPI",
 
 	"data": ["views/create_job_view.xml",

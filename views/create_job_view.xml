@@ -79,16 +79,17 @@
             <field name="model">create.job</field>
             <field name="arch" type="xml">
                 <search string="Job search">
-            		<!-- <field name="name" filter_domain="['|','|',('name','ilike',self),('atm','ilike',self),('customer','ilike',self)]" string="TASK"/>
-                    <filter icon="terp-go-today" string="Today" name="today" domain="[('visit_time','&gt;=',current_date),('visit_time','&lt;=',current_date)]" />
-					<separator/> -->
+            		<!-- <field name="name" filter_domain="['|','|',('name','ilike',self),('atm','ilike',self),('customer','ilike',self)]" string="TASK"/> -->
+                    <filter icon="terp-go-today" string="Due Out Today" name="due_out" domain="[('due_out','&gt;=',current_date),('due_out','&lt;=',current_date)]" />
+					<separator/>
 					<filter icon="terp-check" string="Provisional"  domain="[('status','=','prov')]"/>
 					<filter icon="terp-check" string="Due In"  domain="[('status','=','due')]"/>
                     <group expand="0" string="Group By...">
-	                    <!-- <filter string="Customer" icon="terp-personal" domain="[]" context="{'group_by':'customer'}"/>
-	                    <filter string="Surveyor Name" icon="terp-folder-green" domain="[]" context="{'group_by':'surveyor'}" groups="transtech_module.group_atm_manager, transtech_module.group_atm_user"/>
-	                    <filter string="Date" icon="terp-go-month" domain="[]" context="{'group_by':'visit_time'}"/>
-						<filter string="Location"  domain="[]" context="{'group_by':'state'}"/> -->
+	                    <filter string="Contact" icon="terp-personal" domain="[]" context="{'group_by':'child_ids'}"/>
+	                    <!-- <filter string="Surveyor Name" icon="terp-folder-green" domain="[]" context="{'group_by':'surveyor'}" groups="transtech_module.group_atm_manager, transtech_module.group_atm_user"/> -->
+	                    <filter string="Due In" icon="terp-go-month" domain="[]" context="{'group_by':'due_in'}"/>
+	                    <filter string="Due Out" icon="terp-go-month" domain="[]" context="{'group_by':'due_out'}"/>
+						<!-- <filter string="Location"  domain="[]" context="{'group_by':'state'}"/> -->
 						<filter string="Status"  domain="[]" context="{'group_by':'status'}"/>
 					</group>
 				</search>
