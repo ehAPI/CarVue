@@ -21,21 +21,18 @@
 							<h2><field name='code'/></h2>
 							<button class="oe_right oe_box oe_highlight" name="repairs_action"  type="object" String="Arrived"/> 
 						</group>
-						<group col='3'>
+						<group>
 							<group string = "CONTACT">
 								<field name="child_ids" nolabel='1'/>
 							</group>
 							<group string = "VEHICLE">	
 									<field name="veh" nolabel='1'/>
 							</group>
-							<group string="JOB">
-								<group string="New Job Card">
-									<!-- <field name="due_in"/> -->
-									<field name="due_in" on_change='on_change_due_in(due_in)'/>
-									<field name="due_out"/>
-									<field name="advisor"/>
-									<field name="notes"/>
-								</group>
+							<group string="Job Card">
+								<field name="due_in" on_change='on_change_due_in(due_in)'/>
+								<field name="due_out"/>
+								<field name="advisor"/>
+								<field name="notes"/>
 							</group>
 						</group>
 					</sheet>
