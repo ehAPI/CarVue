@@ -13,6 +13,7 @@ class vehicle_dashboard(osv.osv):
 		'model' : fields.many2one('model','Model',required=True, domain="[('make','=',make)]"),
 		'derivative' : fields.many2one('derivative','Derivative', domain="[('model','=',model)]"),
 		'age' : fields.integer('Age'),
+		'child_ids': fields.many2one('res.partner','Owner', domain=[('active','=',True)],required=True), # force "active_test" domain to bypass _search() override
 		'colour' : fields.char('Colour'),
 		'odometer' : fields.float('Odometer Reading'),
 		'odo_unit' : fields.selection([('miles','Miles'),('km','Kilometers')],'Odometer Unit'),

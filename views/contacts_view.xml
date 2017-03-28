@@ -18,12 +18,30 @@
             <field name="model">res.partner</field>           
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
+
                 <xpath expr="//notebook/page[3]" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
-                <!-- <xpath expr="//notebook/page[4]" position="attributes"> -->
-                    <!-- <attribute name="invisible">1</attribute> -->
-                <!-- </xpath> -->
+                <xpath expr="//notebook/page[4]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//notebook/page[3]" position="after">
+                    <page string='Vehicles'>
+                        <field name="veh" widget="one2many_list">
+                             <tree string="Customer Vehicles Tree">
+                                <field name='code'/>
+                                <field name='registration'/>
+                                <field name='child_ids'/>
+                                <field name='make'/>
+                                <field name='model'/>
+                                <field name='derivative'/>
+                                <field name='age'/>
+                                <field name='colour'/>
+                                <field name='odometer'/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
             </field>        
         </record>
 

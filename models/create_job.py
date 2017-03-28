@@ -30,7 +30,7 @@ class create_job(osv.osv):
 		'child_ids': fields.many2one('res.partner','Contact', domain=[('active','=',True)]), # force "active_test" domain to bypass _search() override
 		'advisor':fields.many2one('res.users','Advisor',ondelete='set null'),
 		'technician':fields.many2one('res.users','Technician',ondelete='set null'),
-		'veh':fields.many2one('vehicle.dashboard','Vehicle',ondelete='set null'),
+		'veh':fields.many2one('vehicle.dashboard','Vehicle',ondelete='set null', domain="[('child_ids','=',child_ids)]"),
 		'bay' :fields.selection([('parking','Parking'),('ramp1','Ramp 1'),('ramp2','Ramp 2')],'Bay'),
 		'reference': fields.char('Reference'),
 		'mile':fields.integer('Mileage In'),
