@@ -17,7 +17,6 @@
 			<xpath expr="//div[@class='page']/div[@class='row mt32 mb32']" position="replace">
 				<div class="row mt32 mb32" id="informations">
 					<div t-if="o.date_order" class="col-xs-3">
-						<!-- <strong t-if="o.state not in ['draft','sent']">Date:</strong> -->
 						<strong >Date:</strong>
 						<p t-field = "o.date_order"/>
 					</div>
