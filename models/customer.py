@@ -4,19 +4,16 @@ from openerp.osv import fields, osv
 class customer(osv.osv):
 
 	_inherit = 'res.partner'
+	def _show_vehicles(self, cr, uid, ids, name, args, context=None):
+		res = {}
+		c_ids = self.pool.get('vehicle.dashboard').search(cr,uid,[('child_ids','=',ids[0])])
+		for t_id in self.browse(cr,uid,ids):
+			res[t_id.id] = c_ids
+		return res
+	_columns = {
+	# 'veh' : fields.one2many('vehicle.dashboard', 'registration', 'Vehicles'),
+	'veh': fields.function(_show_vehicles, relation='vehicle.dashboard', type="one2many", string='My Vehicles'),
+	}
 
-	# def _default_account_receivable(self, cr, uid, context=None):
-	# 	cid = self.pool.get('account.account').search(cr, uid, [('type', '=', 'receivable')], context=context)
-	# 	return cid[0]
-
-	# def _default_account_payable(self, cr, uid, context=None):
-	# 	cid = self.pool.get('account.account').search(cr, uid, [('type', '=', 'payable')], context=context)
-	# 	return cid[0]
-	
-	# _defaults ={
-	# 	'property_account_receivable':_default_account_receivable,
-	# 	'property_account_payable':_default_account_payable,
-		# 'last_reconciliation_date':lambda *a: datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-	# }
 
 customer()
