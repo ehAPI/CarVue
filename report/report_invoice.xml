@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <template id="report_invoice_document_inherit" inherit_id="account.report_invoice_document"> 
+
+			<xpath expr="//table[@class='table table-condensed']/thead/tr" position="replace">
+				<tr>
+                    <th>Description</th>
+                    <th>Quantity</th>
+                    <th class="text-right">Unit Price</th>
+                    <th class="text-right" groups="sale.group_discount_per_so_line">Discount (%)</th>
+                    <th class="text-right"></th>
+                    <th class="text-right">Amount</th>
+                </tr>
+			</xpath>
+
+			<xpath expr="//div[@class='page']/div[@class='row']/div[@class='col-xs-4 pull-right']" position="replace">
+
+                <div class="col-xs-4 pull-right">
+                    <table class="table table-condensed">
+                        <tr class="border-black">
+                            <td><strong>Total</strong></td>
+                            <td class="text-right">
+                                 <span t-field="o.amount_total" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </xpath>
+
+            <xpath expr="//div[@class='page']/div[@class='row mt32 mb32']" position="replace">
+				<div class="row mt32 mb32">
+					<div class="col-xs-4" t-if="o.name">
+                    <strong>Description:</strong>
+                    <p t-field="o.name"/>
+                </div>
+                <div class="col-xs-4" t-if="o.date_invoice">
+                    <strong>Invoice Date:</strong>
+                    <p t-field="o.date_invoice"/>
+                </div>
+                <div class="col-xs-4" t-if="o.origin">
+                    <strong>Source:</strong>
+                    <p t-field="o.origin"/>
+                </div>
+                <div class="col-xs-4" t-if="o.partner_id.ref">
+                    <strong>Customer Code:</strong>
+                    <p t-field="o.partner_id.ref"/>
+                </div>
+                <div class="col-xs-4" t-if="o.reference">
+                    <strong>Reference:</strong>
+                    <p t-field="o.reference"/>
+                </div>
+                <div t-if="o.due_in" class="col-xs-4">
+						<strong>Due In:</strong>
+						<p t-field="o.due_in"/>
+					</div>
+					<div t-if="o.due_out" class="col-xs-4">
+						<strong>Due Out:</strong>
+						<p t-field="o.due_out"/>
+					</div>
+					<div t-if="o.bay" class="col-xs-4">
+						<strong>Bay:</strong>
+						<p t-field="o.bay"/>
+					</div>
+					<div t-if="o.advisor.name" class="col-xs-4">
+						<strong>Advisor:</strong>
+						<p t-field="o.advisor.name"/>
+					</div>
+					<div t-if="o.technician.name" class="col-xs-4">
+						<strong>Technician:</strong>
+						<p t-field="o.technician.name"/>
+					</div>
+				</div> 
+			</xpath>
+
+		</template>	
+
+
+
+	</data>
+</openerp>

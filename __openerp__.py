@@ -15,6 +15,7 @@
 			 "views/configuration_view.xml",
 
 			 "report/report_saleorder.xml",
+			 "report/report_invoice.xml",
 			 # "report_print.xml",
 
 			 "views/invoices_view.xml",

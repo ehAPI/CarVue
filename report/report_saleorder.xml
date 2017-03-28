@@ -10,13 +10,7 @@
                     <strong t-if="o.partner_shipping_id != o.partner_invoice_id">Invoices:</strong>
                     <div t-field="o.partner_invoice_id" 
                         t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": true}'/>
-                    <p t-if="o.partner_id.vat">VAT: <span t-field="o.partner_id.vat"/></p>
-                    <!-- <div t-if="o.partner_shipping_id != o.partner_invoice_id" class="mt8">
-                                                <strong>Shipping address:</strong>
-                                                <div t-field="o.partner_shipping_id" 
-                                                    t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": true}'/>
-                                                <p t-if="o.partner_id.vat">VAT: <span t-field="o.partner_id.vat"/></p>
-                                            </div> -->                        
+                    <p t-if="o.partner_id.vat">VAT: <span t-field="o.partner_id.vat"/></p>                       
                 </div>
             </xpath>    
 
@@ -39,11 +33,6 @@
 						<strong>Bay:</strong>
 						<p t-field="o.bay"/>
 					</div>
-					<div t-if="o.mile" class="col-xs-3">
-						<strong>Mileage In:</strong>
-						<p t-field="o.mile"/>
-					</div>
-
 					<div t-if="o.advisor.name" class="col-xs-3">
 						<strong>Advisor:</strong>
 						<p t-field="o.advisor.name"/>
@@ -86,5 +75,6 @@
             </xpath>
 
 		</template>
-	</data>
-</openerp>
+
+		</data>
+	</openerp>
