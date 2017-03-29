@@ -20,6 +20,18 @@ class account_invoices(osv.osv):
 			('cust','Customer Contacted'),
 			('work','Work Completed')],'Status'),
 	}
+	# def action_invoice_sent(self, cr, uid, ids, context=None):
+	# 	'''  Override to use a modified template that includes a portal signup link '''
+	# 	action_dict = super(account_invoices, self).action_invoice_sent(cr, uid, ids, context=context)
+	# 	try:
+	# 		template_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'car_vue', 'email_template_edi_invoice')[1]
+	# 		# assume context is still a dict, as prepared by super
+	# 		ctx = action_dict['context']
+	# 		ctx['default_template_id'] = template_id
+	# 		ctx['default_use_template'] = True
+	# 	except Exception:
+	# 		pass
+	# 	return action_dict
 
 
 	def action_invoice_sent(self, cr, uid, ids, context=None):

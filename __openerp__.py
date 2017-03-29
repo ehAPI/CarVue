@@ -14,7 +14,6 @@
 			 "security/ir.model.access.csv",
 			 "views/configuration_view.xml",
 			 "edi/sale_order_mail.xml",
-			 "edi/invoice_mail.xml",
 			 "report/report_saleorder.xml",
 			 "report/report_invoice.xml",
 			 "views/invoices_view.xml",
