@@ -1,1 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_jobs_technician,create.job,model_create_job,car_vue.group_car_vue_technician,1,1,0,0
+
+access_vehicles_technician,vehicle.dashboard,model_vehicle_dashboard,car_vue.group_car_vue_technician,1,0,0,0
+
+access_cust_technician,res.partner,model_res_partner,car_vue.group_car_vue_technician,1,0,0,0
