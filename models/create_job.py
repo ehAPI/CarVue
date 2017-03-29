@@ -34,9 +34,7 @@ class create_job(osv.osv):
 		'bay' :fields.selection([('parking','Parking'),('ramp1','Ramp 1'),('ramp2','Ramp 2')],'Bay'),
 		'reference': fields.char('Reference'),
 		'mile':fields.integer('Mileage In'),
-		# 'name' : fields.one2many('res.partner','chn','Chapter'),    
 	}
-
 	
 	def status_provisional(self,cr,uid,ids,context=None):
 		self.write(cr,uid,ids,{'status':'prov'},context=context)
@@ -99,6 +97,7 @@ class create_job(osv.osv):
 			'default_due_in' : obj.due_in,
 			'default_due_out' : obj.due_out,
 			'default_advisor' : obj.advisor.id,
+			'default_technician' : obj.technician.id,
 			'default_notes' : obj.notes,
 		})
 		return {
@@ -123,4 +122,3 @@ class create_job(osv.osv):
 	}
 
 create_job()
-

@@ -13,7 +13,6 @@ class sale_order(osv.osv):
 	'advisor':fields.many2one('res.users','Advisor',ondelete='set null'),
 	'technician':fields.many2one('res.users','Technician',ondelete='set null'),
 	'bay' :fields.selection([('parking','Parking'),('ramp1','Ramp 1'),('ramp2','Ramp 2')],'Bay'),
-	# 'reference': fields.char('Reference'),
 	'mile':fields.integer('Mileage In'),
 	'status':fields.selection([('in','In Progress'),
 			('paused','Paused'),
@@ -37,40 +36,6 @@ class sale_order(osv.osv):
 		except Exception:
 			pass
 		return action_dict
-
-	# def action_quotation_send(self, cr, uid, ids, context=None):
-	# 	'''
-	# 	This function opens a window to compose an email, with the edi sale template message loaded by default
-	# 	'''
-	# 	assert len(ids) == 1, 'This option should only be used for a single id at a time.'
-	# 	ir_model_data = self.pool.get('ir.model.data')
-	# 	try:
-	# 		template_id = ir_model_data.get_object_reference(cr, uid, 'car_vue', 'email_template_edi_sale')[1]
-	# 	except ValueError:
-	# 		template_id = False
-	# 	try:
-	# 		compose_form_id = ir_model_data.get_object_reference(cr, uid, 'mail', 'email_compose_message_wizard_form')[1]
-	# 	except ValueError:
-	# 		compose_form_id = False 
-	# 	ctx = dict()
-	# 	ctx.update({
-	# 		'default_model': 'sale.order',
-	# 		'default_res_id': ids[0],
-	# 		'default_use_template': bool(template_id),
-	# 		'default_template_id': template_id,
-	# 		'default_composition_mode': 'comment',
-	# 		'mark_so_as_sent': True
-	# 	})
-	# 	return {
-	# 		'type': 'ir.actions.act_window',
-	# 		'view_type': 'form',
-	# 		'view_mode': 'form',
-	# 		'res_model': 'mail.compose.message',
-	# 		'views': [(compose_form_id, 'form')],
-	# 		'view_id': compose_form_id,
-	# 		'target': 'new',
-	# 		'context': ctx,
-	# 	}	
 
 	def status_in(self,cr,uid,ids,context=None):
 		self.write(cr,uid,ids,{'status':'in'},context=context)
