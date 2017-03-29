@@ -87,27 +87,10 @@
                 <xpath expr="//form/header/button[@string='Cancel Quotation']" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
-                
-<xpath expr="//form/header/button[@name='action_cancel']" position="replace"> 
 
-     <button name="action_cancel" string="Cancel Order" type="object" attrs="{'invisible': [('status','in',('work'))]}" />
- </xpath>
-
-                       <!--  <button name="invoice_cancel" states="invoice_except" string="Cancel Order" groups="base.group_user"/>
-
-    <button name="print_quotation" string="Print" type="object" states="draft" class="oe_highlight" groups="base.group_user" invisible="1"/>
-
-     <button name="print_quotation" string="Print" type="object" states="sent" groups="base.group_user" invisible="1"/>
-
-      <button name="print_quotation" string="Print" type="object" class="oe_highlight" attrs="{'invisible': [('state','not in',('manual','progress'))]}" groups="base.group_user"/> 
-
-  </xpath>
- <xpath expr="//form/header/button[@string='Cancel Order']" po>
-                   
-                </xpath> -->
-               <!--  <xpath expr="//form/header/button[@string='Cancel Order']" position="attributes">
-                    <attribute name="invisible">[('status','in',('work'))]</attribute>
-                </xpath> -->
+                <xpath expr="//form/header/button[@name='action_cancel']" position="replace"> 
+                     <button name="action_cancel" string="Cancel Order" type="object" attrs="{'invisible': [('status','in',('work'))]}" />
+                 </xpath>
 
                 <xpath expr="//form/header/button[@string='View Delivery Order']" position="attributes">
                     <attribute name="invisible">1</attribute>

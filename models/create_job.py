@@ -13,7 +13,7 @@ class create_job(osv.osv):
 		'notes':fields.text('Notes'),
 		'code' : fields.char('Number',readonly=True),
 		'status':fields.selection([('prov','Provisional'),
-			('due','Due In')],'STATUS'),
+			('due','Due In')],'Status'),
 		# 'status':fields.selection([('prov','Provisional'),
 		# 	('due','Due In'),
 		# 	('arr','Arrived'),
@@ -34,7 +34,6 @@ class create_job(osv.osv):
 		'bay' :fields.selection([('parking','Parking'),('ramp1','Ramp 1'),('ramp2','Ramp 2')],'Bay'),
 		'reference': fields.char('Reference'),
 		'mile':fields.integer('Mileage In'),
-		# 'name' : fields.one2many('res.partner','chn','Chapter'),    
 	}
 
 	
