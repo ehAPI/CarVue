@@ -17,7 +17,7 @@
 			 "report/report_saleorder.xml",
 			 "report/report_invoice.xml",
 			 "views/invoices_view.xml",
-			 # "views/products_view.xml",
+			 "views/products_view.xml",
 			 "views/car_vue_sequence.xml"],
 
     # 'qweb': ['static/src/xml/base.xml',], 

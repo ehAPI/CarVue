@@ -81,10 +81,16 @@
                 <xpath expr="//form/header/button[@string='Cancel Quotation']" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
-                
+
                 <xpath expr="//form/header/button[@name='action_cancel']" position="replace"> 
+                     <button name="action_cancel" string="Cancel Order" type="object" attrs="{'invisible': [('status','in',('work'))]}" />
+                 </xpath>
+<!-- ======= -->
+                
+                <!-- <xpath expr="//form/header/button[@name='action_cancel']" position="replace"> 
                     <button name="action_cancel" string="Cancel Order" type="object" attrs="{'invisible': [('status','in',('work'))]}" />
                  </xpath>                      
+>>>>>>> c67b0cdcfa7c631ea4ac9629c2de0d9c3df14f53 -->
 
                 <xpath expr="//form/header/button[@string='View Delivery Order']" position="attributes">
                     <attribute name="invisible">1</attribute>
