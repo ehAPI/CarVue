@@ -5,7 +5,7 @@
         <menuitem name="CarVue" id="carvue"/>
 
         <!-- sub menu -->
-        <menuitem name="Contacts" id="contact_menu" parent="carvue" sequence='2'/>
+        <menuitem name="Contacts" id="contact_menu" parent="carvue" sequence='2' groups='car_vue.group_car_vue_admin,car_vue.group_car_vue_manager,car_vue.group_car_vue_technician'/>
 
         <!-- menu item -->
         <menuitem id="quotations_menu_mainform" action="sale.action_quotations" parent="contact_menu" sequence='5'/>
@@ -50,9 +50,6 @@
             <field name="model">sale.order</field>           
             <field name="inherit_id" ref="sale_stock.view_order_form_inherit"/>
             <field name="arch" type="xml">
-                <!-- <header>
-                    <button name='create_invoices' string='Invoices' type='object' class='oe_highlight'/>
-                </header> -->
                 <header>                    
                     <button name="status_in" type="object" String="In Progress" attrs="{'invisible': [('status','in',('in','paused','part','parts','awaiting','cleaning','cust','work'))]}" class="oe_highlight"/>
 
@@ -81,9 +78,6 @@
                     <attribute name="string">Confirm Job</attribute>
                 </xpath>
 
-                <!-- <button name="action_cancel" states="manual,progress" string="Cancel Order" type="object" groups="base.group_user" attrs="{'invisible': [('status','in',('work'))]}"/> -->
-                <!-- <button name="invoice_cancel" states="invoice_except" string="Cancel Order" groups="base.group_user"/> -->
-
                 <xpath expr="//form/header/button[@string='Cancel Quotation']" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
@@ -91,15 +85,21 @@
                 <xpath expr="//form/header/button[@name='action_cancel']" position="replace"> 
                      <button name="action_cancel" string="Cancel Order" type="object" attrs="{'invisible': [('status','in',('work'))]}" />
                  </xpath>
+<!-- ======= -->
+                
+                <!-- <xpath expr="//form/header/button[@name='action_cancel']" position="replace"> 
+                    <button name="action_cancel" string="Cancel Order" type="object" attrs="{'invisible': [('status','in',('work'))]}" />
+                 </xpath>                      
+>>>>>>> c67b0cdcfa7c631ea4ac9629c2de0d9c3df14f53 -->
 
                 <xpath expr="//form/header/button[@string='View Delivery Order']" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
+
                 <field name="state" position="attributes">
                     <attribute name="invisible">True</attribute>
                 </field>
                 
-            
                 <field name="partner_id" position="after">
                     <field name="due_in"/>
                     <field name="due_out"/>
@@ -108,7 +108,6 @@
                 </field>
                 <field name="client_order_ref" position="after">
                     <field name="bay"/>
-                    <!-- <field name="reference"/> -->
                     <field name="mile"/>
                     <field name="notes"/>
                 </field>
@@ -130,25 +129,13 @@
                     <attribute name="invisible">1</attribute>
                 </xpath>
 
-                <!-- <xpath expr='//form/sheet/notebook/page[@string="Order Lines"]/field[@name="order_line"/form[@string="Sales Order Lines"]/field[@name="tax_id"]' position="attributes"> -->
-               <!--  <xpath expr='//notebook/page/field/tree[@string="Sales Order Lines"]'> -->
-                    <!-- <field name="order_line" position='inside'>
-                        <xpath expr='//form/group/group'> -->
-                            <!-- <field name="tax_id" position="attributes">
-                                <attribute name="invisible">True</attribute>
-                            </field> -->
-                       <!--  </xpath>
-                    </field> -->
-                <!-- </xpath> -->
-
                 <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="attributes">
-    <attribute name="invisible">1</attribute>
-</xpath>
-
+                    <attribute name="invisible">1</attribute>
+                </xpath>
             </field>        
         </record>
 
-        <record model="ir.ui.view" id="car_vue.quotations_view_tree">           
+        <record model="ir.ui.view" id="car_vue.quotations_view_tree"> 
             <field name="name">sale.order.tree.inherit</field>
             <field name="model">sale.order</field>           
             <field name="inherit_id" ref="sale.view_order_tree"/>
@@ -163,7 +150,7 @@
         </record>
 
 
-        <record model="ir.ui.view" id="car_vue.sale_view_tree">           
+        <record model="ir.ui.view" id="car_vue.sale_view_tree">      
             <field name="name">sale.order.tree.inherit</field>
             <field name="model">sale.order</field>           
             <field name="inherit_id" ref="sale.view_order_tree"/>
@@ -176,11 +163,6 @@
             </field>
             </field>
         </record>
-
-       <!--  <template id="car_vue.print_report" inherit_id="sale.report_saleorder_document" active="False" customize_show="True">
-            
-          -->
-
 
         <menuitem id="customers_menu_mainform" action="base.action_partner_customer_form" parent="contact_menu" sequence='4'/>
 

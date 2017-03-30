@@ -31,16 +31,10 @@
             <field name="name">Administrator</field>
             <field name="category_id" ref="module_car_vue"/>
         </record>
-
-
     
-        <record model="ir.ui.menu" id="base.menu_base_partner">           
-
-            <field name="name">Sales</field>
-            <field name="model">base.menu_base_partner</field>           
-            <field name="inherit_id" ref="base.menu_base_partner"/>
+        <!-- Hiding Sales Top menu item -->
+        <record model="ir.ui.menu" id="base.menu_base_partner">      
             <field name="groups_id" eval="[(6,0,[ref('group_car_vue_somebody')])]"/>
-
         </record>
 
         <!-- Hiding Invoicing Top menu item -->
@@ -54,12 +48,15 @@
         </record>
 
         <!-- Hiding Purchases Top menu item -->
-       <!--  <record model="ir.ui.menu" id="base.menu_purchase_root">           
+                 
+        <!-- <record model="ir.ui.menu" id="base.menu_purchase_root">       
             <field name="groups_id" eval="[(6,0,[ref('group_car_vue_somebody')])]"/>       
         </record> -->
 
         <!-- Hiding Warehouse Top menu item -->
-       <!--  <record model="ir.ui.menu" id="stock.menu_stock_root">           
+         
+
+        <!-- <record model="ir.ui.menu" id="stock.menu_stock_root">           
             <field name="groups_id" eval="[(6,0,[ref('group_car_vue_somebody')])]"/>       
         </record> -->
 
@@ -69,12 +66,22 @@
         </record>
     </data>
 
-    <!-- <data noupdate="0">
-    <record model="ir.rule" id="car_vue_manager_rule">
-        <field name="name">Manager: see all</field>
-        <field name="model_id" ref="model_create_job"/>
-        <field name="domain_force">[(1, '=', 1)]</field>
-        <field name="groups" eval="[(4,ref('car_vue.group_car_vue_manager'))]"/>
-    </record>
-</data> -->
+    
+    <data noupdate="0">
+
+        <record model="ir.rule" id="car_vue_manager_rule">
+            <field name="name">Manager: see all</field>
+            <field name="model_id" ref="model_create_job"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4,ref('car_vue.group_car_vue_manager'))]"/>
+        </record>
+
+        <record model="ir.rule" id="car_vue_technician_job_rule">
+            <field name="name">Technician: see only his jobs</field>
+            <field name="model_id" ref="model_create_job"/>
+            <field name="domain_force">[('technician','=', user.id)]</field>
+            <field name="groups" eval="[(4,ref('car_vue.group_car_vue_technician'))]"/>
+            
+        </record>
+    </data>
 </openerp>
