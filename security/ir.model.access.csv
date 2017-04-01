@@ -39,3 +39,5 @@ access_derivative_admin,derivative,model_derivative,car_vue.group_car_vue_admin,
 access_jobs_technician,create.job,model_create_job,car_vue.group_car_vue_technician,1,1,0,0
 
 access_vehicles_technician,vehicle.dashboard,model_vehicle_dashboard,car_vue.group_car_vue_technician,1,0,0,0
+
+access_customers_technician,base.res.partner,model_res_partner,car_vue.group_car_vue_technician,1,0,0,0

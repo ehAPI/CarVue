@@ -40,6 +40,68 @@
 			</field>
 		</record>
 
+		<record model="ir.ui.view" id="job_kanban_view">
+		    <field name="name">create_job_kanban</field>
+		    <field name="model">create.job</field>
+		    <field name="type">kanban</field>
+		    <field name="arch" type="xml">
+		    	<kanban>
+	                <!--Filtered By -->
+	                <field name="child_ids"/>
+		                <!--template start -->
+	                <templates>
+	                    <!--kanban view box start -->
+	                    <t t-name="kanban-box">
+	                    	<a type="open">
+		                        <!--kanban view box border -->
+		                        <t  t-set="border">oe_kanban_color_red</t>
+		                        <div t-attf-class="#{kanban_color(1)} #{border || ''}">
+		                            <div class="oe_kanban_box oe_kanban_color_border">
+		                               <!--kanban box header -->
+		                                <table class="oe_kanban_table oe_kanban_box_header oe_kanban_color_bgdark oe_kanban_color_border oe_kanban_draghandle">
+		                                <tr>
+		                                    <!--kanban title -->         
+		                                    <td align="left" valign="middle" class="oe_kanban_title" tooltip="lead_details" type='open'>
+		                                       <!--kanban title name -->
+		                                        <field name="child_ids"/>
+		                                    </td>
+		                                    <td valign="top" width="22"></td>
+		                                </tr>
+		                                </table>
+		                               <!--kanban content box -->
+		                                <div class="oe_kanban_box_content oe_kanban_color_bglight oe_kanban_box_show_onclick_trigger">
+		                                    <div>
+		                                        <t><b>Vehicle :</b></t><field name="veh"/>
+		                                    </div>
+		                                    <div>
+		                                        <t><b>Advisor :</b></t><field name="advisor"/>
+		                                    </div>
+		                                    <div>
+		                                        <t><b>Technician :</b></t><field name="technician"/>
+		                                    </div>
+		                                </div>
+		                               <!--below the kanban view button like view,e-mail,color -->
+		                                <div class="oe_kanban_buttons_set oe_kanban_color_border oe_kanban_color_bglight oe_kanban_box_show_onclick">
+		                                    <div class="oe_kanban_left">
+		                                        <a string="Edit" icon="gtk-edit" type="edit"/>
+		                                        <a string="Change Color" icon="color-picker" type="color" name="color"/>
+		                                        <a string="Send New Email" name="111" icon="terp-mail-message-new" type="action"/>
+		                                        <a string="Log Call" name="450" icon="terp-call-start" type="action"/>
+		                                        <a string="Add Internal Note" name="453" context="{'model': 'crm.lead' }" icon="terp-document-new" type="action"/>
+		                                    </div>
+		                                    <div class="oe_kanban_right">
+		                                    </div>
+		                                    <br class="oe_kanban_clear"/>
+		                                </div>
+		                            </div>
+		                        </div>
+	                    	</a>
+	                    </t>
+	                </templates>
+	            </kanban>
+		    </field>
+		</record>
+
 		<record model="ir.ui.view" id="view_create_job_tree"> 
 			<field name="name">create.job.tree</field>
 			<field name="model">create.job</field>
@@ -83,11 +145,9 @@
 					<filter icon="terp-check" string="Due In"  domain="[('status','=','due')]"/>
 					<group expand="0" string="Group By...">
 						<filter string="Contact" icon="terp-personal" domain="[]" context="{'group_by':'child_ids'}"/>
-						<!-- <filter string="Surveyor Name" icon="terp-folder-green" domain="[]" context="{'group_by':'surveyor'}" groups="transtech_module.group_atm_manager, transtech_module.group_atm_user"/> -->
 						<filter string="Due In" icon="terp-go-month" domain="[]" context="{'group_by':'due_in'}"/>
 						<filter string="Due Out" icon="terp-go-month" domain="[]" context="{'group_by':'due_out'}"/>
-						<!-- <filter string="Location"  domain="[]" context="{'group_by':'state'}"/> -->
-						<filter string="Status"  domain="[]" context="{'group_by':'status'}"/>
+						<filter string="Status" name='type_status' domain="[]" context="{'group_by':'status'}"/>
 					</group>
 				</search>
 			</field>
@@ -96,7 +156,9 @@
 		<record model="ir.actions.act_window" id="action_create_form">
 			<field name="name">Create Job</field>
 			<field name="res_model">create.job</field>
-			<field name="view_mode">tree,form,calendar</field>
+			<field name="view_mode">kanban,tree,form,calendar</field>
+			<field name='context'>{"search_default_type_status":1}</field>
+            <field name="search_view_id" ref="view_create_job_filter"/>
 			<field name="help" type="html">
 				<p class="oe_view_nocontent_create">
 					Click to create details for your Workshop Jobs...

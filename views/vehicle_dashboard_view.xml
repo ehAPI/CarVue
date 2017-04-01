@@ -29,7 +29,10 @@
 				<form string="Dashboard" version="8.0">
 					<sheet>
 						<h2>
-							<field name='code'/>
+							<group col='2'>
+								<field name='code' nolabel='1'/>
+								<button class="oe_right oe_box" name="jobs_button"  type="object" String="Jobs"/>
+							</group>
 						</h2>
 						<group>
 							<group string='Vehicle'>
