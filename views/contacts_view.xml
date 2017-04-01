@@ -5,7 +5,7 @@
         <menuitem name="CarVue" id="carvue"/>
 
         <!-- sub menu -->
-        <menuitem name="Contacts" id="contact_menu" parent="carvue" sequence='2' groups='car_vue.group_car_vue_admin,car_vue.group_car_vue_manager,car_vue.group_car_vue_technician'/>
+        <menuitem name="Contacts" id="contact_menu" parent="carvue" sequence='2'/>
 
         <!-- menu item -->
         <menuitem id="quotations_menu_mainform" action="sale.action_quotations" parent="contact_menu" sequence='5'/>
@@ -41,6 +41,21 @@
                             </tree>
                         </field>
                     </page>
+                    <page string='Jobs'>
+                        <field name="jobs" widget="one2many_list">
+                            <tree string="Customer Jobs Tree" colors='red:status=="prov";blue:status=="due"' version="8.0">
+                                <field name='code' string='Number'/>
+                                <field name="child_ids"/>
+                                <field name="veh"/>
+                                <field name="due_in"/>
+                                <field name="due_out"/>
+                                <field name="status"/>
+                                <field name="advisor"/>
+                                <field name="technician"/>
+                            </tree>
+                        </field>
+                    </page>
+
                 </xpath>
             </field>        
         </record>

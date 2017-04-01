@@ -15,7 +15,7 @@ class vehicle_dashboard(osv.osv):
 		'age' : fields.integer('Age'),
 		#'assign_to':fields.many2one('res.users','Assign To', required=True, domain="[('role','=','Surveyor')]"),
 		
-		'child_ids': fields.many2one('res.partner','Owner', domain=[('active','=',True)],required=True), # force "active_test" domain to bypass _search() override
+		'child_ids': fields.many2one('res.partner','Owner', domain=[('active','=',True)],required=True), #force "active_test" domain to bypass _search() override
 		'colour' : fields.char('Colour'),
 		'odometer' : fields.float('Odometer Reading'),
 		'odo_unit' : fields.selection([('miles','Miles'),('km','Kilometers')],'Odometer Unit'),
@@ -53,5 +53,29 @@ class vehicle_dashboard(osv.osv):
 		if vals.get('code','/')=='/':
 			vals['code']=self.pool.get('ir.sequence').get(cr,uid,'vehicle.dashboard') or '/'
 		return super(vehicle_dashboard,self).create(cr,uid,vals,context=context)
+
+	def jobs_button(self, cr, uid, ids, context=None):
+		obj = self.browse(cr, uid, ids)
+		assert len(ids) == 1, 'This option should only be used for a single id at a time.'
+		return {
+			'type': 'ir.actions.act_window',
+			'view_type': 'tree',
+			'view_mode': 'kanban,tree,form',
+			'domain':"[('veh.registration', '=',%s)]" %(obj.registration),
+			'res_model': 'create.job',
+		}
+
+		# job_tree = models_data._get_id(cr, uid, 'car_vue', 'view_create_job_tree')
+
+		# return {
+		# 	'name': 'Jobs',
+		# 	'view_type': 'form',
+		# 	"view_mode": 'tree,form',
+		# 	'res_model': 'create.job',
+		# 	'type': 'ir.actions.act_window',
+		# 	'search_view_id': job_tree,
+		# 	# 'res_id': res_ids,
+		# 	'domain':"[('id', 'in',%s)]" %(child_ids),
+		# }
 
 vehicle_dashboard()
