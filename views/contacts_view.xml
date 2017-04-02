@@ -5,6 +5,7 @@
         <menuitem name="CarVue" id="carvue"/>
 
         <!-- sub menu -->
+
         <menuitem name="Contacts" id="contact_menu" parent="carvue" sequence='2' groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin"/>
 
         <!-- menu item -->
@@ -18,6 +19,9 @@
             <field name="model">res.partner</field>           
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
+                <field name="title" position="after">
+                    <field name='related_user'/>
+                </field>
 
                 <xpath expr="//notebook/page[3]" position="attributes">
                     <attribute name="invisible">1</attribute>
@@ -153,6 +157,7 @@
         <record model="ir.ui.view" id="car_vue.quotations_view_tree"> 
             <field name="name">sale.order.tree.inherit</field>
             <field name="model">sale.order</field>           
+
             <field name="inherit_id" ref="sale.view_quotation_tree"/>
             <field name="arch" type="xml">
                 <field name="state" position="attributes">
@@ -178,6 +183,7 @@
             </field>
             </field>
         </record>
+
 
         <menuitem id="customers_menu_mainform" action="base.action_partner_customer_form" parent="contact_menu" sequence='4' groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin,car_vue.group_car_vue_technician"/>
 

@@ -15,6 +15,7 @@
 						<field name="status" widget="statusbar" 
 							statusbar_visible="prov,due"/>
 					</header>
+
 					<sheet>
 						<field name="image" widget='image' class='oe_left oe_avatar' options='{"size": [100, 100]}' nolabel='1'/>
 						<div class='oe_title oe_left'>
@@ -34,6 +35,7 @@
 							<group string = "VEHICLE">	
 									<field name="veh" nolabel='1'/>
 							</group>
+
 							<group string="Job Card">
 								<field name="due_in" on_change='on_change_due_in(due_in)'/>
 								<field name="due_out"/>
