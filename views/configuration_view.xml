@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+			<!-- View for Make -->
+		<record model="ir.ui.view" id="view_make_tree"> 
+		    <field name="name">vehicle.make.tree</field>
+		    <field name="model">make</field>
+		    <field name="type">tree</field>
+		    <field name="arch" type="xml">
+				<tree string="Make" version="8.0">
+						<field name='make_of_car'/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_make_form"> 
+		    <field name="name">vehicle.make.form</field>
+		    <field name="model">make</field>
+		    <field name="type">form</field>
+		    <field name="arch" type="xml">
+				<form string="Make" version="8.0">
+					<sheet>
+						<group>
+								<field name='make_of_car'/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_make_form">
+			<field name="name">Make</field>
+			<field name="res_model">make</field>
+			<field name="view_mode">tree,form</field>
+			<!-- <field name="help" type="html">
+			   			</field> -->
+		</record>
+
+		<!-- Top menu -->
+		<menuitem name="CarVue" id="carvue"/>
+
+		<!-- sub menu -->
+		<menuitem name="Configuration" id="configuration_menu" parent="carvue" sequence='9'/>
+		
+		<!-- menu item -->
+		<menuitem name="Make" parent="configuration_menu" id="make_menu_mainform" action="action_make_form" sequence='10'/>
+
+		             <!-- View for Model -->
+
+		<record model="ir.ui.view" id="view_model_tree"> 
+		    <field name="name">vehicle.model.tree</field>
+		    <field name="model">model</field>
+		    <field name="type">tree</field>
+		    <field name="arch" type="xml">
+				<tree string="Model" version="8.0">
+						<field name='model_of_car'/>
+						<field name='make'/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_model_form"> 
+		    <field name="name">vehicle.model.form</field>
+		    <field name="model">model</field>
+		    <field name="type">form</field>
+		    <field name="arch" type="xml">
+				<form string="Model" version="8.0">
+					<sheet>
+						<group>
+								<field name='model_of_car'/>
+								<field name='make'/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_model_form">
+			<field name="name">Model</field>
+			<field name="res_model">model</field>
+			<field name="view_mode">tree,form</field>
+			<!-- <field name="help" type="html">
+			   			</field> -->
+		</record>
+
+		<!-- Top menu -->
+		<menuitem name="CarVue" id="carvue"/>
+
+		<!-- sub menu -->
+		<menuitem name="Configuration" id="configuration_menu" parent="carvue"/>
+		
+		<!-- menu item -->
+		<menuitem name="Model" parent="configuration_menu" id="model_menu_mainform" action="action_model_form" sequence='11'/>
+
+					<!-- View for Derivative -->
+		<record model="ir.ui.view" id="view_derivative_tree"> 
+		    <field name="name">vehicle.derivative.tree</field>
+		    <field name="model">derivative</field>
+		    <field name="type">tree</field>
+		    <field name="arch" type="xml">
+				<tree string="Derivative" version="8.0">
+					<field name='make'/>
+					<field name='model'/>
+					<field name='derivative'/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_derivative_form"> 
+		    <field name="name">vehicle.derivative.form</field>
+		    <field name="model">derivative</field>
+		    <field name="type">form</field>
+		    <field name="arch" type="xml">
+				<form string="Derivative" version="8.0">
+					<sheet>
+						<group>
+							<field name='make'/>
+							<field name='model'/>
+							<field name='derivative' domain="[('model','=','model')]"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_derivative_form">
+			<field name="name">Derivative</field>
+			<field name="res_model">derivative</field>
+			<field name="view_mode">tree,form</field>
+			<!-- <field name="help" type="html">
+			   			</field> -->
+		</record>
+
+		<!-- Top menu -->
+		<menuitem name="CarVue" id="carvue"/>
+
+		<!-- sub menu -->
+		<menuitem name="Configuration" id="configuration_menu" parent="carvue"/>
+		
+		<!-- menu item -->
+		<menuitem name="Derivative" parent="configuration_menu" id="derivative_menu_mainform" action="action_derivative_form" sequence='12'/>
+
+	</data>
+</openerp>
