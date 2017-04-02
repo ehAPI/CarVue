@@ -5,13 +5,13 @@
         <menuitem name="CarVue" id="carvue"/>
 
         <!-- sub menu -->
-        <menuitem name="Contacts" id="contact_menu" parent="carvue" sequence='2' groups='car_vue.group_car_vue_admin,car_vue.group_car_vue_manager,car_vue.group_car_vue_technician'/>
+        <menuitem name="Contacts" id="contact_menu" parent="carvue" sequence='2' groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin"/>
 
         <!-- menu item -->
-        <menuitem id="quotations_menu_mainform" action="sale.action_quotations" parent="contact_menu" sequence='5'/>
+        <menuitem id="quotations_menu_mainform" action="sale.action_quotations" parent="contact_menu" sequence='5'  groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin,car_vue.group_car_vue_technician"/>
 
         <!-- menu item -->
-        <menuitem action="sale.action_orders" id="sales_orders_menu_mainform" parent="contact_menu" sequence='6'/>
+        <menuitem action="sale.action_orders" id="sales_orders_menu_mainform" parent="contact_menu" sequence='6'  groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin,car_vue.group_car_vue_technician"/>
 
         <record model="ir.ui.view" id="car_vue.customers_view">           
             <field name="name">res.partner.form.inherit</field>
@@ -41,6 +41,21 @@
                             </tree>
                         </field>
                     </page>
+                    <page string='Jobs'>
+                        <field name="jobs" widget="one2many_list">
+                            <tree string="Customer Jobs Tree" colors='red:status=="prov";blue:status=="due"' version="8.0">
+                                <field name='code' string='Number'/>
+                                <field name="child_ids"/>
+                                <field name="veh"/>
+                                <field name="due_in"/>
+                                <field name="due_out"/>
+                                <field name="status"/>
+                                <field name="advisor"/>
+                                <field name="technician"/>
+                            </tree>
+                        </field>
+                    </page>
+
                 </xpath>
             </field>        
         </record>
@@ -138,7 +153,7 @@
         <record model="ir.ui.view" id="car_vue.quotations_view_tree"> 
             <field name="name">sale.order.tree.inherit</field>
             <field name="model">sale.order</field>           
-            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
             <field name="arch" type="xml">
                 <field name="state" position="attributes">
                     <attribute name="invisible">True</attribute>
@@ -164,7 +179,7 @@
             </field>
         </record>
 
-        <menuitem id="customers_menu_mainform" action="base.action_partner_customer_form" parent="contact_menu" sequence='4'/>
+        <menuitem id="customers_menu_mainform" action="base.action_partner_customer_form" parent="contact_menu" sequence='4' groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin,car_vue.group_car_vue_technician"/>
 
     </data>
 </openerp>
