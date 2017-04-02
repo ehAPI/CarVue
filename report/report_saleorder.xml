@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<template id="report_saleorder_document_inherit" inherit_id="sale.report_saleorder_document"> 
+
+			<xpath expr="//div[@class='page']/div[@class='row']/div[@class='col-xs-6']" position="replace">
+
+			<div class="col-xs-6">
+                    <strong t-if="o.partner_shipping_id == o.partner_invoice_id">Invoices:</strong>
+                    <strong t-if="o.partner_shipping_id != o.partner_invoice_id">Invoices:</strong>
+                    <div t-field="o.partner_invoice_id" 
+                        t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": true}'/>
+                    <p t-if="o.partner_id.vat">VAT: <span t-field="o.partner_id.vat"/></p>                       
+                </div>
+            </xpath>    
+
+			<xpath expr="//div[@class='page']/div[@class='row mt32 mb32']" position="replace">
+				<div class="row mt32 mb32" id="informations">
+					<div t-if="o.date_order" class="col-xs-3">
+						<strong >Date:</strong>
+						<p t-field = "o.date_order"/>
+					</div>
+					<div t-if="o.due_in" class="col-xs-3">
+						<strong>Due In:</strong>
+						<p t-field="o.due_in"/>
+					</div>
+					<div t-if="o.due_out" class="col-xs-3">
+						<strong>Due Out:</strong>
+						<p t-field="o.due_out"/>
+					</div>
+					<div t-if="o.bay" class="col-xs-3">
+						<strong>Bay:</strong>
+						<p t-field="o.bay"/>
+					</div>
+					<div t-if="o.advisor.name" class="col-xs-3">
+						<strong>Advisor:</strong>
+						<p t-field="o.advisor.name"/>
+					</div>
+					<div t-if="o.technician.name" class="col-xs-3">
+						<strong>Technician:</strong>
+						<p t-field="o.technician.name"/>
+					</div>
+					<div t-if="o.client_order_ref" class="col-xs-3">
+                    <strong>Reference:</strong>
+                    <p t-field="o.client_order_ref"/>
+                </div>
+				</div> 
+			</xpath>
+
+			<xpath expr="//table[@class='table table-condensed']/thead/tr" position="replace">
+				<tr>
+					<th>Description</th>
+                    <th></th>
+					<th class="text-right">Quantity</th>
+					<th class="text-right">Unit Price</th>
+					<th groups="sale.group_discount_per_so_line">Disc.(%)</th>
+					<th class="text-right">Price</th>
+				</tr>
+			</xpath>
+
+			<xpath expr="//div[@class='page']/div[@class='row']/div[@class='col-xs-4 pull-right']" position="replace">
+			
+                <div class="col-xs-4 pull-right">
+                    <table class="table table-condensed">
+                        <tr class="border-black">
+                            <td><strong>Total</strong></td>
+                            <td class="text-right">
+                                <span t-field="o.amount_total"
+                                    t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}'/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </xpath>
+
+		</template>
+
+		</data>
+	</openerp>

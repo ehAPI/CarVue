@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="view_create_job_form"> 
+			<field name="name">create.job.form</field>
+			<field name="model">create.job</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Jobs" version="8.0">
+					<header>
+						<button name="status_provisional" type="object" String="Provisional" attrs="{'invisible': [('status','in',('prov','due'))]}" class="oe_highlight"/>
+
+						<button name="status_duein" type="object" String="Due In" attrs="{'invisible': [('status','in',('due'))]}" class="oe_highlight"/>
+
+						<field name="status" widget="statusbar" 
+							statusbar_visible="prov,due"/>
+					</header>
+					<h2>
+						<field name='code' style='padding:5px 10px'/>
+					</h2>
+					<sheet>
+						<group col="3">
+							<group string = "CONTACT">
+								<field name="child_ids" nolabel='1'/>
+							</group>
+							<group string = "VEHICLE">	
+									<field name="veh" nolabel='1'/>
+							</group>
+							<button class="oe_right oe_box oe_highlight" name="repairs_action"  type="object" String="Arrived" groups='car_vue.group_car_vue_admin,car_vue.group_car_vue_manager'/>
+							<group string="Job Card">
+								<field name="due_in" on_change='on_change_due_in(due_in)'/>
+								<field name="due_out"/>
+								<field name="advisor"/>
+								<field name="technician"/>
+								<field name="notes"/>
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="job_kanban_view">
+		    <field name="name">create_job_kanban</field>
+		    <field name="model">create.job</field>
+		    <field name="type">kanban</field>
+		    <field name="arch" type="xml">
+		    	<kanban>
+	                <!--Filtered By -->
+	                <field name="child_ids"/>
+		                <!--template start -->
+	                <templates>
+	                    <!--kanban view box start -->
+	                    <t t-name="kanban-box">
+	                    	<a type="open">
+		                        <!--kanban view box border -->
+		                        <t  t-set="border">oe_kanban_color_red</t>
+		                        <div t-attf-class="#{kanban_color(1)} #{border || ''}">
+		                            <div class="oe_kanban_box oe_kanban_color_border">
+		                               <!--kanban box header -->
+		                                <table class="oe_kanban_table oe_kanban_box_header oe_kanban_color_bgdark oe_kanban_color_border oe_kanban_draghandle">
+		                                <tr>
+		                                    <!--kanban title -->         
+		                                    <td align="left" valign="middle" class="oe_kanban_title" tooltip="lead_details" type='open'>
+		                                       <!--kanban title name -->
+		                                        <field name="child_ids"/>
+		                                    </td>
+		                                    <td valign="top" width="22"></td>
+		                                </tr>
+		                                </table>
+		                               <!--kanban content box -->
+		                                <div class="oe_kanban_box_content oe_kanban_color_bglight oe_kanban_box_show_onclick_trigger">
+		                                    <div>
+		                                        <t><b>Vehicle :</b></t><field name="veh"/>
+		                                    </div>
+		                                    <div>
+		                                        <t><b>Advisor :</b></t><field name="advisor"/>
+		                                    </div>
+		                                    <div>
+		                                        <t><b>Technician :</b></t><field name="technician"/>
+		                                    </div>
+		                                </div>
+		                               <!--below the kanban view button like view,e-mail,color -->
+		                                <div class="oe_kanban_buttons_set oe_kanban_color_border oe_kanban_color_bglight oe_kanban_box_show_onclick">
+		                                    <div class="oe_kanban_left">
+		                                        <a string="Edit" icon="gtk-edit" type="edit"/>
+		                                        <a string="Change Color" icon="color-picker" type="color" name="color"/>
+		                                        <a string="Send New Email" name="111" icon="terp-mail-message-new" type="action"/>
+		                                        <a string="Log Call" name="450" icon="terp-call-start" type="action"/>
+		                                        <a string="Add Internal Note" name="453" context="{'model': 'crm.lead' }" icon="terp-document-new" type="action"/>
+		                                    </div>
+		                                    <div class="oe_kanban_right">
+		                                    </div>
+		                                    <br class="oe_kanban_clear"/>
+		                                </div>
+		                            </div>
+		                        </div>
+	                    	</a>
+	                    </t>
+	                </templates>
+	            </kanban>
+		    </field>
+		</record>
+
+		<record model="ir.ui.view" id="view_create_job_tree"> 
+			<field name="name">create.job.tree</field>
+			<field name="model">create.job</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Jobs" colors='red:status=="prov";blue:status=="due"' version="8.0">
+					<field name='code' string='Number'/>
+					<field name="child_ids"/>
+					<field name="veh"/>
+					<field name="due_in"/>
+					<field name="due_out"/>
+					<field name="status"/>
+					<field name="advisor"/>
+					<field name="technician"/>
+				</tree>
+			</field>
+		</record>
+
+		<!-- calendar view -->
+		<record model="ir.ui.view" id="session_calendar_view">
+			<field name="name">create.job.calendar</field>
+			<field name="model">create.job</field>
+			<field name="type">calendar</field>
+			<field name="arch" type="xml">
+				<calendar string="Session Calendar" color='child_ids' date_start="due_in"
+						  date_stop="due_out">
+						<!-- <field name="name"/> -->
+				</calendar>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_create_job_filter">
+			<field name="name">view_create_job_filter</field>
+			<field name="model">create.job</field>
+			<field name="arch" type="xml">
+				<search string="Job search">
+					<!-- <field name="name" filter_domain="['|','|',('name','ilike',self),('atm','ilike',self),('customer','ilike',self)]" string="TASK"/> -->
+					<filter icon="terp-go-today" string="Due Out Today" name="due_out" domain="[('due_out','&gt;=',current_date),('due_out','&lt;=',current_date)]" />
+					<separator/>
+					<filter icon="terp-check" string="Provisional"  domain="[('status','=','prov')]"/>
+					<filter icon="terp-check" string="Due In"  domain="[('status','=','due')]"/>
+					<group expand="0" string="Group By...">
+						<filter string="Contact" icon="terp-personal" domain="[]" context="{'group_by':'child_ids'}"/>
+						<filter string="Due In" icon="terp-go-month" domain="[]" context="{'group_by':'due_in'}"/>
+						<filter string="Due Out" icon="terp-go-month" domain="[]" context="{'group_by':'due_out'}"/>
+						<filter string="Status" name='type_status' domain="[]" context="{'group_by':'status'}"/>
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_create_form">
+			<field name="name">Create Job</field>
+			<field name="res_model">create.job</field>
+			<field name="view_mode">kanban,tree,form,calendar</field>
+			<field name='context'>{"search_default_type_status":1}</field>
+            <field name="search_view_id" ref="view_create_job_filter"/>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click to create details for your Workshop Jobs...
+				</p>
+			</field>
+		</record>
+
+		<!-- Top menu -->
+		<menuitem name="CarVue" id="carvue"/>
+
+		<!-- sub menu -->
+		<menuitem name="Workshop" id="workshop_menu" parent="carvue" sequence='1'/>
+		
+		<!-- menu item -->
+		<menuitem name="Jobs" parent="workshop_menu" id="create_job_menu_mainform" action="action_create_form" sequence='2'/>
+
+	</data>
+</openerp>
