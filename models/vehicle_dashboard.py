@@ -77,8 +77,7 @@ class vehicle_dashboard(osv.osv):
 		assert len(ids) == 1, 'This option should only be used for a single id at a time.'
 		return {
 			'type': 'ir.actions.act_window',
-			'view_type': 'tree',
-			'view_mode': 'kanban,tree,form',
+			'view_mode': 'tree,kanban,form',
 			'domain':"[('veh.registration', '=',%s)]" %(obj.registration),
 			'res_model': 'create.job',
 		}
