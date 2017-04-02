@@ -47,6 +47,7 @@ class vehicle_dashboard(osv.osv):
 		'warranty_ends' : fields.date('Warranty Ends'),
 		'notes' : fields.text('Notes'),
 		'contacts' : fields.char('Contacts'),
+
 		# 'image_medium': fields.function(_get_image, fnct_inv=_set_image,
   #           string="Medium-sized image", type="binary", multi="_get_image",
   #           store={
@@ -77,8 +78,8 @@ class vehicle_dashboard(osv.osv):
 		assert len(ids) == 1, 'This option should only be used for a single id at a time.'
 		return {
 			'type': 'ir.actions.act_window',
-			'view_type': 'tree',
-			'view_mode': 'kanban,tree,form',
+
+			'view_mode': 'tree,kanban,form',
 			'domain':"[('veh.registration', '=',%s)]" %(obj.registration),
 			'res_model': 'create.job',
 		}

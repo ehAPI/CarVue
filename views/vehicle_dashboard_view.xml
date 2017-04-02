@@ -22,6 +22,7 @@
 		</record>
 
 		<record model="ir.ui.view" id="view_vehicle_dashboard_form"> 
+
 			<field name="name">vehicle.dashbaord.form</field>
 			<field name="model">vehicle.dashboard</field>
 			<field name="type">form</field>
@@ -51,8 +52,8 @@
 								<label for='odometer' string='Odometer Reading'/>
 								<div class="address_format">
 									<field name="odometer" style="width: 50%" />
-									<field name="odo_unit" style="width: 50%" />
-								</div>
+	         						<field name="odo_unit" style="width: 50%" />
+	         					</div>
 								<field name='colour'/>
 								<field name='paint_code'/>
 								<field name='trim'/>
