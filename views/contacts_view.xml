@@ -13,6 +13,22 @@
         <!-- menu item -->
         <menuitem action="sale.action_orders" id="sales_orders_menu_mainform" parent="contact_menu" sequence='6'  groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin,car_vue.group_car_vue_technician"/>
 
+
+        <record id="purchase_order_line_form2_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.form.inherittax</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <field name="taxes_id" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field> 
+                <field name="amount_tax" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+
+            </field>
+        </record>
+
         <record model="ir.ui.view" id="car_vue.customers_view">           
             <field name="name">res.partner.form.inherit</field>
             <field name="model">res.partner</field>           
