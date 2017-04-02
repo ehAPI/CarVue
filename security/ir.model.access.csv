@@ -4,26 +4,57 @@ access_create_job_manager,create.job,model_create_job,car_vue.group_car_vue_mana
 
 access_create_job_admin,create.job,model_create_job,car_vue.group_car_vue_admin,1,1,1,1
 
+<<<<<<< HEAD
+=======
+access_create_job_cust,create.job,model_create_job,car_vue.group_car_vue_cust,1,0,0,0
+
+
+>>>>>>> 2daa9b074b45fd74c277b20189878f8749f1f364
 access_res_partner_manager,res.partner,model_res_partner,car_vue.group_car_vue_manager,1,1,1,0
 
 access_res_partner_admin,res.partner,model_res_partner,car_vue.group_car_vue_admin,1,1,1,1
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 2daa9b074b45fd74c277b20189878f8749f1f364
 access_account_invoice_manager,account.invoice,model_account_invoice,car_vue.group_car_vue_manager,1,1,1,0
 
 access_account_invoice_admin,account.invoice,model_account_invoice,car_vue.group_car_vue_admin,1,1,1,1
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 2daa9b074b45fd74c277b20189878f8749f1f364
 access_new_product_manager,new.product,model_new_product,car_vue.group_car_vue_manager,1,1,1,0
 
 access_new_product_admin,new.product,model_new_product,car_vue.group_car_vue_admin,1,1,1,1
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2daa9b074b45fd74c277b20189878f8749f1f364
 access_sale_order_manager,sale.order,model_sale_order,car_vue.group_car_vue_manager,1,1,1,0
 
 access_sale_order_admin,sale.order,model_sale_order,car_vue.group_car_vue_admin,1,1,1,1
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 2daa9b074b45fd74c277b20189878f8749f1f364
 access_vehicle_dashboard_manager,vehicle.dashboard,model_vehicle_dashboard,car_vue.group_car_vue_manager,1,1,1,0
 
 access_vehicle_dashboard_admin,vehicle.dashboard,model_vehicle_dashboard,car_vue.group_car_vue_admin,1,1,1,1
 
+<<<<<<< HEAD
+=======
+access_vehicle_dashboard_cust,vehicle.dashboard,model_vehicle_dashboard,car_vue.group_car_vue_cust,1,0,0,0
+
+
+>>>>>>> 2daa9b074b45fd74c277b20189878f8749f1f364
 access_make_manager,make,model_make,car_vue.group_car_vue_manager,1,1,1,0
 
 access_make_admin,make,model_make,car_vue.group_car_vue_admin,1,1,1,1

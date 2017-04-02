@@ -19,6 +19,7 @@ class customer(osv.osv):
 	'veh': fields.function(_show_vehicles, relation='vehicle.dashboard', type="one2many", string='My Vehicles'),
 	'jobs': fields.function(_show_jobs, relation='create.job', type="one2many", string='My Jobs'),
 	'related_user':fields.many2one('res.users','Related User'),
+
 	}
 
 customer()

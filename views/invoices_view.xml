@@ -8,7 +8,8 @@
 		<menuitem name="Invoices" id="invoices_menu" parent="carvue" sequence='3'/>
 
 		<!-- menu item -->
-		<menuitem id="customer_invoices" action="account.action_invoice_tree1" parent="invoices_menu"/>
+
+		<menuitem id="customer_invoices" action="account.action_invoice_tree1" parent="invoices_menu"  groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin"/>
 
 		<record model="ir.ui.view" id="car_vue.invoice_view">           
 			<field name="name">account.invoice.form.inherit</field>

@@ -47,7 +47,26 @@ class vehicle_dashboard(osv.osv):
 		'warranty_ends' : fields.date('Warranty Ends'),
 		'notes' : fields.text('Notes'),
 		'contacts' : fields.char('Contacts'),
+
+		# 'image_medium': fields.function(_get_image, fnct_inv=_set_image,
+  #           string="Medium-sized image", type="binary", multi="_get_image",
+  #           store={
+  #               'res.partner': (lambda self, cr, uid, ids, c={}: ids, ['image'], 10),
+  #           },
+  #           help="Medium-sized image of this contact. It is automatically "\
+  #                "resized as a 128x128px image, with aspect ratio preserved. "\
+  #                "Use this field in form views or some kanban views."),
+		 'image': fields.binary("Image",
+            help="This field holds the image used as avatar for this contact, limited to 1024x1024px")
 		}
+
+	# @api.multi
+ #    def _get_image(self, name, args):
+ #        return dict((p.id, tools.image_get_resized_images(p.image)) for p in self)
+
+ #    @api.one
+ #    def _set_image(self, name, value, args):
+ #        return self.write({'image': tools.image_resize_image_big(value)})
 
 	def create(self,cr,uid,vals,context=None):
 		if vals.get('code','/')=='/':
@@ -59,8 +78,8 @@ class vehicle_dashboard(osv.osv):
 		assert len(ids) == 1, 'This option should only be used for a single id at a time.'
 		return {
 			'type': 'ir.actions.act_window',
-			'view_type': 'tree',
-			'view_mode': 'kanban,tree,form',
+
+			'view_mode': 'tree,kanban,form',
 			'domain':"[('veh.registration', '=',%s)]" %(obj.registration),
 			'res_model': 'create.job',
 		}
