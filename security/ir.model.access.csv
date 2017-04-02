@@ -4,6 +4,7 @@ access_create_job_manager,create.job,model_create_job,car_vue.group_car_vue_mana
 
 access_create_job_admin,create.job,model_create_job,car_vue.group_car_vue_admin,1,1,1,1
 
+
 access_create_job_cust,create.job,model_create_job,car_vue.group_car_vue_cust,1,0,0,0
 
 
@@ -13,10 +14,10 @@ access_res_partner_admin,res.partner,model_res_partner,car_vue.group_car_vue_adm
 
 
 
+
 access_account_invoice_manager,account.invoice,model_account_invoice,car_vue.group_car_vue_manager,1,1,1,0
 
 access_account_invoice_admin,account.invoice,model_account_invoice,car_vue.group_car_vue_admin,1,1,1,1
-
 
 
 access_new_product_manager,new.product,model_new_product,car_vue.group_car_vue_manager,1,1,1,0

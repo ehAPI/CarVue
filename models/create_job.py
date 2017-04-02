@@ -27,6 +27,7 @@ class create_job(osv.osv):
 		# 	('work','Work Completed')],'STATUS'),
 		'due_in':fields.datetime('Due In'),
 		'due_out':fields.datetime('Due Out'),
+
 		'child_ids': fields.many2one('res.partner','Customer', domain=[('active','=',True)]), # force "active_test" domain to bypass _search() override
 		'advisor':fields.many2one('res.users','Advisor',ondelete='set null'),
 		'technician':fields.many2one('res.users','Technician',ondelete='set null'),
@@ -34,6 +35,7 @@ class create_job(osv.osv):
 		'bay' :fields.selection([('parking','Parking'),('ramp1','Ramp 1'),('ramp2','Ramp 2')],'Bay'),
 		'reference': fields.char('Reference'),
 		'mile':fields.integer('Mileage In'),
+
 		'image':fields.binary('Image',filters='*.png,*.gif'),
 	}
 	
@@ -120,6 +122,7 @@ class create_job(osv.osv):
 	_defaults={
 		'due_in': lambda *a:datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 
 		'due_out': lambda *a:(datetime.now() + timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S'),
+
 		'status':'prov',
 	}
 
