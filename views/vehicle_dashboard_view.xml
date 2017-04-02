@@ -22,15 +22,17 @@
 		</record>
 
 		<record model="ir.ui.view" id="view_vehicle_dashboard_form"> 
-		    <field name="name">vehicle.dashbaord.form</field>
-		    <field name="model">vehicle.dashboard</field>
-		    <field name="type">form</field>
-		    <field name="arch" type="xml">
+			<field name="name">vehicle.dashbaord.form</field>
+			<field name="model">vehicle.dashboard</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
 				<form string="Dashboard" version="8.0">
 					<sheet>
 						<h2>
-							<group col='2'>
-								<field name='code' nolabel='1'/>
+							<group col='3'>
+								<field name="image" widget='image' class="oe_avatar oe_left" nolabel="1" />
+
+								<field name='code' nolabel='1' align='left'/>
 								<button class="oe_right oe_box" name="jobs_button"  type="object" String="Jobs"/>
 							</group>
 						</h2>
@@ -49,8 +51,8 @@
 								<label for='odometer' string='Odometer Reading'/>
 								<div class="address_format">
 									<field name="odometer" style="width: 50%" />
-	         						<field name="odo_unit" style="width: 50%" />
-	         					</div>
+									<field name="odo_unit" style="width: 50%" />
+								</div>
 								<field name='colour'/>
 								<field name='paint_code'/>
 								<field name='trim'/>
@@ -90,10 +92,10 @@
 			<field name="res_model">vehicle.dashboard</field>
 			<field name="view_mode">tree,form</field>
 			<field name="help" type="html">
-  				<p class="oe_view_nocontent_create">
-    				Click to create details for your Workshop Jobs...
-  				</p>
-   			</field>
+				<p class="oe_view_nocontent_create">
+					Click to create details for your Workshop Jobs...
+				</p>
+			</field>
 		</record>
 
 		<!-- Top menu -->
