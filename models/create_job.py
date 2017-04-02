@@ -117,14 +117,6 @@ class create_job(osv.osv):
 		}
 		return res
 
-	# def on_change_customer(self,cr,uid,ids,customer,context=None):
-	# 	cust_image = self.pool.get('res.partner').read(cr,uid,customer,'image',context=context)
-	# 	# image = cust.image
-	# 	res={
-	# 	'value' : {'image':cust_image}
-	# 	}
-	# 	return res
-
 	_defaults={
 		'due_in': lambda *a:datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 
 		'due_out': lambda *a:(datetime.now() + timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S'),

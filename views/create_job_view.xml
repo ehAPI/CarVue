@@ -28,6 +28,7 @@
 						</group>
 						<group>
 							<group string = "CUSTOMER">
+
 								<field name="child_ids" nolabel='1'/>
 							</group>
 							<group string = "VEHICLE">	

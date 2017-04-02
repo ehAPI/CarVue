@@ -28,6 +28,5 @@
         <!-- <menuitem id="menu_inventory" action="stock.action_receipt_picking_move" parent="products_menu" sequence="1"/> -->
 
         <!-- <menuitem id="menu_invoice" action="purchase.action_invoice_pending" parent="purchase_invoice_menu" sequence="3"/> -->
-
     </data>
 </openerp>
