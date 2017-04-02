@@ -69,7 +69,7 @@
     
     <data noupdate="0">
 
-        <!-- <record model="ir.rule" id="car_vue_manager_rule">
+        <record model="ir.rule" id="car_vue_manager_rule">
             <field name="name">Manager: see all</field>
             <field name="model_id" ref="model_create_job"/>
             <field name="domain_force">[(1, '=', 1)]</field>
@@ -82,6 +82,6 @@
             <field name="domain_force">[('technician','=', user.id)]</field>
             <field name="groups" eval="[(4,ref('car_vue.group_car_vue_technician'))]"/>
         </record>
-         -->
+        
     </data>
 </openerp>
