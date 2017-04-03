@@ -1,11 +1,11 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 
-access_create_job_manager,create.job,model_create_job,car_vue.group_car_vue_manager,1,1,1,0
+access_job_order_manager,job.order,model_job_order,car_vue.group_car_vue_manager,1,1,1,0
 
-access_create_job_admin,create.job,model_create_job,car_vue.group_car_vue_admin,1,1,1,1
+access_job_order_admin,job.order,model_job_order,car_vue.group_car_vue_admin,1,1,1,1
 
 
-access_create_job_cust,create.job,model_create_job,car_vue.group_car_vue_cust,1,0,0,0
+access_job_order_cust,job.order,model_job_order,car_vue.group_car_vue_cust,1,0,0,0
 
 
 access_res_partner_manager,res.partner,model_res_partner,car_vue.group_car_vue_manager,1,1,1,0
@@ -50,7 +50,7 @@ access_derivative_manager,derivative,model_derivative,car_vue.group_car_vue_mana
 
 access_derivative_admin,derivative,model_derivative,car_vue.group_car_vue_admin,1,1,1,1
 
-access_jobs_technician,create.job,model_create_job,car_vue.group_car_vue_technician,1,1,0,0
+access_jobs_technician,job.order,model_job_order,car_vue.group_car_vue_technician,1,1,0,0
 
 access_vehicles_technician,vehicle.dashboard,model_vehicle_dashboard,car_vue.group_car_vue_technician,1,0,0,0
 
