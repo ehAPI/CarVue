@@ -29,6 +29,10 @@ access_sale_order_manager,sale.order,model_sale_order,car_vue.group_car_vue_mana
 
 access_sale_order_admin,sale.order,model_sale_order,car_vue.group_car_vue_admin,1,1,1,1
 
+access_sale_order_cust,sale.order,model_sale_order,car_vue.group_car_vue_cust,1,0,0,0
+
+access_invoice_cust,account.invoice,model_account_invoice,car_vue.group_car_vue_cust,1,0,0,0
+
 
 
 access_vehicle_dashboard_manager,vehicle.dashboard,model_vehicle_dashboard,car_vue.group_car_vue_manager,1,1,1,0
