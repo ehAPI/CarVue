@@ -13,12 +13,12 @@
 			 "security/car_vue_security_view.xml",
 			 "security/ir.model.access.csv",
 			 "views/configuration_view.xml",
-			 "views/suppliers_view.xml",
 			 "edi/sale_order_mail.xml",
 			 "report/report_saleorder.xml",
 			 "report/report_invoice.xml",
 			 "views/invoices_view.xml",
 			 "views/products_view.xml",
+			 # "edi/purchases_mail.xml",
 			 "views/car_vue_sequence.xml"],
 
     # 'qweb': ['static/src/xml/base.xml',], 

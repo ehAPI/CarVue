@@ -15,6 +15,7 @@
         <menuitem action="sale.action_orders" id="sales_orders_menu_mainform" parent="contact_menu" sequence='6'  groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin,car_vue.group_car_vue_technician"/>
 
 
+
         <record id="purchase_order_line_form2_inherit" model="ir.ui.view">
             <field name="name">purchase.order.form.inherittax</field>
             <field name="model">purchase.order</field>
@@ -24,6 +25,21 @@
                     <attribute name="invisible">True</attribute>
                 </field> 
                 <field name="amount_tax" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+
+            </field>
+        </record>
+
+        <record id="account_product_inherit" model="ir.ui.view">
+            <field name="name">product.template.form.inherit.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="account.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <field name="taxes_id" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field> 
+                <field name="supplier_taxes_id" position="attributes">
                     <attribute name="invisible">True</attribute>
                 </field>
 

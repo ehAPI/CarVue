@@ -81,7 +81,7 @@ class vehicle_dashboard(osv.osv):
 
 			'view_mode': 'tree,kanban,form',
 			'domain':"[('veh.registration', '=',%s)]" %(obj.registration),
-			'res_model': 'create.job',
+			'res_model': 'job.order',
 		}
 
 		# job_tree = models_data._get_id(cr, uid, 'car_vue', 'view_create_job_tree')
@@ -90,7 +90,7 @@ class vehicle_dashboard(osv.osv):
 		# 	'name': 'Jobs',
 		# 	'view_type': 'form',
 		# 	"view_mode": 'tree,form',
-		# 	'res_model': 'create.job',
+		# 	'res_model': 'job.order',
 		# 	'type': 'ir.actions.act_window',
 		# 	'search_view_id': job_tree,
 		# 	# 'res_id': res_ids,
