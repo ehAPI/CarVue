@@ -29,14 +29,15 @@
 			<field name="arch" type="xml">
 				<form string="Dashboard" version="8.0">
 					<sheet>
-						<h2>
-							<group col='3'>
-								<field name="image" widget='image' class="oe_avatar oe_left" nolabel="1" />
-
+						<field name="image" widget='image' class="oe_avatar oe_left" nolabel="1" />
+						<div class='oe_title oe_left'>
+							<h2>
 								<field name='code' nolabel='1' align='left'/>
-								<button class="oe_right oe_box" name="jobs_button"  type="object" String="Jobs"/>
-							</group>
-						</h2>
+							</h2>
+						</div>
+						<div class='oe_right oe_button_box'>
+							<button class="oe_right oe_box" name="jobs_button"  type="object" String="Jobs"/>
+						</div>
 						<group>
 							<group string='Vehicle'>
 							<!-- <h2>Vehicle</h2> -->

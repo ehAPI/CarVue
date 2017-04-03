@@ -17,16 +17,16 @@
 					</header>
 
 					<sheet>
-						<group col='3'>
-							<!-- <div> -->
-								<field name="image" widget='image' class='oe_left oe_avatar' options='{"size": [100, 100]}' nolabel='1'/>
-								<h2>
-									<field name='code' nolabel='1'/>
-									<!-- <field name='code' style='padding:5px 10px'/> -->
-								</h2>
-							<!-- </div> -->
-								<button class="oe_right oe_box oe_highlight" name="repairs_action"  type="object" String="Arrived" groups='car_vue.group_car_vue_admin,car_vue.group_car_vue_manager'/>
-						</group>
+						<field name="image" widget='image' class='oe_left oe_avatar' options='{"size": [100, 100]}' nolabel='1'/>
+						<div class='oe_title oe_left'>
+							<h2>
+								<field name='code' nolabel='1'/>
+								<!-- <field name='code' style='padding:5px 10px'/> -->
+							</h2>
+						</div>
+						<div class='oe_right oe_button_box'>
+							<button class="oe_right oe_box oe_highlight" name="repairs_action"  type="object" String="Arrived" groups='car_vue.group_car_vue_admin,car_vue.group_car_vue_manager'/>
+						</div>
 						<group>
 							<group string = "CUSTOMER">
 
@@ -61,6 +61,7 @@
 	                <templates>
 	                    <!--kanban view box start -->
 	                    <t t-name="kanban-box">
+	                    	<a t-if="! read_only_mode" type="delete" style="position: absolute; right: 0; padding: 4px; diplay: inline-block" groups='car_vue.group_car_vue_admin'>X</a>
 	                    	<a type="open">
 		                        <!--kanban view box border -->
 		                        <t  t-set="border">oe_kanban_color_red</t>
