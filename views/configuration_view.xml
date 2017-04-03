@@ -136,9 +136,13 @@
 
 		<!-- sub menu -->
 		<menuitem name="Configuration" id="configuration_menu" parent="carvue"/>
+
+		<menuitem name="Garage" id="company_menu" parent="carvue" sequence='7'/>
 		
 		<!-- menu item -->
 		<menuitem name="Derivative" parent="configuration_menu" id="derivative_menu_mainform" action="action_derivative_form" sequence='12'/>
+		
+		<menuitem name="Garage" parent="company_menu" id="company_menu_mainform" action="base.action_res_company_form" groups='car_vue.group_car_vue_admin'/>
 
 	</data>
 </openerp>

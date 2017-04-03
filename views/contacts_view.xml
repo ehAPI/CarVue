@@ -6,13 +6,13 @@
 
         <!-- sub menu -->
 
-        <menuitem name="Contacts" id="contact_menu" parent="carvue" sequence='2' groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin"/>
+        <menuitem name="Contacts" id="contact_menu" parent="carvue" sequence='2' groups='car_vue.group_car_vue_admin,car_vue.group_car_vue_manager,car_vue.group_car_vue_technician,car_vue.group_car_vue_cust'/>
 
         <!-- menu item -->
-        <menuitem id="quotations_menu_mainform" action="sale.action_quotations" parent="contact_menu" sequence='5'  groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin,car_vue.group_car_vue_technician"/>
+        <menuitem id="quotations_menu_mainform" action="sale.action_quotations" parent="contact_menu" sequence='5'  groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin,car_vue.group_car_vue_technician,car_vue.group_car_vue_cust"/>
 
         <!-- menu item -->
-        <menuitem action="sale.action_orders" id="sales_orders_menu_mainform" parent="contact_menu" sequence='6'  groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin,car_vue.group_car_vue_technician"/>
+        <menuitem action="sale.action_orders" id="sales_orders_menu_mainform" parent="contact_menu" sequence='6'  groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin,car_vue.group_car_vue_technician,car_vue.group_car_vue_cust"/>
 
 
 
