@@ -18,6 +18,7 @@
 			 "report/report_invoice.xml",
 			 "views/invoices_view.xml",
 			 "views/products_view.xml",
+			 # "edi/purchases_mail.xml",
 			 "views/car_vue_sequence.xml"],
 
     # 'qweb': ['static/src/xml/base.xml',], 
