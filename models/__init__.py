@@ -5,3 +5,4 @@ import products
 import sale_order
 import configuration
 import invoice
+import purchase

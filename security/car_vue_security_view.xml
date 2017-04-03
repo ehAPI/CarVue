@@ -74,7 +74,8 @@
     
     <data noupdate="0">
 
-         <record model="ir.rule" id="car_vue_manager_rule1">
+        <record model="ir.rule" id="car_vue_manager_rule">
+         <!-- <record model="ir.rule" id="car_vue_manager_rule1"> -->
             <field name="name">Manager: see all</field>
             <field name="model_id" ref="model_job_order"/>
             <field name="domain_force">[(1, '=', 1)]</field>
