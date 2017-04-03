@@ -39,7 +39,7 @@ class sale_order(osv.osv):
 
 	def wkf_send_rfq(self, cr, uid, ids, context=None):
 		'''  Override to use a modified template that includes a portal signup link '''
-		action_dict = super(sale_order, self).wkf_send_rfq(cr, uid, ids, context=context)
+		action_dict = super(purchase_order, self).wkf_send_rfq(cr, uid, ids, context=context)
 		try:
 			if context.get('send_rfq', False):
 				template_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'car_vue', 'email_template_edi_purchase')[1]
