@@ -5,7 +5,7 @@ from dateutil.relativedelta import relativedelta
 
 class create_job(osv.osv):
 
-	_name = 'create.job'
+	_name = 'job.order'
 	_rec_name='code'
 	_columns = {
 		# 'new':fields.char('New Job Card'),
@@ -85,7 +85,7 @@ class create_job(osv.osv):
 
 	def create(self,cr,uid,vals,context=None):
 		if vals.get('code','/')=='/':
-			vals['code']=self.pool.get('ir.sequence').get(cr,uid,'create.job') or '/'
+			vals['code']=self.pool.get('ir.sequence').get(cr,uid,'job.order') or '/'
 		return super(create_job,self).create(cr,uid,vals,context=context)
 
 	def repairs_action(self, cr, uid, ids, context=None):
