@@ -38,7 +38,6 @@
                 <field name="title" position="after">
                     <field name='related_user'/>
                 </field>
-
                 <xpath expr="//notebook/page[3]" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
@@ -46,9 +45,9 @@
                     <attribute name="invisible">1</attribute>
                 </xpath>
                 <xpath expr="//notebook/page[3]" position="after">
-                    <page string='Vehicles'>
+                    <page string='Vehicles' attrs="{'invisible': [('supplier','=',True)]}">
                         <field name="veh" widget="one2many_list">
-                             <tree string="Customer Vehicles Tree">
+                            <tree string="Customer Vehicles Tree">
                                 <field name='code'/>
                                 <field name='registration'/>
                                 <field name='child_ids'/>
@@ -61,7 +60,7 @@
                             </tree>
                         </field>
                     </page>
-                    <page string='Jobs'>
+                    <page string='Jobs' attrs="{'invisible': [('supplier','=',True)]}">
                         <field name="jobs" widget="one2many_list">
                             <tree string="Customer Jobs Tree" colors='red:status=="prov";blue:status=="due"' version="8.0">
                                 <field name='code' string='Number'/>
@@ -118,14 +117,8 @@
                 </xpath>
 
                 <xpath expr="//form/header/button[@name='action_cancel']" position="replace"> 
-                     <button name="action_cancel" string="Cancel Order" type="object" attrs="{'invisible': [('status','in',('work'))]}" />
-                 </xpath>
-<!-- ======= -->
-                
-                <!-- <xpath expr="//form/header/button[@name='action_cancel']" position="replace"> 
                     <button name="action_cancel" string="Cancel Order" type="object" attrs="{'invisible': [('status','in',('work'))]}" />
-                 </xpath>                      
->>>>>>> c67b0cdcfa7c631ea4ac9629c2de0d9c3df14f53 -->
+                </xpath>
 
                 <xpath expr="//form/header/button[@string='View Delivery Order']" position="attributes">
                     <attribute name="invisible">1</attribute>
@@ -200,6 +193,20 @@
             </field>
         </record>
 
+        <record id="account_product_inherit" model="ir.ui.view">
+            <field name="name">product.template.form.inherit.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="account.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <field name="taxes_id" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field> 
+                <field name="supplier_taxes_id" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+
+            </field>
+        </record>
 
         <menuitem id="customers_menu_mainform" action="base.action_partner_customer_form" parent="contact_menu" sequence='4' groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin,car_vue.group_car_vue_technician"/>
 

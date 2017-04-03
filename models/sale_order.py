@@ -25,7 +25,7 @@ class sale_order(osv.osv):
 	}
 
 	def action_quotation_send(self, cr, uid, ids, context=None):
-		'''  Override to use a modified template that includes a portal signup link '''
+		'''  Override to use a modified template that includes a ehapi closing and additional table '''
 		action_dict = super(sale_order, self).action_quotation_send(cr, uid, ids, context=context)
 		try:
 			template_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'car_vue', 'email_template_edi_sale')[1]
