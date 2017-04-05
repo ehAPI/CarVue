@@ -35,7 +35,6 @@ class create_job(osv.osv):
 		'bay' :fields.selection([('parking','Parking'),('ramp1','Ramp 1'),('ramp2','Ramp 2')],'Bay'),
 		'reference': fields.char('Reference'),
 		'mile':fields.integer('Mileage In'),
-
 		'image':fields.binary('Image',filters='*.png,*.gif'),
 	}
 	

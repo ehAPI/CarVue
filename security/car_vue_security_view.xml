@@ -44,27 +44,27 @@
 
         <!-- Hiding Invoicing Top menu item -->
         <record model="ir.ui.menu" id="account.menu_finance">           
-            <field name="groups_id" eval="[(6,0,[ref('group_car_vue_somebody')])]"/>       
+            <field name="groups_id" eval="[(6,0,[ref('group_car_vue_somebody')])]"/>    
         </record>
 
         <!-- Hiding Messaging Top menu item -->
         <record model="ir.ui.menu" id="mail.mail_feeds_main">           
-            <field name="groups_id" eval="[(6,0,[ref('group_car_vue_somebody')])]"/>       
+            <field name="groups_id" eval="[(6,0,[ref('group_car_vue_somebody')])]"/>     
         </record>
 
         <!-- Hiding Purchases Top menu item -->
-        <record model="ir.ui.menu" id="base.menu_purchase_root">       
+        <!-- <record model="ir.ui.menu" id="base.menu_purchase_root">       
             <field name="groups_id" eval="[(6,0,[ref('group_car_vue_manager')])]"/>       
-        </record>
+        </record> -->
 
         <!-- Hiding Warehouse Top menu item -->
-        <record model="ir.ui.menu" id="stock.menu_stock_root"> 
+        <!-- <record model="ir.ui.menu" id="stock.menu_stock_root"> 
             <field name="groups_id" eval="[(6,0,[ref('group_car_vue_manager')])]"/>       
-        </record>
+        </record> -->
 
         <!-- Hiding Reporting Top menu item -->
         <record model="ir.ui.menu" id="base.menu_reporting">           
-            <field name="groups_id" eval="[(6,0,[ref('group_car_vue_somebody')])]"/>       
+            <field name="groups_id" eval="[(6,0,[ref('group_car_vue_somebody')])]"/>   
         </record>
     </data>
 
@@ -90,31 +90,37 @@
         <record model="ir.rule" id="car_vue_cust_rule1">
             <field name="name">Customer: see only his jobs</field>
             <field name="model_id" ref="model_job_order"/>
-            <field name="domain_force">[('child_ids','=', user.name)]</field>
+            <field name="domain_force">[('child_ids','=', user.id)]</field>
             <field name="groups" eval="[(4,ref('car_vue.group_car_vue_cust'))]"/>
         </record>
 
         <record model="ir.rule" id="car_vue_cust_veh_rule">
             <field name="name">Customer: see only his veh</field>
             <field name="model_id" ref="model_vehicle_dashboard"/>
-            <field name="domain_force">[('child_ids','=', user.name)]</field>
+            <field name="domain_force">[('child_ids','=', user.id)]</field>
+            <field name="groups" eval="[(4,ref('car_vue.group_car_vue_cust'))]"/>
+        </record>
+
+        <record model="ir.rule" id="car_vue_cust_cust_rule">
+            <field name="name">Customer: see only his cust</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="domain_force">[('related_user','=', user.id)]</field>
             <field name="groups" eval="[(4,ref('car_vue.group_car_vue_cust'))]"/>
         </record>
 
         <record model="ir.rule" id="car_vue_cust_quot_rule">
             <field name="name">Customer: see only his quotations</field>
             <field name="model_id" ref="model_sale_order"/>
-            <field name="domain_force">[('partner_id','=', user.name)]</field>
+            <field name="domain_force">[('partner_id','=', user.id)]</field>
             <field name="groups" eval="[(4,ref('car_vue.group_car_vue_cust'))]"/>
         </record>
 
         <record model="ir.rule" id="car_vue_cust_invoice_rule">
             <field name="name">Customer: see only his invoices</field>
             <field name="model_id" ref="model_account_invoice"/>
-            <field name="domain_force">[('partner_id','=', user.name)]</field>
+            <field name="domain_force">[('partner_id','=', user.id)]</field>
             <field name="groups" eval="[(4,ref('car_vue.group_car_vue_cust'))]"/>
         </record>
-
 
     </data>
 </openerp>

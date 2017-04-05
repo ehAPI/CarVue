@@ -37,6 +37,7 @@ class sale_order(osv.osv):
 			pass
 		return action_dict
 
+
 	def status_in(self,cr,uid,ids,context=None):
 		self.write(cr,uid,ids,{'status':'in'},context=context)
 		return True
