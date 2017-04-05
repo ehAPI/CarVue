@@ -41,10 +41,6 @@
             </field>
         </record>
 
-        
-
-
-
         <record id="account_product_inherit" model="ir.ui.view">
             <field name="name">product.template.form.inherit.inherit</field>
             <field name="model">product.template</field>
@@ -67,7 +63,7 @@
             <field name="arch" type="xml">
                 <field name="title" position="after">
                     <field name='related_user'/>
-                    <field name='company'/>
+                   
                 </field>
                 <xpath expr="//notebook/page[3]" position="attributes">
                     <attribute name="invisible">1</attribute>

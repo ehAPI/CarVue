@@ -12,8 +12,7 @@ access_res_partner_manager,res.partner,model_res_partner,car_vue.group_car_vue_m
 
 access_res_partner_admin,res.partner,model_res_partner,car_vue.group_car_vue_admin,1,1,1,1
 
-
-
+access_res_partner_cust,res.partner,model_res_partner,car_vue.group_car_vue_cust,1,1,1,0
 
 access_account_invoice_manager,account.invoice,model_account_invoice,car_vue.group_car_vue_manager,1,1,1,0
 
@@ -58,4 +57,4 @@ access_jobs_technician,job.order,model_job_order,car_vue.group_car_vue_technicia
 
 access_vehicles_technician,vehicle.dashboard,model_vehicle_dashboard,car_vue.group_car_vue_technician,1,0,0,0
 
-access_customers_technician,base.res.partner,model_res_partner,car_vue.group_car_vue_technician,1,0,0,0
+access_customers_technician,res.partner,model_res_partner,car_vue.group_car_vue_technician,1,0,0,0

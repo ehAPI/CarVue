@@ -146,6 +146,18 @@
 			</field>
 		</record>
 
+		<record model="ir.ui.view" id="car_vue_graph_view">
+				<field name="name">job.order.graph</field>
+			<field name="model">job.order</field>
+			<field name="type">graph</field>
+			<field name="arch" type="xml">
+				<graph string="total" type='bar' stacked='True'>	
+					<field name='child_ids' type='count'/>
+					<field name='child_ids'/>
+				</graph>
+			</field>
+		</record>
+
 		<record model="ir.ui.view" id="view_create_job_filter">
 			<field name="name">view_create_job_filter</field>
 			<field name="model">job.order</field>
@@ -166,10 +178,12 @@
 			</field>
 		</record>
 
+		
+
 		<record model="ir.actions.act_window" id="action_create_form">
 			<field name="name">Create Job</field>
 			<field name="res_model">job.order</field>
-			<field name="view_mode">kanban,tree,form,calendar</field>
+			<field name="view_mode">kanban,tree,form,calendar,graph</field>
 			<field name='context'>{"search_default_type_status":1}</field>
             <field name="search_view_id" ref="view_create_job_filter"/>
 			<field name="help" type="html">

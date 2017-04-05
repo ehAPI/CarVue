@@ -89,10 +89,22 @@
 			</field>
 		</record>
 
+		<record model="ir.ui.view" id="car_vue_graph_veh_view">
+				<field name="name">vehicle.dashboard.graph</field>
+			<field name="model">vehicle.dashboard</field>
+			<field name="type">graph</field>
+			<field name="arch" type="xml">
+				<graph string="total" type='bar' stacked='True'>	
+					<field name='child_ids' type='count'/>
+					<field name='child_ids'/>
+				</graph>
+			</field>
+		</record>
+
 		<record model="ir.actions.act_window" id="action_vehicle_form">
 			<field name="name">Dashboard</field>
 			<field name="res_model">vehicle.dashboard</field>
-			<field name="view_mode">tree,form</field>
+			<field name="view_mode">tree,form,graph</field>
 			<field name="help" type="html">
 				<p class="oe_view_nocontent_create">
 					Click to create details for your Workshop Jobs...

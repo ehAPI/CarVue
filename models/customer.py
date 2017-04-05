@@ -20,9 +20,9 @@ class customer(osv.osv):
 	'veh': fields.function(_show_vehicles, relation='vehicle.dashboard', type="one2many", string='My Vehicles'),
 	'jobs': fields.function(_show_jobs, relation='job.order', type="one2many", string='My Jobs'),
 	'related_user':fields.many2one('res.users','Related User'),
-	'company':fields.many2one('res.users','Company',ondelete='set null'),
-
-
+	# 'company1':fields.many2one('res.users','Company (res.users)',ondelete='set null'),
+	# 'company':fields.many2one('res.company','Company',ondelete='set null'),
+ #    'name': fields.related('partner_id', 'name', string='Company Name', size=128, required=True, store=True, type='char'),
 	}
 
 customer()
