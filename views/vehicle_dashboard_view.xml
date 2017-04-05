@@ -70,7 +70,7 @@
 								<field name='engine_size'/>
 								<field name='power'/>
 							</group>
-							<group string='Key no. &amp; Radio No.'>
+							<group string='Key No. &amp; Radio No.'>
 								<field name='key_no'/>
 								<field name='radio_no'/>
 							</group>

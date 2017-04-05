@@ -224,7 +224,7 @@
             </field>
         </record>
 
-        <menuitem id="customers_menu_mainform" action="base.action_partner_customer_form" parent="contact_menu" sequence='4' groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin,car_vue.group_car_vue_technician"/>
+        <menuitem id="customers_menu_mainform" action="base.action_partner_customer_form" parent="contact_menu" sequence='4' groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin,car_vue.group_car_vue_technician,car_vue.group_car_vue_cust"/>
 
     </data>
 </openerp>

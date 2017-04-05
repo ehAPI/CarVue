@@ -86,32 +86,38 @@
             <field name="groups" eval="[(4,ref('car_vue.group_car_vue_technician'))]"/>
         </record>
 
+        <record model="ir.rule" id="car_vue_cust_rule">
+            <field name="name">Customer: see only him</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="domain_force">[('related_user','=', user.id)]</field>
+            <field name="groups" eval="[(4,ref('car_vue.group_car_vue_cust'))]"/>
+        </record>
 
         <record model="ir.rule" id="car_vue_cust_rule1">
             <field name="name">Customer: see only his jobs</field>
             <field name="model_id" ref="model_job_order"/>
-            <field name="domain_force">[('child_ids','=', user.name)]</field>
+            <field name="domain_force">[('child_ids','=', user.id)]</field>
             <field name="groups" eval="[(4,ref('car_vue.group_car_vue_cust'))]"/>
         </record>
 
         <record model="ir.rule" id="car_vue_cust_veh_rule">
             <field name="name">Customer: see only his veh</field>
             <field name="model_id" ref="model_vehicle_dashboard"/>
-            <field name="domain_force">[('child_ids','=', user.name)]</field>
+            <field name="domain_force">[('child_ids','=', user.id)]</field>
             <field name="groups" eval="[(4,ref('car_vue.group_car_vue_cust'))]"/>
         </record>
 
         <record model="ir.rule" id="car_vue_cust_quot_rule">
-            <field name="name">Customer: see only his quotations</field>
+            <field name="name">Customer: see only his quotations and sales orders</field>
             <field name="model_id" ref="model_sale_order"/>
-            <field name="domain_force">[('partner_id','=', user.name)]</field>
+            <field name="domain_force">[('partner_id','=', user.id)]</field>
             <field name="groups" eval="[(4,ref('car_vue.group_car_vue_cust'))]"/>
         </record>
 
         <record model="ir.rule" id="car_vue_cust_invoice_rule">
             <field name="name">Customer: see only his invoices</field>
             <field name="model_id" ref="model_account_invoice"/>
-            <field name="domain_force">[('partner_id','=', user.name)]</field>
+            <field name="domain_force">[('partner_id','=', user.id)]</field>
             <field name="groups" eval="[(4,ref('car_vue.group_car_vue_cust'))]"/>
         </record>
 

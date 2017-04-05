@@ -59,3 +59,5 @@ access_jobs_technician,job.order,model_job_order,car_vue.group_car_vue_technicia
 access_vehicles_technician,vehicle.dashboard,model_vehicle_dashboard,car_vue.group_car_vue_technician,1,0,0,0
 
 access_customers_technician,base.res.partner,model_res_partner,car_vue.group_car_vue_technician,1,0,0,0
+
+access_customers,base.res.partner,model_res_partner,car_vue.group_car_vue_cust,1,0,0,0
