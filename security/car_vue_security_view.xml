@@ -72,7 +72,6 @@
     <data noupdate="0">
 
         <record model="ir.rule" id="car_vue_manager_rule">
-         <!-- <record model="ir.rule" id="car_vue_manager_rule1"> -->
             <field name="name">Manager: see all</field>
             <field name="model_id" ref="model_job_order"/>
             <field name="domain_force">[(1, '=', 1)]</field>
@@ -94,7 +93,7 @@
         </record>
 
         <record model="ir.rule" id="car_vue_cust_rule">
-            <field name="name">Customer: see only him</field>
+            <field name="name">Customer: see only his customers</field>
             <field name="model_id" ref="model_res_partner"/>
             <field name="domain_force">[('related_user','=', user.id)]</field>
             <field name="groups" eval="[(4,ref('car_vue.group_car_vue_cust'))]"/>

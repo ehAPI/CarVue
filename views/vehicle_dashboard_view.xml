@@ -93,14 +93,26 @@
 			</field>
 		</record>
 
+		
+    <!--     <record model="ir.ui.view" id="view_invoice_graph">
+            <field name="name">account.invoice.graph</field>
+            <field name="model">account.invoice</field>
+            <field name="arch" type="xml">
+                <graph string="Invoices" type="bar">
+                    <field name="partner_id"/>
+                    <field name="amount_total" operator="+"/>
+                </graph>
+            </field>
+        </record> -->
+
 		<record model="ir.ui.view" id="car_vue_graph_veh_view">
 				<field name="name">vehicle.dashboard.graph</field>
 			<field name="model">vehicle.dashboard</field>
-			<field name="type">graph</field>
+			<!-- <field name="type">graph</field> -->
 			<field name="arch" type="xml">
-				<graph string="total" type='bar' stacked='True'>	
-					<field name='child_ids' type='count'/>
-					<field name='child_ids'/>
+				<graph string="total" type='bar'>	
+					<field name='code'/>
+					<field name='odometer' operator="+"/>
 				</graph>
 			</field>
 		</record>

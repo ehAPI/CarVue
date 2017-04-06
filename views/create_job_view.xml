@@ -29,7 +29,6 @@
 						</div>
 						<group>
 							<group string = "CUSTOMER">
-
 								<field name="child_ids" nolabel='1'/>
 							</group>
 							<group string = "VEHICLE">	
@@ -149,11 +148,11 @@
 		<record model="ir.ui.view" id="car_vue_graph_view">
 				<field name="name">job.order.graph</field>
 			<field name="model">job.order</field>
-			<field name="type">graph</field>
+			<!-- <field name="type">graph</field> -->
 			<field name="arch" type="xml">
 				<graph string="total" type='bar' stacked='True'>	
-					<field name='child_ids' type='count'/>
-					<field name='child_ids'/>
+					<field name='due_in'/>
+					<field name='veh'/>
 				</graph>
 			</field>
 		</record>
@@ -170,7 +169,7 @@
 					<filter icon="terp-check" string="Due In"  domain="[('status','=','due')]"/>
 					<group expand="0" string="Group By...">
 						<filter string="Contact" icon="terp-personal" domain="[]" context="{'group_by':'child_ids'}"/>
-						<filter string="Due In" icon="terp-go-month" domain="[]" context="{'group_by':'due_in'}"/>
+						<filter string="Due In" name='type_due_in' icon="terp-go-month" domain="[]" context="{'group_by':'due_in'}"/>
 						<filter string="Due Out" icon="terp-go-month" domain="[]" context="{'group_by':'due_out'}"/>
 						<filter string="Status" name='type_status' domain="[]" context="{'group_by':'status'}"/>
 					</group>
@@ -184,7 +183,7 @@
 			<field name="name">Create Job</field>
 			<field name="res_model">job.order</field>
 			<field name="view_mode">kanban,tree,form,calendar,graph</field>
-			<field name='context'>{"search_default_type_status":1}</field>
+			<field name='context'>{"search_default_type_due_in":1}</field>
             <field name="search_view_id" ref="view_create_job_filter"/>
 			<field name="help" type="html">
 				<p class="oe_view_nocontent_create">

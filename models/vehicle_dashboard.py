@@ -98,4 +98,10 @@ class vehicle_dashboard(osv.osv):
 			'res_model': 'job.order',
 		}
 
+
+	_defaults={
+	'odo_unit':'miles',
+	'fuel':'petrol'
+	}
+
 vehicle_dashboard()
