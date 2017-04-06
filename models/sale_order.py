@@ -25,6 +25,10 @@ class sale_order(osv.osv):
 			('work','Work Completed')],'Status'),
 	}
 
+	_defaults={
+		'status': 'in'
+	}
+
 	def action_quotation_send(self, cr, uid, ids, context=None):
 		'''  Override to use a modified template that includes a ehapi closing and additional table '''
 		action_dict = super(sale_order, self).action_quotation_send(cr, uid, ids, context=context)

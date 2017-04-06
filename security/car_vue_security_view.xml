@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <openerp>
     <data noupdate="0">
+
         <record model="ir.module.category" id="module_car_vue">
             <field name="name">CarVue Security</field>
             <field name="description">CarVue Details</field>
@@ -52,10 +53,16 @@
             <field name="groups_id" eval="[(6,0,[ref('group_car_vue_somebody')])]"/>     
         </record>
 
+        <!-- Hiding Portal Top menu item -->
+        <record model="ir.ui.menu" id="portal.portal_menu">           
+            <field name="groups_id" eval="[(6,0,[ref('group_car_vue_somebody')])]"/>     
+        </record>
+
         <!-- Hiding Purchases Top menu item -->
         <!-- <record model="ir.ui.menu" id="base.menu_purchase_root">       
             <field name="groups_id" eval="[(6,0,[ref('group_car_vue_manager')])]"/>       
         </record> -->
+      
 
         <!-- Hiding Warehouse Top menu item -->
         <!-- <record model="ir.ui.menu" id="stock.menu_stock_root"> 
@@ -126,6 +133,38 @@
             <field name="domain_force">[('partner_id.related_user.id','=', user.id)]</field>
             <field name="groups" eval="[(4,ref('car_vue.group_car_vue_cust'))]"/>
         </record>
+
+        <record model="ir.rule" id="car_vue_adv_rule">
+            <field name="name">Advisor: see only his quot</field>
+            <field name="model_id" ref="model_sale_order"/>
+            <field name="domain_force">[('advisor','=', user.id)]</field>
+            <field name="groups" eval="[(4,ref('car_vue.group_car_vue_advisor'))]"/>
+        </record>
+
+        <record model="ir.rule" id="car_vue_adv_job_rule">
+            <field name="name">Advisor: see only his job</field>
+            <field name="model_id" ref="model_job_order"/>
+            <field name="domain_force">[('advisor','=', user.id)]</field>
+            <field name="groups" eval="[(4,ref('car_vue.group_car_vue_advisor'))]"/>
+        </record>
+
+
+        <record model="ir.rule" id="car_vue_adv_invoice_rule">
+            <field name="name">Advisor: see only his invoices</field>
+            <field name="model_id" ref="model_account_invoice"/>
+            <field name="domain_force">[('advisor','=', user.id)]</field>
+            <field name="groups" eval="[(4,ref('car_vue.group_car_vue_advisor'))]"/>
+        </record>
+
+   <!--      <record model="ir.rule" id="car_vue_adv_vehicle_rule">
+            <field name="name">Advisor: see only his vehicles</field>
+            <field name="model_id" ref="model_vehicle_dashboard"/>
+            <field name="domain_force">[('child_ids.jobs.advisor','=', user.id)]</field>
+            <field name="groups" eval="[(4,ref('car_vue.group_car_vue_advisor'))]"/>
+        </record> -->
+
+
+
 
     </data>
 </openerp>
