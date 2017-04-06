@@ -23,6 +23,8 @@
 			 "report/report_invoice.xml",
 			 "views/invoices_view.xml",
 			 "views/products_view.xml",
+			 "report/jobs_report_template.xml",
+			 "report/jobs_report.xml",
 			 "edi/purchases_mail.xml",
 			 "views/car_vue_sequence.xml"],
 
