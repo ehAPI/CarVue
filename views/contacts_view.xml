@@ -9,10 +9,10 @@
         <menuitem name="Contacts" id="contact_menu" parent="carvue" sequence='2' groups='car_vue.group_car_vue_admin,car_vue.group_car_vue_manager,car_vue.group_car_vue_technician,car_vue.group_car_vue_cust'/>
 
         <!-- menu item -->
-        <menuitem id="quotations_menu_mainform" action="sale.action_quotations" parent="contact_menu" sequence='5'  groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin,car_vue.group_car_vue_technician,car_vue.group_car_vue_cust"/>
+        <menuitem id="quotations_menu_mainform" action="sale.action_quotations" parent="contact_menu" sequence='5'  groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin,car_vue.group_car_vue_cust"/>
 
         <!-- menu item -->
-        <menuitem action="sale.action_orders" id="sales_orders_menu_mainform" parent="contact_menu" sequence='6'  groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin,car_vue.group_car_vue_technician,car_vue.group_car_vue_cust"/>
+        <menuitem action="sale.action_orders" id="sales_orders_menu_mainform" parent="contact_menu" sequence='6'  groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin,car_vue.group_car_vue_cust"/>
 
 
 
@@ -27,7 +27,17 @@
                 <field name="amount_tax" position="attributes">
                     <attribute name="invisible">True</attribute>
                 </field>
+            </field>
+        </record>
 
+        <record id="company_view_inherit" model="ir.ui.view">
+            <field name="name">res.company.form.inherit</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <field name="vat" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field> 
             </field>
         </record>
 
@@ -53,6 +63,7 @@
             <field name="arch" type="xml">
                 <field name="title" position="after">
                     <field name='related_user'/>
+                   
                 </field>
                 <xpath expr="//notebook/page[3]" position="attributes">
                     <attribute name="invisible">1</attribute>
@@ -147,6 +158,7 @@
                 <field name="partner_id" position="after">
                     <field name="due_in"/>
                     <field name="due_out"/>
+                    <field name="veh"/>
                     <field name="advisor"/>
                     <field name="technician"/>
                 </field>
@@ -189,8 +201,9 @@
                     <attribute name="invisible">True</attribute>
                 </field>  
                 <field name="amount_total" position="after">
-                <field name="status"/>
-            </field>
+                    <field name="veh"/>
+                    <field name="status"/>
+                </field>
             </field>
         </record>
 
@@ -204,6 +217,7 @@
                     <attribute name="invisible">True</attribute>
                 </field>  
                 <field name="amount_total" position="after">
+                <field name="veh"/>
                 <field name="status"/>
             </field>
             </field>

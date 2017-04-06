@@ -7,7 +7,7 @@
             <field name="model">sale.order</field>
             <field eval="50" name="priority"/>
             <field name="arch" type="xml">
-                <tree string="Jobs" colors='red:status=="prov";blue:status=="due"' version="8.0">
+                <tree string="Jobs" version="8.0">
 					<field name='name' string='ID'/>
 					<field name="partner_id"/>
 					<field name="due_in"/>
@@ -58,7 +58,7 @@
 
 		<menuitem id="car_vue_dashboard" name="CarVue Dashboard" parent="carvue" sequence="1"/> 
 
-		<menuitem id="menu_jobs_inqueue_dashboard"  parent="car_vue_dashboard" sequence='1' action="open_board_jobs_inqueue"/>
+		<menuitem id="menu_jobs_inqueue_dashboard"  parent="car_vue_dashboard" sequence='3' action="open_board_jobs_inqueue"/>
 
 		
 	</data>

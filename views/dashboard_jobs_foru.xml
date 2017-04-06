@@ -8,9 +8,9 @@
             <field eval="50" name="priority"/>
             <field name="arch" type="xml">
                 <tree string="Jobs For You" colors='red:status=="prov";blue:status=="due"' version="8.0">
-					<field name='code' string='Number'/>
+					<field name='code' string='ID'/>
 					<field name="child_ids"/>
-					<field name="veh"/>
+					<!-- <field name="veh"/> -->
 					<field name="due_in"/>
 					<field name="due_out"/>
 					<field name="status"/>
@@ -59,7 +59,7 @@
 
 		<menuitem id="car_vue_dashboard" name="CarVue Dashboard" parent="carvue" sequence="1"/> 
 
-		<menuitem id="menu_jobs_foru_dashboard"  parent="car_vue_dashboard" sequence='1' action="open_board_jobs_foru"/>
+		<menuitem id="menu_jobs_foru_dashboard"  parent="car_vue_dashboard" sequence='4' action="open_board_jobs_foru"/>
 
 		
 	</data>

@@ -7,7 +7,7 @@
             <field name="model">sale.order</field>
             <field eval="50" name="priority"/>
             <field name="arch" type="xml">
-                <tree string="Jobs Completed">
+                <tree string="Jobs Completed" colors='red:status=="paused";blue:status=="work"'>
                     <field name='name' string='ID'/>
 					<field name="partner_id"/>
 					<field name="due_in"/>
@@ -27,11 +27,29 @@
             <field name="view_mode">tree,form</field>
            <!-- <field name="domain">[('status','=',('work'))]</field> -->
            <!-- <field name="domain">['|',('advisor','=',uid),('technician','=',uid),('partner_id','=',uid),('status','=',('work'))]</field> -->
-           <field name="domain">['|',('advisor','=',uid),('technician','=',uid),('partner_id','=',uid),('status','in',('paused','work'))]</field>
+           <field name="domain"> [('status','in',('paused','work'))]</field>
             <field name="view_id" ref="view_jobs_done_dashboard_tree"/>
         </record>
 
-		<record id="board_jobs_done_form" model="ir.ui.view">
+		<record id="board_jobs_dashboard_form" model="ir.ui.view">
+            <field name="name">board.atm.form1</field>
+            <field name="model">board.board</field>
+            <field name="arch" type="xml">
+                <form string="My" version="7.0">
+                    <board style="2-1">
+                        <column>
+                            <action name="%(my_open_jobs_done_action)d" string="Jobs Completed/Paused"/>
+                            
+                        </column>
+                        <column>
+                            
+                        </column>
+                    </board>
+                </form>
+            </field>
+        </record>
+
+        <record id="board_jobs_done_form" model="ir.ui.view">
             <field name="name">board.atm.form1</field>
             <field name="model">board.board</field>
             <field name="arch" type="xml">
@@ -43,6 +61,16 @@
                     </board>
                 </form>
             </field>
+        </record>
+
+        <record id="open_board_jobs_dashboard" model="ir.actions.act_window">
+            <field name="name">Dashboard</field>
+            <field name="res_model">board.board</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="limit">80</field>
+            <field name="usage">menu</field>
+            <field name="view_id" ref="board_jobs_dashboard_form"/>
         </record>
 
         <record id="open_board_jobs_done" model="ir.actions.act_window">
@@ -59,7 +87,9 @@
 
 		<menuitem id="car_vue_dashboard" name="CarVue Dashboard" parent="carvue" sequence="1"/> 
 
-		<menuitem id="menu_jobs_done_dashboard"  parent="car_vue_dashboard" sequence='1' action="open_board_jobs_done"/>
+        <menuitem id="menu_jobs_dashboard"  parent="car_vue_dashboard" sequence='1' action="open_board_jobs_dashboard"/>
+
+        <menuitem id="menu_jobs_done_dashboard"  parent="car_vue_dashboard" sequence='2' action="open_board_jobs_done"/>
 
 		
 	</data>

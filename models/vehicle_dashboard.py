@@ -6,6 +6,14 @@ class vehicle_dashboard(osv.osv):
 
 	_name = 'vehicle.dashboard'
 	_rec_name = 'registration'
+
+	def __count_jobs(self, cr, uid, ids, name, arg, context=None):
+		result = {}
+		for obj in self.browse(cr, uid, ids, context=context):
+			jobs = self.pool.get('job.order').search(cr,uid,[('veh','=',obj.registration)])
+			result[obj.id] = len(jobs)
+		return result
+
 	_columns = {
 		'code': fields.char('Code',readonly=True),
 		'registration' : fields.char('Registration',required=True),	
@@ -47,7 +55,10 @@ class vehicle_dashboard(osv.osv):
 		'service_due_date' : fields.date('Service Due Date'),
 		'warranty_ends' : fields.date('Warranty Ends'),
 		'notes' : fields.text('Notes'),
+		'jobs_count' : fields.function(__count_jobs,type='integer',string="Jobs",method=True, store = False, multi=False),
 		'contacts' : fields.char('Contacts'),
+		'image': fields.binary("Image",
+            help="This field holds the image used as avatar for this contact, limited to 1024x1024px")
 
 		# 'image_medium': fields.function(_get_image, fnct_inv=_set_image,
   #           string="Medium-sized image", type="binary", multi="_get_image",
@@ -57,9 +68,12 @@ class vehicle_dashboard(osv.osv):
   #           help="Medium-sized image of this contact. It is automatically "\
   #                "resized as a 128x128px image, with aspect ratio preserved. "\
   #                "Use this field in form views or some kanban views."),
-		 'image': fields.binary("Image",
-            help="This field holds the image used as avatar for this contact, limited to 1024x1024px")
 		}
+
+	_sql_constraints = [
+		('registration_unique', 'unique(registration)','Registration No. must be UNIQUE !!!'),
+	]
+
 
 	# @api.multi
  #    def _get_image(self, name, args):
@@ -79,23 +93,9 @@ class vehicle_dashboard(osv.osv):
 		assert len(ids) == 1, 'This option should only be used for a single id at a time.'
 		return {
 			'type': 'ir.actions.act_window',
-
 			'view_mode': 'tree,kanban,form',
 			'domain':"[('veh.registration', '=',%s)]" %(obj.registration),
 			'res_model': 'job.order',
 		}
-
-		# job_tree = models_data._get_id(cr, uid, 'car_vue', 'view_create_job_tree')
-
-		# return {
-		# 	'name': 'Jobs',
-		# 	'view_type': 'form',
-		# 	"view_mode": 'tree,form',
-		# 	'res_model': 'job.order',
-		# 	'type': 'ir.actions.act_window',
-		# 	'search_view_id': job_tree,
-		# 	# 'res_id': res_ids,
-		# 	'domain':"[('id', 'in',%s)]" %(child_ids),
-		# }
 
 vehicle_dashboard()
