@@ -89,7 +89,7 @@
 			</field>
 		</record>
 
-		
+		<!-- placeholder="Name" -->
     <!--     <record model="ir.ui.view" id="view_invoice_graph">
             <field name="name">account.invoice.graph</field>
             <field name="model">account.invoice</field>
