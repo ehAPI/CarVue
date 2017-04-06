@@ -196,7 +196,7 @@
 		<menuitem name="CarVue" id="carvue"/>
 
 		<!-- sub menu -->
-		<menuitem name="Workshop" id="workshop_menu" parent="carvue" sequence='1'/>
+		<menuitem name="Workshop" id="workshop_menu" parent="carvue" sequence='2'/>
 		
 		<!-- menu item -->
 		<menuitem name="Jobs" parent="workshop_menu" id="create_job_menu_mainform" action="action_create_form" sequence='2'/>

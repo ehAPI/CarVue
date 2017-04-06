@@ -8,26 +8,12 @@ class create_job(osv.osv):
 	_name = 'job.order'
 	_rec_name='code'
 	_columns = {
-		# 'new':fields.char('New Job Card'),
-		# 'name':fields.one2many('res.partner','CONTACTS',ondelete='set null'),
 		'notes':fields.text('Notes'),
 		'code' : fields.char('Number',readonly=True),
 		'status':fields.selection([('prov','Provisional'),
 			('due','Due In')],'Status'),
-		# 'status':fields.selection([('prov','Provisional'),
-		# 	('due','Due In'),
-		# 	('arr','Arrived'),
-		# 	('in','In Progress'),
-		# 	('paused','Paused'),
-		# 	('part','Parts On Order'),
-		# 	('parts','Parts Arrived'),
-		# 	('awaiting','Awaiting Authority'),
-		# 	('cleaning','Cleaning'),
-		# 	('cust','Customer Contacted'),
-		# 	('work','Work Completed')],'STATUS'),
 		'due_in':fields.datetime('Due In'),
 		'due_out':fields.datetime('Due Out'),
-
 		'child_ids': fields.many2one('res.partner','Customer', domain=[('active','=',True)]), # force "active_test" domain to bypass _search() override
 		'advisor':fields.many2one('res.users','Advisor',ondelete='set null'),
 		'technician':fields.many2one('res.users','Technician',ondelete='set null'),
@@ -89,15 +75,14 @@ class create_job(osv.osv):
 
 	def repairs_action(self, cr, uid, ids, context=None):
 		obj = self.browse(cr, uid, ids)
-
 		assert len(ids) == 1, 'This option should only be used for a single id at a time.'
-		
 		ctx = dict()
 		ctx.update({
 			'default_model': 'sale.order',
 			'default_partner_id': obj.child_ids.id,
 			'default_due_in' : obj.due_in,
 			'default_due_out' : obj.due_out,
+			'default_veh' : obj.veh.id,
 			'default_advisor' : obj.advisor.id,
 			'default_technician' : obj.technician.id,
 			'default_notes' : obj.notes,
@@ -121,7 +106,6 @@ class create_job(osv.osv):
 	_defaults={
 		'due_in': lambda *a:datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 
 		'due_out': lambda *a:(datetime.now() + timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S'),
-
 		'status':'prov',
 	}
 

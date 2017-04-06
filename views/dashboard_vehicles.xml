@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="vehicle_dashboard_tree" model="ir.ui.view">
+            <field name="name">vehicle_dashboard.tree</field>
+            <field name="model">vehicle.dashboard</field>
+            <field eval="50" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Vehicles" version="8.0">
+                    <field name='registration'/>
+                    <field name='make'/>
+                    <field name='model'/>
+                    <field name='model_year'/>
+                    <field name='jobs_count' string='No. of Jobs'/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="my_open_vehicle_dashboard_action" model="ir.actions.act_window">
+            <field name="name">Vehicles</field>
+            <field name="res_model">vehicle.dashboard</field>
+            <field name="view_type">form</field>
+            <field name="limit">80</field>
+            <field name="view_mode">tree,form</field>
+            <!-- <field name="domain">[('status','=',('in'))]</field> -->
+            <!-- <field name="domain">['|',('advisor','=',uid),('technician','=',uid),('partner_id','=',uid),('status','=',('in'))]</field> -->
+            <field name="view_id" ref="vehicle_dashboard_tree"/>
+        </record>
+
+        <record id="board_vehicle_dashboard_form" model="ir.ui.view">
+            <field name="name">board.jobs.form1</field>
+            <field name="model">board.board</field>
+            <field name="arch" type="xml">
+                <form string="My" version="7.0">
+                    <board style="2-1">
+                        <column>
+                            <action name="%(my_open_vehicle_dashboard_action)d" string="Vehicles"/>
+                        </column>
+                    </board>
+                </form>
+            </field>
+        </record>
+
+        <record id="open_board_vehicle_dashboard" model="ir.actions.act_window">
+            <field name="name">Dashboard</field>
+            <field name="res_model">board.board</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="limit">80</field>
+            <field name="usage">menu</field>
+            <field name="view_id" ref="board_vehicle_dashboard_form"/>
+        </record>
+
+        <!-- Top menu -->
+        <menuitem id="carvue" name="CarVue"/>
+
+        <!-- sub menu -->
+        <menuitem name="Vehicle" id="vehicle_menu" parent="carvue" sequence='7'/>
+        
+        <!-- menu item -->
+        <menuitem name="Dashboard" parent="vehicle_menu" id="dashboard_vehicle_dashboard_menu_mainform" action="open_board_vehicle_dashboard" sequence='8'/>
+
+        
+    </data>
+</openerp>
+        

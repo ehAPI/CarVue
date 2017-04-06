@@ -9,6 +9,11 @@
 
 	"data": ["security/car_vue_security_view.xml",
 			 "security/ir.model.access.csv",
+			 # "views/dashboard_jobs_inqueue.xml",
+			 # "views/dashboard_jobs_foru.xml",
+			 # "views/dashboard_jobs_done.xml",
+			 "views/dashboard_vehicles.xml",
+			 "views/create_job_view.xml",
 			 "views/vehicle_dashboard_view.xml",
 			 "views/create_job_view.xml",
 			 "views/contacts_view.xml",
