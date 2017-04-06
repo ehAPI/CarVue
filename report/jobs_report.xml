@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+     <report 
+              id="jobs_report_template_report_id"
+              model="job.order"
+              string="Jobs report"
+              report_type="qweb-html"
+              name="car_vue.jobs_report_template_report"
+              attachment_use="False"
+              file="car_vue.jobs_report_template_report"
+          />
+  </data>
+</openerp>
