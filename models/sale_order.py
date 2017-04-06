@@ -10,6 +10,7 @@ class sale_order(osv.osv):
 	'notes':fields.text('Notes'),
 	'due_in':fields.datetime('Due In'),
 	'due_out':fields.datetime('Due Out'),
+	'veh':fields.many2one('vehicle.dashboard','Vehicle',ondelete='set null', domain="[('child_ids','=',partner_id)]"),
 	'advisor':fields.many2one('res.users','Advisor',ondelete='set null'),
 	'technician':fields.many2one('res.users','Technician',ondelete='set null'),
 	'bay' :fields.selection([('parking','Parking'),('ramp1','Ramp 1'),('ramp2','Ramp 2')],'Bay'),
@@ -102,6 +103,7 @@ class sale_order(osv.osv):
 			'mile': order.mile,
 			'technician': order.technician.id,
 			'notes': order.notes,
+			'veh': order.veh.id,
 			'advisor': order.advisor.id,
 			}
 		invoice_vals.update(self._inv_get(cr, uid, order, context=context))

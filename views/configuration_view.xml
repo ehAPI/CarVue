@@ -21,7 +21,7 @@
 				<form string="Make" version="8.0">
 					<sheet>
 						<group>
-								<field name='make_of_car'/>
+							<field name='make_of_car'/>
 						</group>
 					</sheet>
 				</form>
@@ -53,8 +53,8 @@
 		    <field name="type">tree</field>
 		    <field name="arch" type="xml">
 				<tree string="Model" version="8.0">
-						<field name='model_of_car'/>
 						<field name='make'/>
+						<field name='model_of_car'/>
 				</tree>
 			</field>
 		</record>
@@ -67,8 +67,8 @@
 				<form string="Model" version="8.0">
 					<sheet>
 						<group>
-								<field name='model_of_car'/>
 								<field name='make'/>
+								<field name='model_of_car'/>
 						</group>
 					</sheet>
 				</form>

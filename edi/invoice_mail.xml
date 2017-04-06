@@ -32,6 +32,7 @@
    <table class="table table-condensed" style="width:100%;" border>
             <thead>
                     <tr>
+                            <th>Vehicle</th>
                             <th>Advisor</th>
                             <th>Technician</th>
                             <th>Due In</th>
@@ -40,6 +41,9 @@
                     </tr>
          </thead>
          <tbody>
+                    <td align='center'>
+                        ${object.veh.registration}
+                    </td>
                     <td align='center'>
                         ${object.advisor.name}
                     </td>
