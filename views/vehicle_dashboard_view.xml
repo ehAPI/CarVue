@@ -93,7 +93,7 @@
 			</field>
 		</record>
 
-		
+		<!-- placeholder="Name" -->
     <!--     <record model="ir.ui.view" id="view_invoice_graph">
             <field name="name">account.invoice.graph</field>
             <field name="model">account.invoice</field>
@@ -135,7 +135,7 @@
 		<menuitem name="Vehicle" id="vehicle_menu" parent="carvue" sequence='7'/>
 		
 		<!-- menu item -->
-		<menuitem name="Vehicles" parent="vehicle_menu" id="vehicle_dashbaord_menu_mainform" action="action_vehicle_form" sequence='8'/>
+		<menuitem name="Vehicles" parent="vehicle_menu" id="vehicle_dashbaord_menu_mainform" action="action_vehicle_form"   groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin,car_vue.group_car_vue_cust" sequence='8'/>
 
 	</data>
 </openerp>

@@ -56,11 +56,10 @@
         <menuitem id="carvue" name="CarVue"/>
 
         <!-- sub menu -->
-        <menuitem name="Vehicle" id="vehicle_menu" parent="carvue" sequence='7'/>
+        <menuitem name="Dashboard" id="dashboard_menu" parent="carvue" sequence='1'/>
         
         <!-- menu item -->
-        <menuitem name="Dashboard" parent="vehicle_menu" id="dashboard_vehicle_dashboard_menu_mainform" action="open_board_vehicle_dashboard" sequence='8'/>
-
+        <menuitem name="Vehicle Dashboard" parent="dashboard_menu" id="dashboard_vehicle_dashboard_menu_mainform" action="open_board_vehicle_dashboard" sequence='2' groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin,car_vue.group_car_vue_technician,car_vue.group_car_vue_cust,car_vue.group_car_vue_advisor"/>
         
     </data>
 </openerp>
