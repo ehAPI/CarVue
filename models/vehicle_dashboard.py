@@ -97,4 +97,9 @@ class vehicle_dashboard(osv.osv):
 		# 	'domain':"[('id', 'in',%s)]" %(child_ids),
 		# }
 
+	_defaults={
+	'odo_unit':'miles',
+	'fuel':'petrol'
+	}
+
 vehicle_dashboard()
