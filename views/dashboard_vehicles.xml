@@ -28,6 +28,7 @@
             <field name="view_id" ref="vehicle_dashboard_tree"/>
         </record>
 
+
         <record id="board_vehicle_dashboard_form" model="ir.ui.view">
             <field name="name">board.jobs.form1</field>
             <field name="model">board.board</field>

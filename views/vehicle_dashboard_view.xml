@@ -117,10 +117,33 @@
 			</field>
 		</record>
 
+		<record model="ir.ui.view" id="view_vehicle_filter">
+            <field name="name">view_vehicle_filter</field>
+            <field name="model">vehicle.dashboard</field>
+            <field name="arch" type="xml">
+                <search string="Vehicle search">
+                    <!-- <field name="name" filter_domain="['|','|',('name','ilike',self),('atm','ilike',self),('customer','ilike',self)]" string="TASK"/> -->
+                    <filter icon="terp-check" string="Registration" name="registration" />
+                    <filter string="Make" icon="'terp-product'," domain="[]" context="{'group_by':'make'}"/>
+                        <filter string="Model" icon="'terp-product'," domain="[]" context="{'group_by':'model'}"/>
+                        <filter string="Derivative" icon="'terp-product'," domain="[]" context="{'group_by':'derivative'}"/>
+                    <separator/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Make" icon="'terp-product'," domain="[]" context="{'group_by':'make'}"/>
+                        <filter string="Model" icon="'terp-product'," domain="[]" context="{'group_by':'model'}"/>
+                        <filter string="Derivative" icon="'terp-product'," domain="[]" context="{'group_by':'derivative'}"/>
+                       
+                    </group>
+                </search>
+            </field>
+        </record>
+
 		<record model="ir.actions.act_window" id="action_vehicle_form">
 			<field name="name">Vehicles</field>
 			<field name="res_model">vehicle.dashboard</field>
 			<field name="view_mode">tree,form,graph</field>
+			<field name='context'>{"search_default_registration":1}</field>
+            <field name="search_view_id" ref="view_vehicle_filter"/>
 			<field name="help" type="html">
 				<p class="oe_view_nocontent_create">
 					Click to create details for your Workshop Jobs...
