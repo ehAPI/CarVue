@@ -29,10 +29,10 @@
 						</div>
 						<group>
 							<group string = "CUSTOMER">
-								<field name="child_ids" nolabel='1'/>
+								<field name="child_ids" nolabel='1' placeholder='Search Contacts'/>
 							</group>
 							<group string = "VEHICLE">	
-									<field name="veh" nolabel='1'/>
+									<field name="veh" nolabel='1' placeholder='Registration'/>
 							</group>
 
 							<group string="Job Card">
@@ -40,7 +40,7 @@
 								<field name="due_out"/>
 								<field name="advisor"/>
 								<field name="technician"/>
-								<field name="notes"/>
+								<field name="notes" placeholder='Notes'/>
 							</group>
 						</group>
 					</sheet>

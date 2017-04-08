@@ -160,12 +160,12 @@
                     <field name="due_out"/>
                     <field name="veh"/>
                     <field name="advisor"/>
-                    <field name="technician"/>
+                    <field name="technician" placeholder='--Select--'/>
                 </field>
                 <field name="client_order_ref" position="after">
-                    <field name="bay"/>
+                    <field name="bay" placeholder='--Select--'/>
                     <field name="mile"/>
-                    <field name="notes"/>
+                    <field name="notes" placeholder='Notes'/>
                 </field>
                 <field name="amount_tax" position="attributes">
                     <attribute name="invisible">True</attribute>

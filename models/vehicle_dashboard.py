@@ -31,7 +31,9 @@ class vehicle_dashboard(osv.osv):
 		'model_year': fields.selection([(num, str(num)) for num in range(1901,(datetime.datetime.now().year)+1)], 'Model Year'),
 		'reg_date' : fields.date('Reg Date'),
 		'vin' : fields.char('VIN'),
-		'date_of_manufacture' : fields.char('Date of Manufacture'),
+		'year_dom': fields.selection([(num, str(num)) for num in range(1901,(datetime.datetime.now().year)+1)], 'Year'),
+		'date_dom':fields.date('Date'),
+		'date_of_manufacture' : fields.date('Date of Manufacture'),
 		'paint_code' : fields.char('Paint Code'),
 		'trim' : fields.char('Trim'),
 		'fuel' : fields.selection([('petrol','Petrol'),
@@ -87,6 +89,19 @@ class vehicle_dashboard(osv.osv):
 		if vals.get('code','/')=='/':
 			vals['code']=self.pool.get('ir.sequence').get(cr,uid,'vehicle.dashboard') or '/'
 		return super(vehicle_dashboard,self).create(cr,uid,vals,context=context)
+
+	# def on_change_year(self,cr,uid,ids,due_in,context=None):
+
+	# 	# 'year_dom': fields.selection([(num, str(num)) for num in range(1901,(datetime.datetime.now().year)+1)], 'Year'),
+
+	# 	# 'year_dom'= 
+
+	# 	year_dom = date.strptime(year_dom,'%Y')
+	# 	date_dom =year_dom.strftime('%Y-%m-%d')
+	# 	res={
+	# 	'value' : {'date_dom':date_dom}
+	# 	}
+	# 	return res	
 
 	def jobs_button(self, cr, uid, ids, context=None):
 		obj = self.browse(cr, uid, ids)
