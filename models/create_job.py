@@ -110,8 +110,8 @@ class create_job(osv.osv):
 			current_id=context.get("active_id", False)
 			my_state=self.browse(cr,uid,current_id).status
 			if my_state=="arrived":
-				modify_edit_str='edit="false"'
-				result["arch"]='<form string="Jobs" %s version="8.0">\
+				# modify_edit_str="edit='false'"
+				result["arch"]='<form string="Jobs" edit="false" version="8.0">\
 					<header>\
 						<button name="status_provisional" type="object" String="Provisional" attrs="{"invisible": [("status","in",("prov","due","arrived"))]}" class="oe_highlight"/>\
 						<button name="status_duein" type="object" String="Due In" attrs="{"invisible": [("status","in",("due","arrived"))]}" class="oe_highlight"/>\
@@ -144,7 +144,7 @@ class create_job(osv.osv):
 							</group>\
 						</group>\
 					</sheet>\
-				</form>'%(modify_edit_str)
+				</form>'
 			else:
 				pass
 		return result

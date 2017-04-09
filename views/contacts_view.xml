@@ -6,13 +6,13 @@
 
         <!-- sub menu -->
 
-        <menuitem name="Contacts" id="contact_menu" parent="carvue" sequence='2' groups='car_vue.group_car_vue_admin,car_vue.group_car_vue_manager,car_vue.group_car_vue_technician,car_vue.group_car_vue_cust'/>
+        <menuitem name="Contacts" id="contact_menu" parent="carvue" sequence='2' groups='car_vue.group_car_vue_admin,car_vue.group_car_vue_manager,car_vue.group_car_vue_technician,car_vue.group_car_vue_cust,car_vue.group_car_vue_advisor'/>
 
         <!-- menu item -->
-        <menuitem id="quotations_menu_mainform" action="sale.action_quotations" parent="contact_menu" sequence='5'  groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin,car_vue.group_car_vue_cust"/>
+        <menuitem id="quotations_menu_mainform" action="sale.action_quotations" parent="contact_menu" sequence='5'  groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin,car_vue.group_car_vue_cust,car_vue.group_car_vue_advisor"/>
 
         <!-- menu item -->
-        <menuitem action="sale.action_orders" id="sales_orders_menu_mainform" parent="contact_menu" sequence='6'  groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin,car_vue.group_car_vue_cust"/>
+        <menuitem action="sale.action_orders" id="sales_orders_menu_mainform" parent="contact_menu" sequence='6'  groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin,car_vue.group_car_vue_cust,car_vue.group_car_vue_advisor"/>
 
 
 
@@ -160,12 +160,12 @@
                     <field name="due_out"/>
                     <field name="veh"/>
                     <field name="advisor"/>
-                    <field name="technician"/>
+                    <field name="technician" placeholder='--Select--'/>
                 </field>
                 <field name="client_order_ref" position="after">
-                    <field name="bay"/>
+                    <field name="bay" placeholder='--Select--'/>
                     <field name="mile"/>
-                    <field name="notes"/>
+                    <field name="notes" placeholder='Notes'/>
                 </field>
                 <field name="amount_tax" position="attributes">
                     <attribute name="invisible">True</attribute>
@@ -238,7 +238,7 @@
             </field>
         </record>
 
-        <menuitem id="customers_menu_mainform" action="base.action_partner_customer_form" parent="contact_menu" sequence='4' groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin,car_vue.group_car_vue_technician,car_vue.group_car_vue_cust"/>
+        <menuitem id="customers_menu_mainform" action="base.action_partner_customer_form" parent="contact_menu" sequence='4' groups="car_vue.group_car_vue_manager,car_vue.group_car_vue_admin,car_vue.group_car_vue_technician,car_vue.group_car_vue_cust,car_vue.group_car_vue_advisor"/>
 
     </data>
 </openerp>
