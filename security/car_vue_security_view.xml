@@ -167,15 +167,15 @@
             <field name="groups" eval="[(4,ref('car_vue.group_car_vue_cust'))]"/>
         </record>
 
-        <!-- <record model="ir.rule" id="car_vue_job_edit_rule">
+        <record model="ir.rule" id="car_vue_job_edit_rule">
             <field name="name">Edit button in jobs form</field> 
             <field name="model_id" ref="model_job_order"/>
             <field name="domain_force">[('status','=', 'arrived')]</field>
             <field name="perm_read" eval="1"/>
             <field name="perm_create" eval="0"/>
             <field name="perm_write" eval="0"/>
-            <field name="perm_unlink" eval="0"/>
-        </record> -->
+            <field name="perm_unlink" eval="0"/> 
+        </record>
 
         <record model="ir.rule" id="car_vue_adv_rule">
             <field name="name">Advisor: see only his quot</field>
