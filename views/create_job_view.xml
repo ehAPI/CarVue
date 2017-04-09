@@ -8,9 +8,9 @@
 			<field name="arch" type="xml">
 				<form string="Jobs" version="8.0">
 					<header>
-						<button name="status_provisional" type="object" String="Provisional" attrs="{'invisible': [('status','in',('prov','due'))]}" class="oe_highlight"/>
+						<button name="status_provisional" type="object" String="Provisional" attrs="{'invisible': [('status','in',('prov','due','arrived'))]}" class="oe_highlight"/>
 
-						<button name="status_duein" type="object" String="Due In" attrs="{'invisible': [('status','in',('due'))]}" class="oe_highlight"/>
+						<button name="status_duein" type="object" String="Due In" attrs="{'invisible': [('status','in',('due','arrived'))]}" class="oe_highlight"/>
 
 						<field name="status" widget="statusbar" 
 							statusbar_visible="prov,due"/>
@@ -25,7 +25,7 @@
 							</h2>
 						</div>
 						<div class='oe_right oe_button_box'>
-							<button class="oe_right oe_box oe_highlight" name="repairs_action"  type="object" String="Arrived" groups='car_vue.group_car_vue_admin,car_vue.group_car_vue_manager'/>
+							<button class="oe_right oe_box oe_highlight" name="repairs_action"  type="object" String="Arrived" groups='car_vue.group_car_vue_admin,car_vue.group_car_vue_manager' attrs="{'invisible': [('status','in',('arrived'))]}"/>
 						</div>
 						<group>
 							<group string = "CUSTOMER">
