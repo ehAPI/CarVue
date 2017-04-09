@@ -71,16 +71,49 @@
 
         <!-- Hiding Reporting Top menu item -->
         <record model="ir.ui.menu" id="base.menu_reporting">           
-            <field name="groups_id" eval="[(6,0,[ref('group_car_vue_somebody')])]"/>   
+            <field name="groups_id" eval="[(6,0,[ref('group_car_vue_somebody')])]"/> 
+        </record>
+
+        <!-- Hiding Portal Top menu item -->
+        <record model="ir.ui.menu" id="portal.portal_menu">           
+            <field name="groups_id" eval="[(6,0,[ref('group_car_vue_somebody')])]"/>
         </record>
     </data>
 
     
     <data noupdate="0">
 
-        <record model="ir.rule" id="car_vue_manager_rule">
-            <field name="name">Manager: see all</field>
+        <record model="ir.rule" id="car_vue_manager_job_rule">
+            <field name="name">Manager: see all jobs</field>
             <field name="model_id" ref="model_job_order"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4,ref('car_vue.group_car_vue_manager'))]"/>
+        </record>
+        
+        <record model="ir.rule" id="car_vue_manager_customer_rule">
+            <field name="name">Manager: see all customers</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4,ref('car_vue.group_car_vue_manager'))]"/>
+        </record>
+        
+        <record model="ir.rule" id="car_vue_manager__sales_rule">
+            <field name="name">Manager: see all sales/quotations</field>
+            <field name="model_id" ref="model_sale_order"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4,ref('car_vue.group_car_vue_manager'))]"/>
+        </record>
+        
+        <record model="ir.rule" id="car_vue_manager_invoices_rule">
+            <field name="name">Manager: see all invoices</field>
+            <field name="model_id" ref="model_account_invoice"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4,ref('car_vue.group_car_vue_manager'))]"/>
+        </record>
+
+        <record model="ir.rule" id="car_vue_manager_vehicles_rule">
+            <field name="name">Manager: see all vehicles</field>
+            <field name="model_id" ref="model_vehicle_dashboard"/>
             <field name="domain_force">[(1, '=', 1)]</field>
             <field name="groups" eval="[(4,ref('car_vue.group_car_vue_manager'))]"/>
         </record>
@@ -134,6 +167,16 @@
             <field name="groups" eval="[(4,ref('car_vue.group_car_vue_cust'))]"/>
         </record>
 
+        <!-- <record model="ir.rule" id="car_vue_job_edit_rule">
+            <field name="name">Edit button in jobs form</field> 
+            <field name="model_id" ref="model_job_order"/>
+            <field name="domain_force">[('status','=', 'arrived')]</field>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record> -->
+
         <record model="ir.rule" id="car_vue_adv_rule">
             <field name="name">Advisor: see only his quot</field>
             <field name="model_id" ref="model_sale_order"/>
@@ -162,9 +205,6 @@
             <field name="domain_force">[('child_ids.jobs.advisor','=', user.id)]</field>
             <field name="groups" eval="[(4,ref('car_vue.group_car_vue_advisor'))]"/>
         </record> -->
-
-
-
 
     </data>
 </openerp>
