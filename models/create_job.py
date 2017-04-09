@@ -7,6 +7,13 @@ class create_job(osv.osv):
 
 	_name = "job.order"
 	_rec_name="code"
+	# def arrived_function(self,cr,uid,ids,context=None):
+	# 	obj = self.browse(cr, uid, ids)
+	# 	if obj.status=='arrived':
+	# 		return True
+	# 	else:
+	# 		return False
+			
 	_columns = {
 		"notes":fields.text("Notes"),
 		"code" : fields.char("Number",readonly=True),
@@ -21,6 +28,7 @@ class create_job(osv.osv):
 		"bay" :fields.selection([("parking","Parking"),("ramp1","Ramp 1"),("ramp2","Ramp 2")],"Bay"),
 		"reference": fields.char("Reference"),
 		"mile":fields.integer("Mileage In"),
+		# "is_arrived":fields.function(arrived_function,type='boolean',string="Is Arrived",method=True, store = False, multi=False),
 		"image":fields.binary("Image",filters="*.png,*.gif"),
 	}
 	
@@ -104,50 +112,54 @@ class create_job(osv.osv):
 		}
 		return res
 
-	def fields_view_get(self, cr, uid, view_id=None, view_type="form", context=True, toolbar=False, submenu=False):
-		result = super(create_job, self).fields_view_get(cr, uid, view_id, view_type, context, toolbar, submenu)
-		if view_type=="form":
-			current_id=context.get("active_id", False)
-			my_state=self.browse(cr,uid,current_id).status
-			if my_state=="arrived":
-				# modify_edit_str="edit='false'"
-				result["arch"]='<form string="Jobs" edit="false" version="8.0">\
-					<header>\
-						<button name="status_provisional" type="object" String="Provisional" attrs="{"invisible": [("status","in",("prov","due","arrived"))]}" class="oe_highlight"/>\
-						<button name="status_duein" type="object" String="Due In" attrs="{"invisible": [("status","in",("due","arrived"))]}" class="oe_highlight"/>\
-						<field name="status" widget="statusbar" \
-							statusbar_visible="prov,due"/>\
-					</header>\
-					<sheet>\
-						<field name="image" widget="image" class="oe_left oe_avatar" options="{"size": [100, 100]}" nolabel="1"/>\
-						<div class="oe_title oe_left">\
-							<h2>\
-								<field name="code" nolabel="1"/>\
-							</h2>\
-						</div>\
-						<div class="oe_right oe_button_box">\
-							<button class="oe_right oe_box oe_highlight" name="repairs_action"  type="object" String="Arrived" groups="car_vue.group_car_vue_admin,car_vue.group_car_vue_manager" attrs="{"invisible": [("status","in",("arrived"))]}"/>\
-						</div>\
-						<group>\
-							<group string = "CUSTOMER">\
-								<field name="child_ids" nolabel="1"/>\
-							</group>\
-							<group string = "VEHICLE">	\
-									<field name="veh" nolabel="1"/>\
-							</group>\
-							<group string="Job Card">\
-								<field name="due_in" on_change="on_change_due_in(due_in)"/>\
-								<field name="due_out"/>\
-								<field name="advisor"/>\
-								<field name="technician"/>\
-								<field name="notes"/>\
-							</group>\
-						</group>\
-					</sheet>\
-				</form>'
-			else:
-				pass
-		return result
+	# def fields_view_get(self, cr, uid, view_id=None, view_type="form", context=True, toolbar=False, submenu=False):
+	# 	result = super(create_job, self).fields_view_get(cr, uid, view_id, view_type, context, toolbar, submenu)
+	# 	if view_type=="form":
+	# 		current_id=context.get("active_id", False)
+	# 		my_state=self.browse(cr,uid,current_id).status
+	# 		if my_state=="arrived":
+	# 			# modify_edit_str="edit='false'"
+	# 			result["arch"]='<form string="Jobs" edit="false" version="8.0">\
+	# 				<header>\
+	# 					<button name="status_provisional" type="object" String="Provisional" attrs="{"invisible": [("status","in",("prov","due","arrived"))]}" class="oe_highlight"/>\
+	# 					<button name="status_duein" type="object" String="Due In" attrs="{"invisible": [("status","in",("due","arrived"))]}" class="oe_highlight"/>\
+	# 					<field name="status" widget="statusbar" \
+	# 						statusbar_visible="prov,due"/>\
+	# 				</header>\
+	# 				<sheet>\
+	# 					<field name="image" widget="image" class="oe_left oe_avatar" options="{"size": [100, 100]}" nolabel="1"/>\
+	# 					<div class="oe_title oe_left">\
+	# 						<h2>\
+	# 							<field name="code" nolabel="1"/>\
+	# 						</h2>\
+	# 					</div>\
+	# 					<div class="oe_right oe_button_box">\
+	# 						<button class="oe_right oe_box oe_highlight" name="repairs_action"  type="object" String="Arrived" groups="car_vue.group_car_vue_admin,car_vue.group_car_vue_manager" attrs="{"invisible": [("status","in",("arrived"))]}"/>\
+	# 					</div>\
+	# 					<group>\
+	# 						<group string = "CUSTOMER">\
+	# 							<field name="child_ids" nolabel="1"/>\
+	# 						</group>\
+	# 						<group string = "VEHICLE">	\
+	# 								<field name="veh" nolabel="1"/>\
+	# 						</group>\
+	# 						<group string="Job Card">\
+	# 							<field name="due_in" on_change="on_change_due_in(due_in)"/>\
+	# 							<field name="due_out"/>\
+	# 							<field name="advisor"/>\
+	# 							<field name="technician"/>\
+	# 							<field name="notes"/>\
+	# 						</group>\
+	# 					</group>\
+	# 				</sheet>\
+	# 			</form>'
+	# 		else:
+	# 			pass
+	# 	return result
+
+	# def test_fields_view_get(self,cr,uid):
+	# 	idea_obj = self.pool.get('job.order')
+	# 	form_view = idea_obj.fields_view_get(cr,uid)
 
 	_defaults={
 		"due_in": lambda *a:datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 
