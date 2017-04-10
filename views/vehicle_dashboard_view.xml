@@ -111,9 +111,9 @@
         </record> -->
 
 		<record model="ir.ui.view" id="car_vue_graph_veh_view">
-				<field name="name">vehicle.dashboard.graph</field>
+			<field name="name">vehicle.dashboard.graph</field>
 			<field name="model">vehicle.dashboard</field>
-			<!-- <field name="type">graph</field> -->
+			<!-- <field name="type">/graph</field> -->
 			<field name="arch" type="xml">
 				<graph string="total" type='bar'>	
 					<field name='code'/>
@@ -151,7 +151,7 @@
             <field name="search_view_id" ref="view_vehicle_filter"/>
 			<field name="help" type="html">
 				<p class="oe_view_nocontent_create">
-					Click to create details for your Workshop Jobs...
+					Click to create details for your  Vehicles...
 				</p>
 			</field>
 		</record>

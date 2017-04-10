@@ -49,42 +49,42 @@
 		</record>
 
 		<record model="ir.ui.view" id="view_create_job_form_inherit">           
-		            <field name="name">job.order.readonly.arrived</field>
-		            <field name="model">job.order</field>           
-		            <field name="inherit_id" ref="view_create_job_form"/>
-		            <field name="arch" type="xml">
-		            	<field name='child_ids' position='attributes'>
-		            		<attribute name="attrs">{'readonly':[('status','in',['arrived'])]}</attribute>
-		            	</field>
-		            	<field name='veh' position='attributes'>
-		            		<attribute name="attrs">{'readonly':[('status','in',['arrived'])]}</attribute>
-		            	</field>
-		            	<field name='due_in' position='attributes'>
-		            		<attribute name="attrs">{'readonly':[('status','in',['arrived'])]}</attribute>
-		            	</field>
-		            	<field name='due_out' position='attributes'>
-		            		<attribute name="attrs">{'readonly':[('status','in',['arrived'])]}</attribute>
-		            	</field>
-		            	<field name='advisor' position='attributes'>
-		            		<attribute name="attrs">{'readonly':[('status','in',['arrived'])]}</attribute>
-		            	</field>
-		            	<field name='technician' position='attributes'>
-		            		<attribute name="attrs">{'readonly':[('status','in',['arrived'])]}</attribute>
-		            	</field>
-		            	<field name='notes' position='attributes'>
-		            		<attribute name="attrs">{'readonly':[('status','in',['arrived'])]}</attribute>
-		            	</field>
-		            </field>
-		        </record>
+            <field name="name">job.order.readonly.arrived</field>
+            <field name="model">job.order</field>           
+            <field name="inherit_id" ref="view_create_job_form"/>
+            <field name="arch" type="xml">
+            	<field name='child_ids' position='attributes'>
+            		<attribute name="attrs">{'readonly':[('status','in',['arrived'])]}</attribute>
+            	</field>
+            	<field name='veh' position='attributes'>
+            		<attribute name="attrs">{'readonly':[('status','in',['arrived'])]}</attribute>
+            	</field>
+            	<field name='due_in' position='attributes'>
+            		<attribute name="attrs">{'readonly':[('status','in',['arrived'])]}</attribute>
+            	</field>
+            	<field name='due_out' position='attributes'>
+            		<attribute name="attrs">{'readonly':[('status','in',['arrived'])]}</attribute>
+            	</field>
+            	<field name='advisor' position='attributes'>
+            		<attribute name="attrs">{'readonly':[('status','in',['arrived'])]}</attribute>
+            	</field>
+            	<field name='technician' position='attributes'>
+            		<attribute name="attrs">{'readonly':[('status','in',['arrived'])]}</attribute>
+            	</field>
+            	<field name='notes' position='attributes'>
+            		<attribute name="attrs">{'readonly':[('status','in',['arrived'])]}</attribute>
+            	</field>
+            </field>
+        </record>
 
 		<record model="ir.ui.view" id="job_kanban_view">
 		    <field name="name">create_job_kanban</field>
 		    <field name="model">job.order</field>
 		    <field name="type">kanban</field>
 		    <field name="arch" type="xml">
-		    	<kanban>
+		    	<kanban default_group_by='status'>
 	                <!--Filtered By -->
-	                <field name="child_ids"/>
+	                <field name="status"/>
 		                <!--template start -->
 	                <templates>
 	                    <!--kanban view box start -->
@@ -212,8 +212,8 @@
 			<field name="name">Create Job</field>
 			<field name="res_model">job.order</field>
 			<field name="view_mode">kanban,tree,form,calendar,graph</field>
-			<field name='context'>{"search_default_type_due_in":1}</field>
-            <field name="search_view_id" ref="view_create_job_filter"/>
+			<!-- <field name='context'>{"search_default_type_due_in":1}</field> -->
+            <!-- <field name="search_view_id" ref="view_create_job_filter"/> -->
 			<field name="help" type="html">
 				<p class="oe_view_nocontent_create">
 					Click to create details for your Workshop Jobs...
