@@ -113,4 +113,31 @@ class sale_order(osv.osv):
 		invoice_vals.update(self._inv_get(cr, uid, order, context=context))
 		return invoice_vals
 
+# 	def unlink(self, cr, uid, ids, context=None):
+# 		sale_orders = self.read(cr, uid, ids, ['state'], context=context)
+# 		unlink_ids = []
+# 		for s in sale_orders:
+# 			if s['state'] in ['draft', 'cancel']:
+# 				unlink_ids.append(s['id'])
+# 				obj = self.browse(cr, uid, ids)
+# 				assert len(ids) == 1, 'This option should only be used for a single id at a time.'
+# 				ctx = dict()
+# 				ctx.update({
+# 					"default_model": "job.order",
+# 					"default_status": 'due',
+# 				})
+# 				return {
+# 					"type": "ir.actions.act_window",
+# 					"view_type": "form",
+# 					'view_mode': 'tree,kanban,form',
+# 					'domain':"[('veh.registration', '=',%s)]" %(obj.veh.registration),
+# 					'res_model': 'job.order',
+# 					"context": ctx,
+# 				}
+
+# 			else:
+# 				raise osv.except_osv(_('Invalid Action!'), _('In order to delete a confirmed sales order, you must cancel it before!'))
+
+# 		return osv.osv.unlink(self, cr, uid, unlink_ids, context=context)
+
 sale_order()
