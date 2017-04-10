@@ -47,24 +47,11 @@ class sale_order(osv.osv):
 	# 	unlink_ids = []
 	# 	for s in sale_orders:
 	# 		if s['state'] in ['draft', 'cancel']:
-	# 			# unlink_ids.append(s['id'])
-
-	# 			obj = self.browse(cr, uid, ids)
-	# 			assert len(ids) == 1, 'This option should only be used for a single id at a time.'
-	# 			ctx = dict()
-	# 			ctx.update({
-	# 			'default_model': 'job.order'
-	# 			   })
-	# 		return {
-	# 		'type': 'ir.actions.act_window',
-	# 		'view_type': 'form',
-	# 		'view_mode': 'form',
-	# 		'res_model': 'job.order',
-	# 		# 'context': ctx,
-	# 			}	
-	  
-	# 		# else:
-	# 		# 	raise osv.except_osv(_('Invalid Action!'), _('In order to delete a confirmed sales order, you must cancel it before!'))
+	# 			unlink_ids.append(s['id'])
+	# 			# self.write(cr,uid,ids,{'status':'due_in'},context=context)
+			
+	# 		else:
+	# 			raise osv.except_osv(_('Invalid Action!'), _('In order to delete a confirmed sales order, you must cancel it before!'))
 
 	# 	return osv.osv.unlink(self, cr, uid, unlink_ids, context=context)
 				
