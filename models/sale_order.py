@@ -15,6 +15,7 @@ class sale_order(osv.osv):
 	'technician':fields.many2one('res.users','Technician',ondelete='set null'),
 	'bay' :fields.selection([('parking','Parking'),('ramp1','Ramp 1'),('ramp2','Ramp 2')],'Bay'),
 	'mile':fields.integer('Mileage In'),
+	'job_id': fields.char('Job ID',readonly=True),
 	'status':fields.selection([('in','In Progress'),
 			('paused','Paused'),
 			('part','Parts On Order'),
@@ -22,7 +23,8 @@ class sale_order(osv.osv):
 			('awaiting','Awaiting Authority'),
 			('cleaning','Cleaning'),
 			('cust','Customer Contacted'),
-			('work','Work Completed')],'Status'),
+			('work','Work Completed'),
+			('cancel','Cancelled')],'Status'),
 	"code" : fields.char("Number",readonly=True),
 
 	}
@@ -44,25 +46,26 @@ class sale_order(osv.osv):
 			pass
 		return action_dict
 
+	def action_cancel(self, cr, uid, ids, context=None):
+		if context is None:
+			context = {}
+		sale_order_line_obj = self.pool.get('sale.order.line')
+		account_invoice_obj = self.pool.get('account.invoice')
+		procurement_obj = self.pool.get('procurement.order')
+		for sale in self.browse(cr, uid, ids, context=context):
+			for inv in sale.invoice_ids:
+				if inv.state not in ('draft', 'cancel'):
+					raise osv.except_osv(
+						_('Cannot cancel this sales order!'),
+						_('First cancel all invoices attached to this sales order.'))
+				inv.signal_workflow('invoice_cancel')
+			procurement_obj.cancel(cr, uid, sum([l.procurement_ids.ids for l in sale.order_line],[]))
+			sale_order_line_obj.write(cr, uid, [l.id for l in  sale.order_line],
+					{'state': 'cancel'})
+		self.write(cr, uid, ids, {'state': 'cancel'})
+		self.write(cr, uid, ids, {'status': 'cancel'})
 
-	def unlink(self, cr, uid, ids, context=None):
-		sale_orders = self.read(cr, uid, ids, ['state'], context=context)
-		unlink_ids = []
-		for s in sale_orders:
-			if s['state'] in ['draft', 'cancel']:
-				unlink_ids.append(s['id'])
-		
-				sale_quo = self.read(cr, uid, ids, ['code'], context=context)
-				results = self.pool.get('job.order').search(cr, uid,ids,['code'])
-				for c in sale_quo:
-					if c[code] == results:
-						self.pool.get('job.order').write(cr,uid,ids,{'status':'due_in'},context=context)
-			
-			else:
-				raise osv.except_osv(_('Invalid Action!'), _('In order to delete a confirmed sales order, you must cancel it before!'))
-
-		return osv.osv.unlink(self, cr, uid, unlink_ids, context=context)
-				
+		return True		
 
 	def status_in(self,cr,uid,ids,context=None):
 		self.write(cr,uid,ids,{'status':'in'},context=context)
@@ -134,31 +137,40 @@ class sale_order(osv.osv):
 		invoice_vals.update(self._inv_get(cr, uid, order, context=context))
 		return invoice_vals
 
-# 	def unlink(self, cr, uid, ids, context=None):
-# 		sale_orders = self.read(cr, uid, ids, ['state'], context=context)
-# 		unlink_ids = []
-# 		for s in sale_orders:
-# 			if s['state'] in ['draft', 'cancel']:
-# 				unlink_ids.append(s['id'])
-# 				obj = self.browse(cr, uid, ids)
-# 				assert len(ids) == 1, 'This option should only be used for a single id at a time.'
-# 				ctx = dict()
-# 				ctx.update({
-# 					"default_model": "job.order",
-# 					"default_status": 'due',
-# 				})
-# 				return {
-# 					"type": "ir.actions.act_window",
-# 					"view_type": "form",
-# 					'view_mode': 'tree,kanban,form',
-# 					'domain':"[('veh.registration', '=',%s)]" %(obj.veh.registration),
-# 					'res_model': 'job.order',
-# 					"context": ctx,
-# 				}
+	def unlink(self, cr, uid, ids, context=None):
+		sale_orders = self.read(cr, uid, ids, ['state','job_id'], context=context)
+		unlink_ids = []
+		for s in sale_orders:
+			if s['state'] in ['draft', 'cancel']:
+				unlink_ids.append(s['id'])
 
-# 			else:
-# 				raise osv.except_osv(_('Invalid Action!'), _('In order to delete a confirmed sales order, you must cancel it before!'))
+				#######################
+				# job = self.pool.get('job.order').read(cr,uid,ids,['status','code'],context=context)
+				# jobs_to_due=[]
+				# for o in job:
+				# 	if o['code']==s['job_id']:
+				# 		jobs_to_due.append(o['id'])
+				# 		job[o.id].update({'status':'due'})
+				# self.pool.get('job.order').write(cr,uid,jobs_to_due,{'status':'due'},context=context)
+				#######################
+				
+				#######################
+				# obj = self.pool.get('job.order').browse(cr,uid,ids,context=context)
+				# jobs_to_due=[]
+				# for o in obj:
+				# 	if o.code==s['job_id']:
+				# 		jobs_to_due.append(o.id)
+				# self.pool.get('job.order').write(cr,uid,jobs_to_due,{'status':'due'},context=context)
+				#######################
+				
+				#######################
+				obj = self.pool.get('job.order').search(cr,uid,[('code','=',s['job_id'])],context=context)
+				self.pool.get('job.order').write(cr,uid,obj,{'status':'due'},context=context)
+				#######################
 
-# 		return osv.osv.unlink(self, cr, uid, unlink_ids, context=context)
+			else:
+				raise osv.except_osv(_('Invalid Action!'), _('In order to delete a confirmed sales order, you must cancel it before!'))
+
+		return osv.osv.unlink(self, cr, uid, unlink_ids, context=context)
 
 sale_order()

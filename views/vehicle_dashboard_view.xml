@@ -47,18 +47,18 @@
 							<!-- <h2>Vehicle</h2> -->
 								<field name="registration"/>
 								<field name='child_ids'/>
-								<field name='model_year' placeholder='--Select--'/>
+								<field name='model_year'/>
 								<field name='make'/>
 								<field name='model'/>
 								<field name='derivative'/>
 								<field name='vin'/>
 								<field name='reg_date'/>
 								<field name='date_of_manufacture' placeholder='Select Date'/>
-								<label for='date_of_manufacture' string='Date of Manufacture'/>
-								<div class="address_format">
+								<!-- <label for='date_of_manufacture' string='Date of Manufacture'/> -->
+								<!-- <div class="address_format">
 									<field name="year_dom" style="width: 50%" placeholder='Select Year' />
-	         						<field name="date_dom" style="width: 50%" placeholder='Select Date'/>
-	         					</div>
+									    <field name="date_dom" style="width: 50%" placeholder='Select Date'/>
+									</div> -->
 								<label for='odometer' string='Odometer Reading'/>
 								<div class="address_format">
 									<field name="odometer" style="width: 50%" />

@@ -40,8 +40,8 @@ class create_job(osv.osv):
 		self.write(cr,uid,ids,{"status":"due"},context=context)
 		return True
 
-	def status_arr(self,cr,uid,ids,context=None):
-		self.write(cr,uid,ids,{"status":"arr"},context=context)
+	def status_arrived(self,cr,uid,ids,context=None):
+		self.write(cr,uid,ids,{"status":"arrived"},context=context)
 		return True
 
 	def status_in(self,cr,uid,ids,context=None):
@@ -82,7 +82,7 @@ class create_job(osv.osv):
 		return super(create_job,self).create(cr,uid,vals,context=context)
 
 	def repairs_action(self, cr, uid, ids, context=None):
-		self.write(cr,uid,ids,{"status":"arrived"},context=context)
+		# self.write(cr,uid,ids,{"status":"arrived"},context=context)
 		obj = self.browse(cr, uid, ids)
 		assert len(ids) == 1, "This option should only be used for a single id at a time."
 		ctx = dict()
@@ -95,8 +95,7 @@ class create_job(osv.osv):
 			"default_advisor" : obj.advisor.id,
 			"default_technician" : obj.technician.id,
 			"default_notes" : obj.notes,
-			"default_code" : obj.code,
-
+			"default_job_id" : obj.code,
 		})
 		return {
 			"type": "ir.actions.act_window",
