@@ -23,7 +23,10 @@ class sale_order(osv.osv):
 			('awaiting','Awaiting Authority'),
 			('cleaning','Cleaning'),
 			('cust','Customer Contacted'),
-			('work','Work Completed')],'Status'),
+			('work','Work Completed'),
+			('cancel','Cancelled')],'Status'),
+	"code" : fields.char("Number",readonly=True),
+
 	}
 
 	_defaults={
@@ -43,6 +46,26 @@ class sale_order(osv.osv):
 			pass
 		return action_dict
 
+	def action_cancel(self, cr, uid, ids, context=None):
+		if context is None:
+			context = {}
+		sale_order_line_obj = self.pool.get('sale.order.line')
+		account_invoice_obj = self.pool.get('account.invoice')
+		procurement_obj = self.pool.get('procurement.order')
+		for sale in self.browse(cr, uid, ids, context=context):
+			for inv in sale.invoice_ids:
+				if inv.state not in ('draft', 'cancel'):
+					raise osv.except_osv(
+						_('Cannot cancel this sales order!'),
+						_('First cancel all invoices attached to this sales order.'))
+				inv.signal_workflow('invoice_cancel')
+			procurement_obj.cancel(cr, uid, sum([l.procurement_ids.ids for l in sale.order_line],[]))
+			sale_order_line_obj.write(cr, uid, [l.id for l in  sale.order_line],
+					{'state': 'cancel'})
+		self.write(cr, uid, ids, {'state': 'cancel'})
+		self.write(cr, uid, ids, {'status': 'cancel'})
+
+		return True		
 
 	def status_in(self,cr,uid,ids,context=None):
 		self.write(cr,uid,ids,{'status':'in'},context=context)

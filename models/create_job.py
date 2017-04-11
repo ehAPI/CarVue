@@ -40,8 +40,8 @@ class create_job(osv.osv):
 		self.write(cr,uid,ids,{"status":"due"},context=context)
 		return True
 
-	def status_arr(self,cr,uid,ids,context=None):
-		self.write(cr,uid,ids,{"status":"arr"},context=context)
+	def status_arrived(self,cr,uid,ids,context=None):
+		self.write(cr,uid,ids,{"status":"arrived"},context=context)
 		return True
 
 	def status_in(self,cr,uid,ids,context=None):
@@ -82,7 +82,7 @@ class create_job(osv.osv):
 		return super(create_job,self).create(cr,uid,vals,context=context)
 
 	def repairs_action(self, cr, uid, ids, context=None):
-		self.write(cr,uid,ids,{"status":"arrived"},context=context)
+		# self.write(cr,uid,ids,{"status":"arrived"},context=context)
 		obj = self.browse(cr, uid, ids)
 		assert len(ids) == 1, "This option should only be used for a single id at a time."
 		ctx = dict()
@@ -112,6 +112,39 @@ class create_job(osv.osv):
 		"value" : {"due_out":due_out}
 		}
 		return res
+
+	def unlink(self, cr, uid, ids, context=None):
+		sale_orders = self.read(cr, uid, ids, ['state'], context=context)
+		unlink_ids = []
+		for s in sale_orders:
+			if s['state'] in ['draft', 'cancel']:
+				unlink_ids.append(s['id'])
+				
+
+			else:
+				raise osv.except_osv(_('Invalid Action!'), _('In order to delete a confirmed sales order, you must cancel it before!'))
+
+		return osv.osv.unlink(self, cr, uid, unlink_ids, context=context)	
+
+	# def unlink(self, cr, uid, ids, context=None):
+ #        sale_orders = self.read(cr, uid, ids, ['state'], context=context)
+ #        unlink_ids = []
+ #        for s in sale_orders:
+ #            if s['state'] in ['draft', 'cancel']:
+ #                unlink_ids.append(s['id'])
+	# 			obj = self.browse(cr, uid, ids)
+	# 			assert len(ids) == 1, 'This option should only be used for a single id at a time.'
+	# 			return {
+	# 				'type': 'ir.actions.act_window',
+	# 				'view_mode': 'tree,kanban,form',
+	# 				'domain':"[('veh.registration', '=',%s)]" %(obj.registration),
+	# 				'res_model': 'job.order',
+	# 			}
+
+ #            else:
+ #                raise osv.except_osv(_('Invalid Action!'), _('In order to delete a confirmed sales order, you must cancel it before!'))
+
+ #        return osv.osv.unlink(self, cr, uid, unlink_ids, context=context)	
 
 	# def fields_view_get(self, cr, uid, view_id=None, view_type="form", context=True, toolbar=False, submenu=False):
 	# 	result = super(create_job, self).fields_view_get(cr, uid, view_id, view_type, context, toolbar, submenu)
@@ -157,6 +190,7 @@ class create_job(osv.osv):
 	# 		else:
 	# 			pass
 	# 	return result
+
 
 	# def test_fields_view_get(self,cr,uid):
 	# 	idea_obj = self.pool.get('job.order')
