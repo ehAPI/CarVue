@@ -158,8 +158,7 @@
                 <field name="partner_id" position="after">
                     <field name="due_in"/>
                     <field name="due_out"/>
-                    <field name="job_id"/>
-                    <!-- <field name="job_id" invisible="1"/> -->
+                    <field name="job_id" invisible="1"/>
                     <field name="veh"/>
                     <field name="advisor"/>
                     <field name="technician" placeholder='--Select--'/>
