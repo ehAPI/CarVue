@@ -95,6 +95,8 @@ class create_job(osv.osv):
 			"default_advisor" : obj.advisor.id,
 			"default_technician" : obj.technician.id,
 			"default_notes" : obj.notes,
+			"default_code" : obj.code,
+
 		})
 		return {
 			"type": "ir.actions.act_window",
@@ -111,6 +113,19 @@ class create_job(osv.osv):
 		"value" : {"due_out":due_out}
 		}
 		return res
+
+	def unlink(self, cr, uid, ids, context=None):
+		sale_orders = self.read(cr, uid, ids, ['state'], context=context)
+		unlink_ids = []
+		for s in sale_orders:
+			if s['state'] in ['draft', 'cancel']:
+				unlink_ids.append(s['id'])
+				
+
+			else:
+				raise osv.except_osv(_('Invalid Action!'), _('In order to delete a confirmed sales order, you must cancel it before!'))
+
+		return osv.osv.unlink(self, cr, uid, unlink_ids, context=context)	
 
 	# def unlink(self, cr, uid, ids, context=None):
  #        sale_orders = self.read(cr, uid, ids, ['state'], context=context)

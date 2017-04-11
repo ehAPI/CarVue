@@ -166,6 +166,8 @@
                     <field name="bay" placeholder='--Select--'/>
                     <field name="mile"/>
                     <field name="notes" placeholder='Notes'/>
+                    <field name="code"/>
+
                 </field>
                 <field name="amount_tax" position="attributes">
                     <attribute name="invisible">True</attribute>

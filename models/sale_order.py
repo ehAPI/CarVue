@@ -23,6 +23,8 @@ class sale_order(osv.osv):
 			('cleaning','Cleaning'),
 			('cust','Customer Contacted'),
 			('work','Work Completed')],'Status'),
+	"code" : fields.char("Number",readonly=True),
+
 	}
 
 	_defaults={
@@ -42,18 +44,24 @@ class sale_order(osv.osv):
 			pass
 		return action_dict
 
-	# def unlink(self, cr, uid, ids, context=None):
-	# 	sale_orders = self.read(cr, uid, ids, ['state'], context=context)
-	# 	unlink_ids = []
-	# 	for s in sale_orders:
-	# 		if s['state'] in ['draft', 'cancel']:
-	# 			unlink_ids.append(s['id'])
-	# 			# self.write(cr,uid,ids,{'status':'due_in'},context=context)
-			
-	# 		else:
-	# 			raise osv.except_osv(_('Invalid Action!'), _('In order to delete a confirmed sales order, you must cancel it before!'))
 
-	# 	return osv.osv.unlink(self, cr, uid, unlink_ids, context=context)
+	def unlink(self, cr, uid, ids, context=None):
+		sale_orders = self.read(cr, uid, ids, ['state'], context=context)
+		unlink_ids = []
+		for s in sale_orders:
+			if s['state'] in ['draft', 'cancel']:
+				unlink_ids.append(s['id'])
+		
+				sale_quo = self.read(cr, uid, ids, ['code'], context=context)
+				results = self.pool.get('job.order').search(cr, uid,ids,['code'])
+				for c in sale_quo:
+					if c[code] == results:
+						self.pool.get('job.order').write(cr,uid,ids,{'status':'due_in'},context=context)
+			
+			else:
+				raise osv.except_osv(_('Invalid Action!'), _('In order to delete a confirmed sales order, you must cancel it before!'))
+
+		return osv.osv.unlink(self, cr, uid, unlink_ids, context=context)
 				
 
 	def status_in(self,cr,uid,ids,context=None):
