@@ -95,6 +95,7 @@ class create_job(osv.osv):
 			"default_advisor" : obj.advisor.id,
 			"default_technician" : obj.technician.id,
 			"default_notes" : obj.notes,
+			"default_job_id" : obj.code,
 		})
 		return {
 			"type": "ir.actions.act_window",

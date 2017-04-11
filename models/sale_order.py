@@ -15,6 +15,7 @@ class sale_order(osv.osv):
 	'technician':fields.many2one('res.users','Technician',ondelete='set null'),
 	'bay' :fields.selection([('parking','Parking'),('ramp1','Ramp 1'),('ramp2','Ramp 2')],'Bay'),
 	'mile':fields.integer('Mileage In'),
+	'job_id': fields.char('Job ID',readonly=True),
 	'status':fields.selection([('in','In Progress'),
 			('paused','Paused'),
 			('part','Parts On Order'),
@@ -112,6 +113,42 @@ class sale_order(osv.osv):
 			}
 		invoice_vals.update(self._inv_get(cr, uid, order, context=context))
 		return invoice_vals
+
+	def unlink(self, cr, uid, ids, context=None):
+		sale_orders = self.read(cr, uid, ids, ['state','job_id'], context=context)
+		unlink_ids = []
+		for s in sale_orders:
+			if s['state'] in ['draft', 'cancel']:
+				unlink_ids.append(s['id'])
+
+				#######################
+				# job = self.pool.get('job.order').read(cr,uid,ids,['status','code'],context=context)
+				# jobs_to_due=[]
+				# for o in job:
+				# 	if o['code']==s['job_id']:
+				# 		jobs_to_due.append(o['id'])
+				# 		job[o.id].update({'status':'due'})
+				# self.pool.get('job.order').write(cr,uid,jobs_to_due,{'status':'due'},context=context)
+				#######################
+				
+				#######################
+				# obj = self.pool.get('job.order').browse(cr,uid,ids,context=context)
+				# jobs_to_due=[]
+				# for o in obj:
+				# 	if o.code==s['job_id']:
+				# 		jobs_to_due.append(o.id)
+				# self.pool.get('job.order').write(cr,uid,jobs_to_due,{'status':'due'},context=context)
+				#######################
+				
+				#######################
+				obj = self.pool.get('job.order').search(cr,uid,[('code','=',s['job_id'])],context=context)
+				self.pool.get('job.order').write(cr,uid,obj,{'status':'due'},context=context)
+				#######################
+
+			else:
+				raise osv.except_osv(_('Invalid Action!'), _('In order to delete a confirmed sales order, you must cancel it before!'))
+
+		return osv.osv.unlink(self, cr, uid, unlink_ids, context=context)
 
 # 	def unlink(self, cr, uid, ids, context=None):
 # 		sale_orders = self.read(cr, uid, ids, ['state'], context=context)
