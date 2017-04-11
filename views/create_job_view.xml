@@ -101,6 +101,7 @@
 		                                    <!--kanban title -->         
 		                                    <td align="left" valign="middle" class="oe_kanban_title" tooltip="lead_details" type='open'>
 		                                       <!--kanban title name -->
+		                                        <field name="code"/>
 		                                        <field name="child_ids"/>
 		                                    </td>
 		                                    <td valign="top" width="22"></td>
@@ -167,8 +168,7 @@
 			<field name="model">job.order</field>
 			<field name="type">calendar</field>
 			<field name="arch" type="xml">
-				<calendar string="Session Calendar" color='child_ids' date_start="due_in"
-						  date_stop="due_out">
+				<calendar string="Session Calendar" color='child_ids' date_start="due_in" date_stop="due_out">
 						<!-- <field name="name"/> -->
 				</calendar>
 			</field>
