@@ -4,12 +4,15 @@ from openerp.osv import fields, osv
 class customer(osv.osv):
 	_inherit = 'res.partner'
 
+	# function to show all teh vehicles of the customer
 	def _show_vehicles(self, cr, uid, ids, name, args, context=None):
 		res = {}
 		c_ids = self.pool.get('vehicle.dashboard').search(cr,uid,[('child_ids','=',ids[0])])
 		for t_id in self.browse(cr,uid,ids):
 			res[t_id.id] = c_ids
 		return res
+
+	# function to show all the jobs corresponding to the customer
 	def _show_jobs(self, cr, uid, ids, name, args, context=None):
 		res = {}
 		c_ids = self.pool.get('job.order').search(cr,uid,[('child_ids','=',ids[0])])

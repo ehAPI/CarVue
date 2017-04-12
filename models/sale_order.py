@@ -46,6 +46,7 @@ class sale_order(osv.osv):
 			pass
 		return action_dict
 
+	# override the cancel order function to change the status to cancelled in sale order as well as in jobs
 	def action_cancel(self, cr, uid, ids, context=None):
 		if context is None:
 			context = {}
@@ -69,38 +70,47 @@ class sale_order(osv.osv):
 		
 		return True		
 
+	# function to change the status to in progress when in progress button is clicked
 	def status_in(self,cr,uid,ids,context=None):
 		self.write(cr,uid,ids,{'status':'in'},context=context)
 		return True
 
+	# function to change the status to paused when paused button is clicked
 	def status_paused(self,cr,uid,ids,context=None):
 		self.write(cr,uid,ids,{'status':'paused'},context=context)
 		return True
 
+	# function to change the status to parts on order when parts on order button is clicked
 	def status_part(self,cr,uid,ids,context=None):
 		self.write(cr,uid,ids,{'status':'part'},context=context)
 		return True	
 
+	# function to change the status to parts arrived when parts arrived button is clicked
 	def status_parts(self,cr,uid,ids,context=None):
 		self.write(cr,uid,ids,{'status':'parts'},context=context)
 		return True
 
+	# function to change the status to Awaiting authority when Awaiting authority button is clicked
 	def status_awaiting(self,cr,uid,ids,context=None):
 		self.write(cr,uid,ids,{'status':'awaiting'},context=context)
 		return True	
 
+	# function to change the status to Cleaning when Cleaning button is clicked
 	def status_cleaning(self,cr,uid,ids,context=None):
 		self.write(cr,uid,ids,{'status':'cleaning'},context=context)
 		return True	
 
+	# function to change the status to Customer contacted when Customer contacted button is clicked
 	def status_cust(self,cr,uid,ids,context=None):
 		self.write(cr,uid,ids,{'status':'cust'},context=context)
 		return True	
 
+	# function to change the status to Work completed when Work completed button is clicked
 	def status_work(self,cr,uid,ids,context=None):
 		self.write(cr,uid,ids,{'status':'work'},context=context)
 		return True	
 
+	# override the function to create invoice with the custom field values
 	def _prepare_invoice(self, cr, uid, order, lines, context=None):
 		if context is None:
 			context = {}
@@ -139,17 +149,7 @@ class sale_order(osv.osv):
 		invoice_vals.update(self._inv_get(cr, uid, order, context=context))
 		return invoice_vals
 
-
-	def create(self, cr, uid, vals, context=None):
-		# new_id=super(sale_order,self).create(cr,uid,vals,context)
-
-		job_id=vals.get('job_id','/')
-		arrived_jobs = self.pool.get('job.order').search(cr,uid,[('code','=',job_id)],context=context)
-		self.pool.get('job.order').write(cr,uid,arrived_jobs,{'status':'arrived'},context=context)
-
-		return super(sale_order,self).create(cr,uid,vals,context)
-		# return new_id
-
+	# override the unlink function to change the status of the corresponding job to due in when deleted
 	def unlink(self, cr, uid, ids, context=None):
 		sale_orders = self.read(cr, uid, ids, ['state','job_id'], context=context)
 		unlink_ids = []
