@@ -128,7 +128,7 @@
 
                     <button name="status_work" type="object" String="Work Completed" attrs="{'invisible': [('status','in',('work','cancel'))]}" class="oe_highlight"/>
                 
-                    <field name="status" widget="statusbar" statusbar_visible="in,paused,part,parts,awaiting,cleaning,cust,work,cancel"/>
+                    <field name="status" widget="statusbar" statusbar_visible="in,paused,part,parts,awaiting,cleaning,cust,work"/>
                 </header>
                 
                 <xpath expr="//form/header//button[@string='Confirm Sale']" position="attributes">
