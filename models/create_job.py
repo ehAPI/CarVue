@@ -82,7 +82,7 @@ class create_job(osv.osv):
 		return super(create_job,self).create(cr,uid,vals,context=context)
 
 	def repairs_action(self, cr, uid, ids, context=None):
-		self.write(cr,uid,ids,{"status":"arrived"},context=context)
+		# self.write(cr,uid,ids,{"status":"arrived"},context=context)
 		obj = self.browse(cr, uid, ids)
 		assert len(ids) == 1, "This option should only be used for a single id at a time."
 		ctx = dict()

@@ -114,6 +114,16 @@ class sale_order(osv.osv):
 		invoice_vals.update(self._inv_get(cr, uid, order, context=context))
 		return invoice_vals
 
+
+	def create(self, cr, uid, vals, context=None):
+		ids=super(sale_order,self).create(cr,uid,vals,context)
+
+		job=vals.get('job_id','/')
+		obj = self.pool.get('job.order').search(cr,uid,[('code','=',job)],context=context)
+		self.pool.get('job.order').write(cr,uid,obj,{'status':'arrived'},context=context)
+
+		return ids
+
 	def unlink(self, cr, uid, ids, context=None):
 		sale_orders = self.read(cr, uid, ids, ['state','job_id'], context=context)
 		unlink_ids = []
