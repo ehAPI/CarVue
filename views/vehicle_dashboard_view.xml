@@ -47,7 +47,7 @@
 							<!-- <h2>Vehicle</h2> -->
 								<field name="registration"/>
 								<field name='child_ids'/>
-								<field name='model_year' placeholder='--Select--'/>
+								<field name='model_year'/>
 								<field name='make'/>
 								<field name='model'/>
 								<field name='derivative'/>

@@ -23,7 +23,10 @@ class sale_order(osv.osv):
 			('awaiting','Awaiting Authority'),
 			('cleaning','Cleaning'),
 			('cust','Customer Contacted'),
-			('work','Work Completed')],'Status'),
+			('work','Work Completed'),
+			('cancel','Cancelled')],'Status'),
+	"code" : fields.char("Number",readonly=True),
+
 	}
 
 	_defaults={
@@ -43,6 +46,28 @@ class sale_order(osv.osv):
 			pass
 		return action_dict
 
+	def action_cancel(self, cr, uid, ids, context=None):
+		if context is None:
+			context = {}
+		sale_order_line_obj = self.pool.get('sale.order.line')
+		account_invoice_obj = self.pool.get('account.invoice')
+		procurement_obj = self.pool.get('procurement.order')
+		for sale in self.browse(cr, uid, ids, context=context):
+			for inv in sale.invoice_ids:
+				if inv.state not in ('draft', 'cancel'):
+					raise osv.except_osv(
+						('Cannot cancel this sales order!'),
+						('First cancel all invoices attached to this sales order.'))
+				inv.signal_workflow('invoice_cancel')
+			procurement_obj.cancel(cr, uid, sum([l.procurement_ids.ids for l in sale.order_line],[]))
+			sale_order_line_obj.write(cr, uid, [l.id for l in  sale.order_line],
+					{'state': 'cancel'})
+			obj = self.pool.get('job.order').search(cr,uid,[('code','=',sale.job_id)],context=context)
+			self.pool.get('job.order').write(cr,uid,obj,{'status':'cancel'},context=context)
+		self.write(cr, uid, ids, {'state': 'cancel'})
+		self.write(cr, uid, ids, {'status': 'cancel'})
+		
+		return True		
 
 	def status_in(self,cr,uid,ids,context=None):
 		self.write(cr,uid,ids,{'status':'in'},context=context)
@@ -116,13 +141,14 @@ class sale_order(osv.osv):
 
 
 	def create(self, cr, uid, vals, context=None):
-		ids=super(sale_order,self).create(cr,uid,vals,context)
+		# new_id=super(sale_order,self).create(cr,uid,vals,context)
 
-		job=vals.get('job_id','/')
-		obj = self.pool.get('job.order').search(cr,uid,[('code','=',job)],context=context)
-		self.pool.get('job.order').write(cr,uid,obj,{'status':'arrived'},context=context)
+		job_id=vals.get('job_id','/')
+		arrived_jobs = self.pool.get('job.order').search(cr,uid,[('code','=',job_id)],context=context)
+		self.pool.get('job.order').write(cr,uid,arrived_jobs,{'status':'arrived'},context=context)
 
-		return ids
+		return super(sale_order,self).create(cr,uid,vals,context)
+		# return new_id
 
 	def unlink(self, cr, uid, ids, context=None):
 		sale_orders = self.read(cr, uid, ids, ['state','job_id'], context=context)
@@ -130,6 +156,11 @@ class sale_order(osv.osv):
 		for s in sale_orders:
 			if s['state'] in ['draft', 'cancel']:
 				unlink_ids.append(s['id'])
+
+				#######################
+				obj = self.pool.get('job.order').search(cr,uid,[('code','=',s['job_id'])],context=context)
+				self.pool.get('job.order').write(cr,uid,obj,{'status':'due'},context=context)
+				#######################
 
 				#######################
 				# job = self.pool.get('job.order').read(cr,uid,ids,['status','code'],context=context)
@@ -150,13 +181,8 @@ class sale_order(osv.osv):
 				# self.pool.get('job.order').write(cr,uid,jobs_to_due,{'status':'due'},context=context)
 				#######################
 				
-				#######################
-				obj = self.pool.get('job.order').search(cr,uid,[('code','=',s['job_id'])],context=context)
-				self.pool.get('job.order').write(cr,uid,obj,{'status':'due'},context=context)
-				#######################
-
 			else:
-				raise osv.except_osv(_('Invalid Action!'), _('In order to delete a confirmed sales order, you must cancel it before!'))
+				raise osv.except_osv(('Invalid Action!'), ('In order to delete a confirmed sales order, you must cancel it before!'))
 
 		return osv.osv.unlink(self, cr, uid, unlink_ids, context=context)
 

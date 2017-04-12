@@ -18,7 +18,7 @@ class create_job(osv.osv):
 		"notes":fields.text("Notes"),
 		"code" : fields.char("Number",readonly=True),
 		"status":fields.selection([("prov","Provisional"),
-			("due","Due In"),("arrived","Arrived")],"Status"),
+			("due","Due In"),("arrived","Arrived"),('cancel',"Cancelled")],"Status"),
 		"due_in":fields.datetime("Due In", required=True),
 		"due_out":fields.datetime("Due Out", required=True),
 		"child_ids": fields.many2one("res.partner","Customer", required=True, domain=[("active","=",True)]), # force "active_test" domain to bypass _search() override
@@ -40,8 +40,8 @@ class create_job(osv.osv):
 		self.write(cr,uid,ids,{"status":"due"},context=context)
 		return True
 
-	def status_arr(self,cr,uid,ids,context=None):
-		self.write(cr,uid,ids,{"status":"arr"},context=context)
+	def status_arrived(self,cr,uid,ids,context=None):
+		self.write(cr,uid,ids,{"status":"arrived"},context=context)
 		return True
 
 	def status_in(self,cr,uid,ids,context=None):
@@ -82,7 +82,7 @@ class create_job(osv.osv):
 		return super(create_job,self).create(cr,uid,vals,context=context)
 
 	def repairs_action(self, cr, uid, ids, context=None):
-		# self.write(cr,uid,ids,{"status":"arrived"},context=context)
+		self.write(cr,uid,ids,{"status":"arrived"},context=context)
 		obj = self.browse(cr, uid, ids)
 		assert len(ids) == 1, "This option should only be used for a single id at a time."
 		ctx = dict()
@@ -112,6 +112,19 @@ class create_job(osv.osv):
 		"value" : {"due_out":due_out}
 		}
 		return res
+
+	def unlink(self, cr, uid, ids, context=None):
+		jobs = self.read(cr, uid, ids, ['status'], context=context)
+		unlink_ids = []
+		for s in jobs:
+			if s['status'] in ['arrived']:
+				raise osv.except_osv(('Invalid Action!'), ('In order to delete a job, you must first cancel the quotation, by clicking the "View Order" and then "Cancel Order"!'))
+
+			else:
+				unlink_ids.append(s['id'])
+
+		return osv.osv.unlink(self, cr, uid, unlink_ids, context=context)	
+
 
 	# def fields_view_get(self, cr, uid, view_id=None, view_type="form", context=True, toolbar=False, submenu=False):
 	# 	result = super(create_job, self).fields_view_get(cr, uid, view_id, view_type, context, toolbar, submenu)
@@ -157,10 +170,6 @@ class create_job(osv.osv):
 	# 		else:
 	# 			pass
 	# 	return result
-
-	# def test_fields_view_get(self,cr,uid):
-	# 	idea_obj = self.pool.get('job.order')
-	# 	form_view = idea_obj.fields_view_get(cr,uid)
 
 	_defaults={
 		"due_in": lambda *a:datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 

@@ -112,21 +112,21 @@
             <field name="inherit_id" ref="sale_stock.view_order_form_inherit"/>
             <field name="arch" type="xml">
                 <header>                    
-                    <button name="status_in" type="object" String="In Progress" attrs="{'invisible': [('status','in',('in','paused','part','parts','awaiting','cleaning','cust','work'))]}" class="oe_highlight"/>
+                    <button name="status_in" type="object" String="In Progress" attrs="{'invisible': [('status','in',('in','paused','part','parts','awaiting','cleaning','cust','work','cancel'))]}" class="oe_highlight"/>
 
-                    <button name="status_paused" type="object" String="Paused" attrs="{'invisible': [('status','in',('paused','part','parts','awaiting','cleaning','cust','work'))]}" class="oe_highlight"/>
+                    <button name="status_paused" type="object" String="Paused" attrs="{'invisible': [('status','in',('paused','part','parts','awaiting','cleaning','cust','work','cancel'))]}" class="oe_highlight"/>
 
-                    <button name="status_part" type="object" String="Parts On Order" attrs="{'invisible': [('status','in',('part','parts','awaiting','cleaning','cust','work'))]}" class="oe_highlight"/>
+                    <button name="status_part" type="object" String="Parts On Order" attrs="{'invisible': [('status','in',('part','parts','awaiting','cleaning','cust','work','cancel'))]}" class="oe_highlight"/>
 
-                    <button name="status_parts" type="object" String="Parts Arrived"  attrs="{'invisible': [('status','in',('parts','awaiting','cleaning','cust','work'))]}" class="oe_highlight"/>
+                    <button name="status_parts" type="object" String="Parts Arrived"  attrs="{'invisible': [('status','in',('parts','awaiting','cleaning','cust','work','cancel'))]}" class="oe_highlight"/>
 
-                    <button name="status_awaiting" type="object" String="Awaiting Authority" attrs="{'invisible': [('status','in',('awaiting','cleaning','cust','work'))]}" class="oe_highlight"/>
+                    <button name="status_awaiting" type="object" String="Awaiting Authority" attrs="{'invisible': [('status','in',('awaiting','cleaning','cust','work','cancel'))]}" class="oe_highlight"/>
 
-                    <button name="status_cleaning" type="object" String="Cleaning" attrs="{'invisible': [('status','in',('cleaning','cust','work'))]}" class="oe_highlight" />
+                    <button name="status_cleaning" type="object" String="Cleaning" attrs="{'invisible': [('status','in',('cleaning','cust','work','cancel'))]}" class="oe_highlight" />
 
-                    <button name="status_cust" type="object" String="Customer Contacted" attrs="{'invisible': [('status','in',('cust','work'))]}" class="oe_highlight"/>
+                    <button name="status_cust" type="object" String="Customer Contacted" attrs="{'invisible': [('status','in',('cust','work','cancel'))]}" class="oe_highlight"/>
 
-                    <button name="status_work" type="object" String="Work Completed" attrs="{'invisible': [('status','in',('work'))]}" class="oe_highlight"/>
+                    <button name="status_work" type="object" String="Work Completed" attrs="{'invisible': [('status','in',('work','cancel'))]}" class="oe_highlight"/>
                 
                     <field name="status" widget="statusbar" statusbar_visible="in,paused,part,parts,awaiting,cleaning,cust,work"/>
                 </header>
@@ -144,7 +144,7 @@
                 </xpath>
 
                 <xpath expr="//form/header/button[@name='action_cancel']" position="replace"> 
-                    <button name="action_cancel" string="Cancel Order" type="object" attrs="{'invisible': [('status','in',('work'))]}" />
+                    <button name="action_cancel" string="Cancel Order" type="object" attrs="{'invisible': [('status','in',('work','cancel'))]}" />
                 </xpath>
 
                 <xpath expr="//form/header/button[@string='View Delivery Order']" position="attributes">
@@ -161,12 +161,14 @@
                     <field name="job_id" invisible="1"/>
                     <field name="veh"/>
                     <field name="advisor"/>
-                    <field name="technician" placeholder='--Select--'/>
+                    <field name="technician" />
                 </field>
                 <field name="client_order_ref" position="after">
-                    <field name="bay" placeholder='--Select--'/>
+                    <field name="bay" />
                     <field name="mile"/>
                     <field name="notes" placeholder='Notes'/>
+                    <field name="code"/>
+
                 </field>
                 <field name="amount_tax" position="attributes">
                     <attribute name="invisible">True</attribute>
@@ -195,7 +197,6 @@
         <record model="ir.ui.view" id="car_vue.quotations_view_tree"> 
             <field name="name">sale.order.tree.inherit</field>
             <field name="model">sale.order</field>           
-
             <field name="inherit_id" ref="sale.view_quotation_tree"/>
             <field name="arch" type="xml">
                 <field name="state" position="attributes">
@@ -207,7 +208,6 @@
                 </field>
             </field>
         </record>
-
 
         <record model="ir.ui.view" id="car_vue.sale_view_tree">      
             <field name="name">sale.order.tree.inherit</field>
