@@ -7,6 +7,7 @@ class vehicle_dashboard(osv.osv):
 	_name = 'vehicle.dashboard'
 	_rec_name = 'registration'
 
+	# function to count the jobs corresponding to that vehicle
 	def __count_jobs(self, cr, uid, ids, name, arg, context=None):
 		result = {}
 		for obj in self.browse(cr, uid, ids, context=context):
@@ -72,37 +73,17 @@ class vehicle_dashboard(osv.osv):
   #                "Use this field in form views or some kanban views."),
 		}
 
+	# constrait, to type only unique registration
 	_sql_constraints = [
 		('registration_unique', 'unique(registration)','Registration No. must be UNIQUE !!!'),
 	]
-
-
-	# @api.multi
- #    def _get_image(self, name, args):
- #        return dict((p.id, tools.image_get_resized_images(p.image)) for p in self)
-
- #    @api.one
- #    def _set_image(self, name, value, args):
- #        return self.write({'image': tools.image_resize_image_big(value)})
 
 	def create(self,cr,uid,vals,context=None):
 		if vals.get('code','/')=='/':
 			vals['code']=self.pool.get('ir.sequence').get(cr,uid,'vehicle.dashboard') or '/'
 		return super(vehicle_dashboard,self).create(cr,uid,vals,context=context)
 
-	# def on_change_year(self,cr,uid,ids,due_in,context=None):
-
-	# 	# 'year_dom': fields.selection([(num, str(num)) for num in range(1901,(datetime.datetime.now().year)+1)], 'Year'),
-
-	# 	# 'year_dom'= 
-
-	# 	year_dom = date.strptime(year_dom,'%Y')
-	# 	date_dom =year_dom.strftime('%Y-%m-%d')
-	# 	res={
-	# 	'value' : {'date_dom':date_dom}
-	# 	}
-	# 	return res	
-
+	# function to see all teh jobs corresponding to that vehicle
 	def jobs_button(self, cr, uid, ids, context=None):
 		obj = self.browse(cr, uid, ids)
 		assert len(ids) == 1, 'This option should only be used for a single id at a time.'

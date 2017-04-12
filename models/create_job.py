@@ -32,55 +32,28 @@ class create_job(osv.osv):
 		"image":fields.binary("Image",filters="*.png,*.gif"),
 	}
 	
+	# function to change the status to provisional while clicking Provisional button
 	def status_provisional(self,cr,uid,ids,context=None):
 		self.write(cr,uid,ids,{"status":"prov"},context=context)
 		return True
 
+	# function to change the status to due in while clicking due in button
 	def status_duein(self,cr,uid,ids,context=None):
 		self.write(cr,uid,ids,{"status":"due"},context=context)
 		return True
 
+	# function to change the status to arrived while clicking arrived button
 	def status_arrived(self,cr,uid,ids,context=None):
 		self.write(cr,uid,ids,{"status":"arrived"},context=context)
 		return True
-
-	def status_in(self,cr,uid,ids,context=None):
-		self.write(cr,uid,ids,{"status":"in"},context=context)
-		return True
-
-	def status_paused(self,cr,uid,ids,context=None):
-		self.write(cr,uid,ids,{"status":"paused"},context=context)
-		return True
-
-	def status_part(self,cr,uid,ids,context=None):
-		self.write(cr,uid,ids,{"status":"part"},context=context)
-		return True	
-
-	def status_parts(self,cr,uid,ids,context=None):
-		self.write(cr,uid,ids,{"status":"parts"},context=context)
-		return True
-
-	def status_awaiting(self,cr,uid,ids,context=None):
-		self.write(cr,uid,ids,{"status":"awaiting"},context=context)
-		return True	
-
-	def status_cleaning(self,cr,uid,ids,context=None):
-		self.write(cr,uid,ids,{"status":"cleaning"},context=context)
-		return True	
-
-	def status_cust(self,cr,uid,ids,context=None):
-		self.write(cr,uid,ids,{"status":"cust"},context=context)
-		return True	
-
-	def status_work(self,cr,uid,ids,context=None):
-		self.write(cr,uid,ids,{"status":"work"},context=context)
-		return True	
 
 	def create(self,cr,uid,vals,context=None):
 		if vals.get("code","/")=="/":
 			vals["code"]=self.pool.get("ir.sequence").get(cr,uid,"job.order") or "/"
 		return super(create_job,self).create(cr,uid,vals,context=context)
 
+
+	# function to create a sale order for this job
 	def repairs_action(self, cr, uid, ids, context=None):
 		self.write(cr,uid,ids,{"status":"arrived"},context=context)
 		obj = self.browse(cr, uid, ids)
@@ -105,6 +78,21 @@ class create_job(osv.osv):
 			"context": ctx,
 		}
 
+	# function to view the sale order for a particular job
+	def view_order_button(self, cr, uid, ids, context=None):
+		sale = self.browse(cr, uid, ids)
+		assert len(ids) == 1, 'This option should only be used for a single id at a time.'
+
+		obj = self.pool.get('sale.order').search(cr,uid,[('job_id','=',sale.code)],context=context)
+		# self.pool.get('job.order').write(cr,uid,obj,{'status':'cancel'},context=context)
+		return {
+			'type': 'ir.actions.act_window',
+			'view_mode': 'form',
+			'res_id':obj and obj[0] or None,
+			'res_model': 'sale.order',
+		}
+
+	# onchange function to change the due out 8 hrs after due in when editing due in
 	def on_change_due_in(self,cr,uid,ids,due_in,context=None):
 		duein = datetime.strptime(due_in,"%Y-%m-%d %H:%M:%S")
 		due_out=(duein + timedelta(hours=8)).strftime("%Y-%m-%d %H:%M:%S")
@@ -113,6 +101,7 @@ class create_job(osv.osv):
 		}
 		return res
 
+	# unlink function to delete only cancelled, due in or provisional order and should not delete arrived job unless the order is cancelled 
 	def unlink(self, cr, uid, ids, context=None):
 		jobs = self.read(cr, uid, ids, ['status'], context=context)
 		unlink_ids = []
