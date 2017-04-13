@@ -68,7 +68,15 @@ class sale_order(osv.osv):
 		self.write(cr, uid, ids, {'state': 'cancel'})
 		self.write(cr, uid, ids, {'status': 'cancel'})
 		
-		return True		
+		return True	
+
+	# copy function to change the status to in progress by default when making a copy of cancelled or any record
+	def copy(self, cr, uid, id, defaults=None, context=None):
+		defaults={
+			'status':'in',
+		}
+		# return True
+		return super(sale_order, self).copy(cr, uid, id, defaults, context=context)
 
 	# function to change the status to in progress when in progress button is clicked
 	def status_in(self,cr,uid,ids,context=None):

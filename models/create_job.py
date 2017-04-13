@@ -82,15 +82,16 @@ class create_job(osv.osv):
 	def view_order_button(self, cr, uid, ids, context=None):
 		sale = self.browse(cr, uid, ids)
 		assert len(ids) == 1, 'This option should only be used for a single id at a time.'
-
 		obj = self.pool.get('sale.order').search(cr,uid,[('job_id','=',sale.code)],context=context)
-		# self.pool.get('job.order').write(cr,uid,obj,{'status':'cancel'},context=context)
-		return {
-			'type': 'ir.actions.act_window',
-			'view_mode': 'form',
-			'res_id':obj and obj[0] or None,
-			'res_model': 'sale.order',
-		}
+		if not obj:
+			raise osv.except_osv(('Sorry!'), ('There is no order to show!!!'))
+		else:
+			return {
+				'type': 'ir.actions.act_window',
+				'view_mode': 'form',
+				'res_id':obj and obj[0] or None,
+				'res_model': 'sale.order',
+			}
 
 	# onchange function to change the due out 8 hrs after due in when editing due in
 	def on_change_due_in(self,cr,uid,ids,due_in,context=None):
