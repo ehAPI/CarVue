@@ -87,6 +87,8 @@ class vehicle_dashboard(osv.osv):
 	def jobs_button(self, cr, uid, ids, context=None):
 		obj = self.browse(cr, uid, ids)
 		assert len(ids) == 1, 'This option should only be used for a single id at a time.'
+		if obj.jobs_count==0:
+			raise osv.except_osv(('Sorry!'), ('There is no job to show!!!'))
 		return {
 			'type': 'ir.actions.act_window',
 			'view_mode': 'tree,kanban,form',
